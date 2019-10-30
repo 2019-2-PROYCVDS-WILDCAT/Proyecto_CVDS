@@ -5,8 +5,10 @@
  */
 package edu.eci.cvds.persistance.mybatis;
 import com.google.inject.Inject;
+
 import edu.eci.cvds.persistance.PersistenceException;
 import edu.eci.cvds.persistance.UserDAO;
+import edu.eci.cvds.persistance.mybatis.mappers.UserMapper;
 import edu.eci.cvds.samples.entities.Usuario;
 import java.util.Date;
 import java.util.List;
@@ -17,10 +19,16 @@ import java.util.List;
  */
 public class MyBatisUserDAO implements UserDAO {
     @Inject
-    private Usuario UserMapper;
+    private UserMapper userMapper;
     @Override
     public Usuario load(String email) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            return userMapper.consultarUsuario(email);
+            
+        }        
+        catch (org.apache.ibatis.exceptions.PersistenceException e) {
+            throw new PersistenceException("Error consultar el usuario", e);
+        }
     }
      
       
