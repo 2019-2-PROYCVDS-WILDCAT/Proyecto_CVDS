@@ -1,6 +1,6 @@
 package edu.eci.cvds.samples.services.impl;
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
 
 import edu.eci.cvds.persistance.PersistenceException;
 import edu.eci.cvds.persistance.UserDAO;

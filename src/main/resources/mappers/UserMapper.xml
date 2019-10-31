@@ -9,16 +9,12 @@
 		<id property='correo' column='email' />
 		<result property='nombre' column='nombre' />
 		<result property='apellido' column='apellido' />
-                <result property='tipo' column='Tipo_Usuario_id'/>
+
 	</resultMap>
         
-        <select id="consultarUsuario" resultMap="UserResult" parameterType="string">
-		SELECT
-			u.nombre
-                        u.apellido                        
-		FROM
-			Usuarios as u
-                WHERE u.email = #{correo}
+        <select id="consultarUsuario" resultMap="UserResult" >
+            select u.email, u.nombre, u.apellido
+            from usuarios as u WHERE u.email = #{correo};     
 	</select>
 
 </mapper>
