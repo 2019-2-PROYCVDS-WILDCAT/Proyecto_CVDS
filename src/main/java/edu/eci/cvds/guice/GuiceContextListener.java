@@ -10,6 +10,8 @@ import edu.eci.cvds.persistance.*;
 import edu.eci.cvds.persistance.mybatis.*;
 import edu.eci.cvds.samples.services.ServiciosBiblioteca;
 import edu.eci.cvds.samples.services.impl.ServiciosBibliotecaImpl;
+import edu.eci.cvds.security.ApacheShiroLogger;
+import edu.eci.cvds.security.IniciarSesion;
 
 public class GuiceContextListener implements ServletContextListener {
 
@@ -29,6 +31,7 @@ public class GuiceContextListener implements ServletContextListener {
                 // TODO Add service class associated to Stub implementation
 
                bind(UserDAO.class).to(MyBatisUserDAO.class);
+               bind(IniciarSesion.class).to(ApacheShiroLogger.class);
 
             }
         });

@@ -12,6 +12,12 @@ import edu.eci.cvds.samples.services.ServiciosBiblioteca;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import edu.eci.cvds.security.ApacheShiroLogger;
+import edu.eci.cvds.security.IniciarSesion;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -22,11 +28,48 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 @SessionScoped
 
 public class LoginBean extends BasePageBean{
-    private UsernamePasswordToken token;
+    private String email;
+    private String contraseña;
+    private boolean recordarUsuario;
     @Inject
     private ServiciosBiblioteca serviciosBiblioteca;
+    @Inject
+    private IniciarSesion log;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    public boolean isRecordarusuario() {
+        return recordarUsuario;
+    }
+
+    public void setRecordarusuario(boolean recordarUsuario) {
+        this.recordarUsuario = recordarUsuario;
+    }
     
-    public void iniciarSesion(String email, String contraseña){
+    public void iniciarSesion(String email, String contraseña,boolean recordarUsuario){
+        try {
+            log.login(email, contraseña, recordarUsuario);
+            //ServiciosBilioteca.getUserByEmail();
+            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/index2.xhtml");
+        } catch (ExcepcionServiciosBiblioteca ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     public void cerrarSesion(){
