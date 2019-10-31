@@ -13,12 +13,13 @@ public class Usuario {
     private String correo;
     private String nombre;
     private String apellido;
-
+    private TipoUsuario tipo;
     
-    public Usuario(String correo,String nombre, String apellido){
+    public Usuario(String correo,String nombre, String apellido,TipoUsuario tipo){
         this.correo = correo;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.tipo = tipo;
     }
    
 
@@ -45,13 +46,14 @@ public class Usuario {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-    
-    @Override
-    public String toString() {
-        return "Usuario{" + "correo=" + correo + ", nombre=" + nombre + ", apellido=" + apellido + '}';
+
+    public TipoUsuario getTipo() {
+        return tipo;
     }
 
-
+    public void setTipo(TipoUsuario tipo) {
+        this.tipo = tipo;
+    }
     
 
     
