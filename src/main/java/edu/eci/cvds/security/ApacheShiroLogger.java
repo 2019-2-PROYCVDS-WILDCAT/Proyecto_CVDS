@@ -22,7 +22,7 @@ public class ApacheShiroLogger implements IniciarSesion{
         try{
             Subject usuario = SecurityUtils.getSubject();
             UsernamePasswordToken token = new UsernamePasswordToken(email, new Sha256Hash(contraseña).toHex(),rememberMe);
-            usuario.getSession().setAttribute("Email",email);
+            usuario.getSession().setAttribute("email",email);
             usuario.login( token );
         } catch ( IncorrectCredentialsException a ) {
             throw new ExcepcionServiciosBiblioteca("Contraseña incorrecta",a);
