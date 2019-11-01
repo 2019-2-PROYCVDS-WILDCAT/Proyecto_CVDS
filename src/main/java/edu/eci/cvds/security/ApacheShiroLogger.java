@@ -20,6 +20,7 @@ public class ApacheShiroLogger implements IniciarSesion{
     
  @Override
     public void login(String email,String contraseña,boolean rememberMe) throws ExcepcionServiciosBiblioteca {
+        System.out.println("Funciona boton");
         try{
             Subject usuario = SecurityUtils.getSubject();
             Session sesion = usuario.getSession();

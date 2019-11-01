@@ -14,6 +14,7 @@ import javax.faces.bean.SessionScoped;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import edu.eci.cvds.security.ApacheShiroLogger;
 import edu.eci.cvds.security.IniciarSesion;
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +31,7 @@ import javax.faces.context.FacesContext;
 public class LoginBean extends BasePageBean{
     private String email;
     private String contraseña;
-    private boolean recordarUsuario;
+    private boolean recordarUsuario = true;
     @Inject
     private ServiciosBiblioteca serviciosBiblioteca;
     @Inject
@@ -60,11 +61,11 @@ public class LoginBean extends BasePageBean{
         this.recordarUsuario = recordarUsuario;
     }
     
-    public void iniciarSesion(boolean recordarUsuario){
+    public void iniciarSesion(){
         try {
-            log.login(this.email, this.contraseña, recordarUsuario);
+            log.login(this.email, this.contraseña, this.recordarUsuario);
             //ServiciosBilioteca.getUserByEmail();
-            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/index2.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/index.html");
         } catch (ExcepcionServiciosBiblioteca ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
