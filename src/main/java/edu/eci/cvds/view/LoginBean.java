@@ -60,9 +60,9 @@ public class LoginBean extends BasePageBean{
         this.recordarUsuario = recordarUsuario;
     }
     
-    public void iniciarSesion(String email, String contraseña,boolean recordarUsuario){
+    public void iniciarSesion(boolean recordarUsuario){
         try {
-            log.login(email, contraseña, recordarUsuario);
+            log.login(this.email, this.contraseña, recordarUsuario);
             //ServiciosBilioteca.getUserByEmail();
             FacesContext.getCurrentInstance().getExternalContext().redirect("faces/index2.xhtml");
         } catch (ExcepcionServiciosBiblioteca ex) {

@@ -26,10 +26,10 @@ xmlns:f="http://java.sun.com/jsf/core">
                         <div class="card fat">
                             <div class="card-body">
                                 <h4 class="card-title">Inicia sesión</h4>
-                                <form method="POST" class="my-login-validation" novalidate="">
+                                <h:form class="my-login-validation"  id="formulario">
                                     <div class="form-group">
                                         <label for="email">Correo</label>
-                                        <input id="email" type="email" class="form-control" name="email" value="" required="true" autofocus="true" binding="#{correo}"/>
+                                        <input id="email" type="email" class="form-control" name="email" value="" required="true" autofocus="true" binding="#{LoginBean.email}"/>
                                         <div class="invalid-feedback">
                                             Introduzca Email valido.
                                         </div>
@@ -38,7 +38,7 @@ xmlns:f="http://java.sun.com/jsf/core">
                                     <div class="form-group">
                                         <label for="password">Contraseña
                                         </label>
-                                        <input id="password" type="password" class="form-control" name="password" required="true" data-eye="true" binding="#{contra}"/>
+                                        <input id="password" type="password" class="form-control" name="password" required="true" data-eye="true" binding="#{LoginBean.contraseña}"/>
                                         <div class="invalid-feedback">
                                             Introduzca contraseña
                                         </div>
@@ -46,11 +46,11 @@ xmlns:f="http://java.sun.com/jsf/core">
 
 
                                     <div class="form-group m-0">
-                                        <button type="submit" class="btn btn-primary btn-block" action="#{LoginBean.iniciarSesion(correo.value, contra.value, true)}">
-                                            Iniciar Sesion
-                                        </button>
+                                        <p:commandButton update="formulario" type="submit" class="btn btn-primary btn-block" actionListener="#{LoginBean.iniciarSesion(true)}" value="Iniciar Sesion"/>
+                                   
+                                   
                                     </div>
-                                </form>
+                                </h:form>
                             </div>
                         </div>
                     </div>
