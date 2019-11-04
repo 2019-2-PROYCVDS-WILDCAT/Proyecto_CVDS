@@ -11,8 +11,8 @@
     </properties>
     <typeAliases>
         
-        <typeAlias type='edu.eci.cvds.samples.entities.Usuario' alias='Usuario'/>
-         
+        <typeAlias type="edu.eci.cvds.samples.entities.Usuario" alias="Usuario"/>
+        
     </typeAliases>    
 
 
