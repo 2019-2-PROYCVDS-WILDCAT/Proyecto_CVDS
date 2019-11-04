@@ -1,25 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.eci.cvds.samples.entities;
 
-/**
- *
- * @author AlejandroB
- */
 public class Usuario {
     private String correo;
     private String nombre;
-    private String apellido;
+    private String apellido;  
     private TipoUsuario tipo;
     
-    public Usuario(String correo,String nombre, String apellido,TipoUsuario tipo){
+    public Usuario(String correo,String nombre, String apellido, TipoUsuario tipo){
         this.correo = correo;
         this.nombre = nombre;
         this.apellido = apellido;
         this.tipo = tipo;
+     
+    }
+    
+    public Usuario (String correo, String nombre, String apellido){
+        this.nombre = nombre;
+        this.apellido = apellido;
     }
    
 
@@ -46,7 +43,7 @@ public class Usuario {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-
+    
     public TipoUsuario getTipo() {
         return tipo;
     }
@@ -54,7 +51,10 @@ public class Usuario {
     public void setTipo(TipoUsuario tipo) {
         this.tipo = tipo;
     }
-    
 
+    @Override
+    public String toString() {
+        return "Usuario{" + "correo=" + correo + ", nombre=" + nombre + ", apellido=" + apellido+'}';
+    }    
     
 }
