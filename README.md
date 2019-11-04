@@ -22,7 +22,10 @@
 ![Diagrama de clases](https://raw.githubusercontent.com/AlejandroBohal/Proyecto_CVDS/master/img/DClases.png)
 ### Descripción de la arquitectura y tecnologías utilizadas
 ### Enlace de la aplicación en Heroku
-### Integración continua
+### Despliegue continuo
+
+[![CircleCI](https://circleci.com/gh/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS.svg?style=svg)](https://circleci.com/gh/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS)
+
 ### Calidad del código
 
 ## Descripción del proceso
