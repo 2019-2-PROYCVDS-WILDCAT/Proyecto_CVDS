@@ -13,5 +13,6 @@ import edu.eci.cvds.samples.services.exceptions.ExcepcionServiciosBiblioteca;
  */
 public interface IniciarSesion {
     public void login(String email,String contraseña,boolean rememberMe) throws ExcepcionServiciosBiblioteca;
+    public void logout();
     public boolean isLogged();
 }

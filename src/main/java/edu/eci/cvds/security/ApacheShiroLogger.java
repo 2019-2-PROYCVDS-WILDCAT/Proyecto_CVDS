@@ -39,6 +39,11 @@ public class ApacheShiroLogger implements IniciarSesion{
             throw new ExcepcionServiciosBiblioteca("El usuario no está registrado",a);
         } 
     }
+ @Override
+    public void logout(){
+        Subject usuario = SecurityUtils.getSubject();
+        usuario.logout();
+    }
 
     @Override
     public boolean isLogged() {

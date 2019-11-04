@@ -65,7 +65,7 @@ public class LoginBean extends BasePageBean{
         try {
             log.login(this.email, this.contraseña, this.recordarUsuario);
             //ServiciosBilioteca.getUserByEmail();
-            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/index.html");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/index2.xhtml");
         } catch (ExcepcionServiciosBiblioteca ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -74,6 +74,12 @@ public class LoginBean extends BasePageBean{
         
     }
     public void cerrarSesion(){
+        log.logout();
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/login.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 }
