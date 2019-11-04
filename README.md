@@ -17,7 +17,7 @@
 ## Arquitectura y diseño detallado
 
 ### Modelo E-R (Entidad-Relación)
-![Modelo E-R](https://github.com/AlejandroBohal/Proyecto_CVDS/blob/master/img/ModeloER2.png)
+![Modelo E-R](https://github.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/blob/master/img/ModeloER3.png)
 ### Diagrama de clases
 ![Diagrama de clases](https://raw.githubusercontent.com/AlejandroBohal/Proyecto_CVDS/master/img/DClases.png)
 ### Descripción de la arquitectura y tecnologías utilizadas
