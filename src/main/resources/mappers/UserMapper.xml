@@ -5,21 +5,19 @@
 
 <mapper namespace="edu.eci.cvds.persistance.mybatis.mappers.UserMapper">
 
-	<resultMap type='Usuario' id='UserResult'>
+  
+    
+    
+	<resultMap type='Usuario' id='UsuarioResult'>
 		<id property='correo' column='email' />
 		<result property='nombre' column='nombre' />
 		<result property='apellido' column='apellido' />
-                <result property='tipo' column='tipo_usuario_id' typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
+                <result property='tipo' column='tipo_usuario_id'/>
 	</resultMap>
-        
-        <select id="consultarUsuario" resultMap="UserResult" parameterType="string">
-		SELECT
-			u.nombre
-                        u.apellido
-                        u.tipo_usuario_id
-		FROM
-			Usuarios as u
-                WHERE u.email = #{correo}
-	</select>
+
+        <select id="consultarUsuario" resultMap="UsuarioResult" parameterType="map">
+                select email,nombre,apellido,tipo_usuario_id from public.usuarios where email LIKE '%'||#{correo}||'%' 
+	</select>        
+
 
 </mapper>

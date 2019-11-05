@@ -65,15 +65,18 @@ public class LoginBean extends BasePageBean{
     
     public void iniciarSesion() throws PersistenceException{
         try {
+            System.out.println("Entro1");
             log.login(this.email, this.contraseña, this.recordarUsuario);
+            System.out.println("Entro2");
             Usuario user = serviciosBiblioteca.consultarUsuario(this.email);
-            TipoUsuario tipo = user.getTipo();
-            System.out.println(tipo);
+            System.out.println("Entro3");
+            int tipo = user.getTipo();
+            
             switch (tipo){
-                case Administrador:
+                case 2:
                     FacesContext.getCurrentInstance().getExternalContext().redirect("/secure/Administrador.xhtml"); 
                     break;
-                case Comunidad:
+                case 1:
                     FacesContext.getCurrentInstance().getExternalContext().redirect("/secure/Comunidad.xhtml"); 
                     break;
             }
