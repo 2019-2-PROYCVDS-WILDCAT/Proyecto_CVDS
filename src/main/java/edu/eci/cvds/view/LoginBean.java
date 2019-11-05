@@ -65,19 +65,17 @@ public class LoginBean extends BasePageBean{
     
     public void iniciarSesion() throws PersistenceException{
         try {
-            System.out.println("Entro1");
+            
             log.login(this.email, this.contraseña, this.recordarUsuario);
-            System.out.println("Entro2");
             Usuario user = serviciosBiblioteca.consultarUsuario(this.email);
-            System.out.println("Entro3");
             int tipo = user.getTipo();
             
             switch (tipo){
                 case 2:
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("/secure/Administrador.xhtml"); 
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/secure/Administrador.xhtml"); 
                     break;
                 case 1:
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("/secure/Comunidad.xhtml"); 
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/secure/Comunidad.xhtml"); 
                     break;
             }
                    
@@ -89,10 +87,11 @@ public class LoginBean extends BasePageBean{
         }
         
     }
-    public void cerrarSesion(){
-        log.logout();
+    public void cerrarSesion(){        
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/logout.xhtml");
+            log.logout();
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/login.xhtml");
+            System.out.println("Ya cerre");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }

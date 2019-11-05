@@ -23,7 +23,6 @@ public class MyBatisUserDAO implements UserDAO {
     @Override
     public Usuario load(String email) throws PersistenceException {
         try{
-            System.out.println("Atras de ti imbecil");
             return userMapper.consultarUsuario(email);
             
         }        
