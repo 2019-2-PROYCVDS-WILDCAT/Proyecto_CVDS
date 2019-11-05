@@ -13,9 +13,9 @@ public class Usuario {
     private String correo;
     private String nombre;
     private String apellido;
-    private TipoUsuario tipo;
+    private int tipo;
     
-    public Usuario(String correo,String nombre, String apellido,TipoUsuario tipo){
+    public Usuario(String correo,String nombre, String apellido,int tipo){
         this.correo = correo;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -47,11 +47,11 @@ public class Usuario {
         this.apellido = apellido;
     }
 
-    public TipoUsuario getTipo() {
+    public int getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoUsuario tipo) {
+    public void setTipo(int tipo) {
         this.tipo = tipo;
     }
     
