@@ -6,9 +6,13 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
    <typeAliases>
        <typeAlias type='edu.eci.cvds.samples.entities.Usuario' alias='Usuario'/>
-
    </typeAliases>
-
+   
+   <typeHandlers>
+       <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler"
+       javaType="edu.eci.cvds.samples.entities.TipoUsuario"/>
+   </typeHandlers>
+   
    <environments default="test">
        <environment id="test">
            <transactionManager type="JDBC" />

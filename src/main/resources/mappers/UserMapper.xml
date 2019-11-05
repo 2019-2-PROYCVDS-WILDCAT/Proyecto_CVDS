@@ -9,13 +9,14 @@
 		<id property='correo' column='email' />
 		<result property='nombre' column='nombre' />
 		<result property='apellido' column='apellido' />
-                <result property='tipo' column='Tipo_Usuario_id'/>
+                <result property='tipo' column='tipo_usuario_id' typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
 	</resultMap>
         
         <select id="consultarUsuario" resultMap="UserResult" parameterType="string">
 		SELECT
 			u.nombre
-                        u.apellido                        
+                        u.apellido
+                        u.tipo_usuario_id
 		FROM
 			Usuarios as u
                 WHERE u.email = #{correo}

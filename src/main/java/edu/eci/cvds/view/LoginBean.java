@@ -6,6 +6,8 @@
 package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.persistance.PersistenceException;
+import edu.eci.cvds.samples.entities.TipoUsuario;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.exceptions.ExcepcionServiciosBiblioteca;
 import edu.eci.cvds.samples.services.ServiciosBiblioteca;
@@ -61,11 +63,22 @@ public class LoginBean extends BasePageBean{
         this.recordarUsuario = recordarUsuario;
     }
     
-    public void iniciarSesion(){
+    public void iniciarSesion() throws PersistenceException{
         try {
             log.login(this.email, this.contraseña, this.recordarUsuario);
-            //ServiciosBilioteca.getUserByEmail();
-            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/index2.xhtml");
+            Usuario user = serviciosBiblioteca.consultarUsuario(this.email);
+            TipoUsuario tipo = user.getTipo();
+            System.out.println(tipo);
+            switch (tipo){
+                case Administrador:
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("/secure/Administrador.xhtml"); 
+                    break;
+                case Comunidad:
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("/secure/Comunidad.xhtml"); 
+                    break;
+            }
+                   
+                    
         } catch (ExcepcionServiciosBiblioteca ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -76,7 +89,7 @@ public class LoginBean extends BasePageBean{
     public void cerrarSesion(){
         log.logout();
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/login.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/logout.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
