@@ -14,11 +14,11 @@
         
         <select id="consultarUsuario" resultMap="UserResult" parameterType="string">
 		SELECT
-			u.nombre
-                        u.apellido
+			u.nombre,
+                        u.apellido,
                         u.tipo_usuario_id
 		FROM
-			Usuarios as u
+			Usuarios u
                 WHERE u.email = #{correo}
 	</select>
 
