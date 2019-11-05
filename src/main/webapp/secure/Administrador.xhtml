@@ -10,34 +10,69 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         <link rel="stylesheet" type="text/css" href="css/login.css"/>
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Arvo" />
+        <link rel="stylesheet" type="text/css" href="css/Administrador.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     </h:head>
 
     <h:body class="my-login-page">
-        <section class="h-100">
-            <div class="container h-100">
-                <div class="row justify-content-md-center h-100">
-                    <div class="card-wrapper">
-                        <div class="brand">
-                            <img src="img/logo.jpg" alt="logo"/>
-                        </div>
-                        <div class="card fat">
-                            <div class="card-body">
-                                <h4 class="card-title">Inicia sesión</h4>
-                                <form method="POST" class="my-login-validation" jsf:id="formulario" novalidate=""> 
-                                    <div class="form-group m-0">
-                                        <button type="submit" class="btn btn-primary btn-block" jsf:actionListener="#{LoginBean.cerrarSesion()}">
-                                            Cerrar Sesion                                           
-                                        </button>
-                                    </div>
-                                </form>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+            <div class="container">
+            <a class="navbar-brand" href="#">Start Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                        </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li>
+                    <form method="POST" class="my-login-validation" jsf:id="formulario" novalidate=""> 
+                            <div class="form-group m-0">
+                                <button type="submit" class="btn btn-primary btn-block" jsf:actionListener="#{LoginBean.cerrarSesion()}">
+                                    Cerrar Sesion                                           
+                                </button>
                             </div>
-                        </div>
-                    </div>
-                </div>
+                        </form>
+                </li>
+                </ul>
+
+            </div>
+            </div>
+        </nav>
+        
+        <!-- Full Page Image Header with Vertically Centered Content -->
+        <header class="masthead">
+            <div class="container h-100">
+            <div class="row h-100 align-items-center">
+            </div>
+            </div>
+        </header>
+        
+        <!-- Page Content -->
+        <section class="py-5">
+            <div class="container">
+            <h2 class="font-weight-light">Page Content</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus ab nulla dolorum autem nisi officiis blanditiis voluptatem hic, assumenda aspernatur facere ipsam nemo ratione cumque magnam enim fugiat reprehenderit expedita.</p>
             </div>
         </section>
+
+
+
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdjsn.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
