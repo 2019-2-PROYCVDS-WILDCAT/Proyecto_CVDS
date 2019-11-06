@@ -71,7 +71,10 @@ public class AdminBean extends BasePageBean{
     public void setSelectedRec(Recurso selectedRec) {
         this.selectedRec = selectedRec;
     }
-    
+    public void registrarRecurso(int id, String estado, String nombre, String ubicacion,String tipo,int capacidad) throws PersistenceException{
+        Recurso newRec = new Recurso(id,estado,nombre,ubicacion,tipo,capacidad);
+        serviciosBiblioteca.addRecurso(newRec);
+    }
    
     
 
