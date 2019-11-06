@@ -1,10 +1,12 @@
 package edu.eci.cvds.samples.services.impl;
 
 import com.google.inject.Inject;
+//import edu.eci.cvds.persistance.HorarioDAO;
 
 import edu.eci.cvds.persistance.PersistenceException;
 import edu.eci.cvds.persistance.RecursoDAO;
 import edu.eci.cvds.persistance.UserDAO;
+import edu.eci.cvds.samples.entities.Horario;
 import edu.eci.cvds.samples.entities.Recurso;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ServiciosBiblioteca;
@@ -17,6 +19,8 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
     private UserDAO usuarioDAO;
     @Inject
     private RecursoDAO recursoDAO;
+    //@Inject
+    //private HorarioDAO horarioDAO;
     
     @Override
     public Usuario consultarUsuario(String email) throws PersistenceException {
@@ -56,5 +60,15 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
             throw ex;
         }
     }
+/**
+    @Override
+    public void addHorario(Horario horario) throws PersistenceException {
+        try{
+            horarioDAO.addHorario(horario);
+        }
+        catch(PersistenceException ex){
+            throw ex;
+        }
+    }*/
 }
     
