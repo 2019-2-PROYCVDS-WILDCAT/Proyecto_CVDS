@@ -60,7 +60,7 @@
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <h:form>
-                        <p:dataTable var="recurso" value="#{recursosBean.cars}" widgetVar="admTable"
+                        <p:dataTable var="recurso" value="#{recursosBean.recursos}" widgetVar="admTable"
                                      emptyMessage="No hay recursos con este criterio" filteredValue="#{recursosBean.filteredRec}" >
 
                             <f:facet name="header">
@@ -81,12 +81,7 @@
                                 <h:outputText value="#{recurso.ubicacion}" />
                             </p:column>
 
-                            <p:column filterBy="#{recurso.tipo}" headerText="Tipo" filterMatchMode="in" style="font-size:15px">
-                                <f:facet name="filter">
-                                    <p:selectCheckboxMenu label="Tipo" onchange="PF('admTable').filter()" scrollHeight="80" styleClass="custom-filter">
-                                        <f:selectItems value="#{recursosBean.tipos}" />
-                                    </p:selectCheckboxMenu>
-                                </f:facet>
+                            <p:column filterBy="#{recurso.tipo}" headerText="Tipo" filterMatchMode="contains"  style="font-size:15px">
                                 <h:outputText value="#{recurso.tipo}" />
                             </p:column>
                             <p:column filterBy="#{recurso.capacidad}" headerText="Capacidad" filterMatchMode="contains" style="font-size:15px">
