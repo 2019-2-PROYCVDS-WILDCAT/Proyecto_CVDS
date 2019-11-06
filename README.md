@@ -22,6 +22,9 @@
 ![Diagrama de clases](https://github.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/blob/master/img/DClases.png)
 ### Descripción de la arquitectura y tecnologías utilizadas
 ### Enlace de la aplicación en Heroku
+
+https://gestion-recursos-bibliotecaeci.herokuapp.com/
+
 ### Despliegue continuo
 
 [![CircleCI](https://circleci.com/gh/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS.svg?style=svg)](https://circleci.com/gh/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS)

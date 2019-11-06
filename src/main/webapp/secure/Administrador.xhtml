@@ -58,8 +58,47 @@
         <!-- Full Page Image Header with Vertically Centered Content -->
         <header class="masthead">
             <div class="container h-100">
-            <div class="row h-100 align-items-center">
-            </div>
+                <div class="row h-100 align-items-center">
+                    <h:form>
+                        <p:dataTable var="recurso" value="#{recursosBean.recursos}" widgetVar="admTable"
+                                     emptyMessage="No hay recursos con este criterio" filteredValue="#{recursosBean.filteredRec}" >
+
+                            <f:facet name="header">
+                                <p:outputPanel>
+                                    <h:outputText value="Busqueda general:" style="font-size:12px" />
+                                    <p:inputText id="globalFilter" onkeyup="PF('admTable').filter()" style="width:150px;height:20px;font-size:12px" placeholder="Buscar"/>
+                                </p:outputPanel>
+                            </f:facet>
+                            <p:column filterBy="#{recurso.id}" headerText="Id" filterMatchMode="contains" style="font-size:15px" >
+                                <h:outputText value="#{recurso.id}" />
+                            </p:column>
+
+                            <p:column filterBy="#{recurso.nombre}" headerText="Nombre" filterMatchMode="contains" style="font-size:15px">
+                                <h:outputText value="#{recurso.nombre}" />
+                            </p:column>
+
+                            <p:column filterBy="#{recurso.ubicacion}" headerText="Ubicacion" filterMatchMode="contains"  style="font-size:15px">
+                                <h:outputText value="#{recurso.ubicacion}" />
+                            </p:column>
+
+                            <p:column filterBy="#{recurso.tipo}" headerText="Tipo" filterMatchMode="contains"  style="font-size:15px">
+                                <h:outputText value="#{recurso.tipo}" />
+                            </p:column>
+                            <p:column filterBy="#{recurso.capacidad}" headerText="Capacidad" filterMatchMode="contains" style="font-size:15px">
+                                <h:outputText value="#{recurso.capacidad}" />
+                            </p:column>                           
+                            <p:column filterBy="#{recurso.estado}" headerText="Estado" filterMatchMode="in" style="font-size:15px">
+                                <f:facet name="filter">
+                                    <p:selectCheckboxMenu label="Estado" onchange="PF('admTable').filter()" scrollHeight="80" styleClass="custom-filter">
+                                        <f:selectItems value="#{recursosBean.estados}" />
+                                    </p:selectCheckboxMenu>
+                                </f:facet>
+                                <h:outputText value="#{recurso.estado}" />
+                            </p:column>
+
+                        </p:dataTable>
+                    </h:form>      
+             </div>
             </div>
         </header>
         
