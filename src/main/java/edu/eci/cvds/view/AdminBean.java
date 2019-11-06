@@ -23,7 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import org.primefaces.event.SelectEvent;
 
 /**
  *
@@ -36,21 +38,9 @@ import javax.faces.context.FacesContext;
 public class AdminBean extends BasePageBean{
     @Inject
     private ServiciosBiblioteca serviciosBiblioteca;
-    private List<String> estados;
+    private Recurso selectedRec;
     private List<Recurso> recursos;
-    private List<Recurso> filteredRec;
 
-    public List<String> getEstados() {
-        estados = new ArrayList<String>();
-        estados.add("Prestado");
-        estados.add("Disponible");
-        estados.add("Dañado");
-        return estados;
-    }
-
-    public void setEstados(List<String> estados) {
-        this.estados = estados;
-    }
 
     public ServiciosBiblioteca getServiciosBiblioteca() {
         return serviciosBiblioteca;
@@ -74,15 +64,13 @@ public class AdminBean extends BasePageBean{
         this.recursos = recursos;
     }
 
-    public List<Recurso> getFilteredRec() {
-        return filteredRec;
+    public Recurso getSelectedRec() {
+        return selectedRec;
     }
 
-    public void setFilteredRec(List<Recurso> filteredRec) {
-        this.filteredRec = filteredRec;
+    public void setSelectedRec(Recurso selectedRec) {
+        this.selectedRec = selectedRec;
     }
-
-    
     
    
     

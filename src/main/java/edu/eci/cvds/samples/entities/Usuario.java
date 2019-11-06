@@ -5,11 +5,13 @@
  */
 package edu.eci.cvds.samples.entities;
 
+import java.io.Serializable;
+
 /**
  *
  * @author AlejandroB
  */
-public class Usuario {
+public class Usuario implements Serializable{
     private String correo;
     private String nombre;
     private String apellido;

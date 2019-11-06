@@ -23,7 +23,7 @@
             <a class="navbar-brand" href="#">Start Bootstrap</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+            </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
@@ -32,10 +32,14 @@
                         </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <div class="form-group m-0">
+                        <button type="submit" class="btn btn-primary btn-block" jsf:actionListener="#{LoginBean.cerrarSesion()}">
+                            Registrar Recurso                                          
+                        </button>
+                    </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
+                    <a class="nav-link" href="#"></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
@@ -59,45 +63,60 @@
         <header class="masthead">
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
-                    <h:form>
-                        <p:dataTable var="recurso" value="#{recursosBean.recursos}" widgetVar="admTable"
-                                     emptyMessage="No hay recursos con este criterio" filteredValue="#{recursosBean.filteredRec}" >
+                <h:form id="form">
+                    <p:dataTable var="recurso" value="#{recursosBean.recursos}" paginator="true" rows="10"
+                                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                                 rowsPerPageTemplate="5,10,15" selectionMode="single" selection="#{recursosBean.selectedRec}" id="recursoTable" lazy="true" rowKey="#{recurso.id}">
+                        <p:ajax event="rowSelect" listener="#{recursosBean.onRowSelect}" update=":form:recursoDetail" oncomplete="PF('recursoDialog').show()" />
+                        <p:column headerText="Id" sortBy="#{recurso.id}" filterBy="#{recurso.id}">
+                            <h:outputText value="#{recurso.id}" />
+                        </p:column>
+                        <p:column headerText="Nombre" sortBy="#{recurso.nombre}" filterBy="#{recurso.nombre}">
+                            <h:outputText value="#{recurso.nombre}" />
+                        </p:column>
+                        <p:column headerText="Ubicacion" sortBy="#{recurso.ubicacion}" filterBy="#{recurso.ubicacion}">
+                            <h:outputText value="#{recurso.ubicacion}" />
+                        </p:column>
+                        <p:column headerText="Tipo" sortBy="#{recurso.tipo}" filterBy="#{recurso.tipo}">
+                            <h:outputText value="#{recurso.tipo}" />
+                        </p:column>
+                        <p:column headerText="Capacidad" sortBy="#{recurso.capacidad}" filterBy="#{recurso.capacidad}">
+                            <h:outputText value="#{recurso.capacidad}" />
+                        </p:column>
+                        <p:column headerText="Estado" sortBy="#{recurso.estado}" filterBy="#{recurso.estado}">
+                            <h:outputText value="#{recurso.estado}" />
+                        </p:column>
+                    </p:dataTable>
 
-                            <f:facet name="header">
-                                <p:outputPanel>
-                                    <h:outputText value="Busqueda general:" style="font-size:12px" />
-                                    <p:inputText id="globalFilter" onkeyup="PF('admTable').filter()" style="width:150px;height:20px;font-size:12px" placeholder="Buscar"/>
-                                </p:outputPanel>
-                            </f:facet>
-                            <p:column filterBy="#{recurso.id}" headerText="Id" filterMatchMode="contains" style="font-size:15px" >
-                                <h:outputText value="#{recurso.id}" />
-                            </p:column>
-
-                            <p:column filterBy="#{recurso.nombre}" headerText="Nombre" filterMatchMode="contains" style="font-size:15px">
-                                <h:outputText value="#{recurso.nombre}" />
-                            </p:column>
-
-                            <p:column filterBy="#{recurso.ubicacion}" headerText="Ubicacion" filterMatchMode="contains"  style="font-size:15px">
-                                <h:outputText value="#{recurso.ubicacion}" />
-                            </p:column>
-
-                            <p:column filterBy="#{recurso.tipo}" headerText="Tipo" filterMatchMode="contains"  style="font-size:15px">
-                                <h:outputText value="#{recurso.tipo}" />
-                            </p:column>
-                            <p:column filterBy="#{recurso.capacidad}" headerText="Capacidad" filterMatchMode="contains" style="font-size:15px">
-                                <h:outputText value="#{recurso.capacidad}" />
-                            </p:column>                           
-                            <p:column filterBy="#{recurso.estado}" headerText="Estado" filterMatchMode="in" style="font-size:15px">
-                                <f:facet name="filter">
-                                    <p:selectCheckboxMenu label="Estado" onchange="PF('admTable').filter()" scrollHeight="80" styleClass="custom-filter">
-                                        <f:selectItems value="#{recursosBean.estados}" />
-                                    </p:selectCheckboxMenu>
+                    <p:dialog header="Car Detail" widgetVar="recursoDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="recursoDetail" style="text-align:center;">
+                            <p:panelGrid  columns="2" rendered="#{not empty recursosBean.selectedRec}" columnClasses="label,value">
+                                <f:facet name="header">
+                                    <p:graphicImage name="demo/images/recurso/#{recursosBean.selectedRec.brand}-big.gif"/>
                                 </f:facet>
-                                <h:outputText value="#{recurso.estado}" />
-                            </p:column>
 
-                        </p:dataTable>
-                    </h:form>      
+                                <h:outputText value="Id:" />
+                                <h:outputText value="#{recursosBean.selectedRec.id}" />
+
+                                <h:outputText value="Nombre" />
+                                <h:outputText value="#{recursosBean.selectedRec.nombre}" />
+
+                                <h:outputText value="Ubicacion" />
+                                <h:outputText value="#{recursosBean.selectedRec.ubicacion}" />
+                                
+                                <h:outputText value="Tipo" />
+                                <h:outputText value="#{recursosBean.selectedRec.tipo}" />
+                                
+                                <h:outputText value="Capacidad" />
+                                <h:outputText value="#{recursosBean.selectedRec.capacidad}" />
+                                
+                                <h:outputText value="Estado" />
+                                <h:outputText value="#{recursosBean.selectedRec.estado}" />
+                                
+                            </p:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+                </h:form> 
              </div>
             </div>
         </header>
@@ -105,8 +124,49 @@
         <!-- Page Content -->
         <section class="py-5">
             <div class="container">
-            <h2 class="font-weight-light">Page Content</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus ab nulla dolorum autem nisi officiis blanditiis voluptatem hic, assumenda aspernatur facere ipsam nemo ratione cumque magnam enim fugiat reprehenderit expedita.</p>
+                <form method="POST" class="my-login-validation" jsf:id="formut" novalidate="">
+                    <div class="form-group">
+                        <label for="id">Id</label>
+                        <input id="id" type="id" class="form-control" name="id" value="" required="true" autofocus="true" binding="#{id}"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <input id="estado" type="estado" class="form-control" name="estado" value="" required="true" autofocus="true" binding="#{estado}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="emanombreil">Nombre</label>
+                        <input id="nombre" type="nombre" class="form-control" name="nombre" value="" required="true" autofocus="true" binding="#{nombre}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="ubicacion">Ubicacion</label>
+                        <input id="email" type="ubicacion" class="form-control" name="ubicacion" value="" required="true" autofocus="true" binding="#{ubicacion}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo">Tipo</label>
+                        <input id="email" type="tipo" class="form-control" name="email" value="" required="true" autofocus="true" binding="#{tipo}"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="capacidad">Capacidad</label>
+                        <input id="email" type="capacidad" class="form-control" name="capacidad" value="" required="true" autofocus="true" binding="#{capacidad}"/>
+                    </div>
+                    
+
+                    <div class="form-group m-0">
+                        <button type="submit" class="btn btn-primary btn-block" jsf:actionListener="#{AdminBean.registrarRecurso()}">
+                            Iniciar Sesion
+                            <f:ajax execute="@form" render="id"/>
+                            <f:ajax execute="@form" render="estado"/> 
+                            <f:ajax execute="@form" render="nombre"/>
+                            <f:ajax execute="@form" render="ubicacion"/>
+                            <f:ajax execute="@form" render="tipo"/>
+                            <f:ajax execute="@form" render="capacidad"/>
+                        </button>
+                    </div>
+                                    
+                </form>
+            
             </div>
         </section>
 

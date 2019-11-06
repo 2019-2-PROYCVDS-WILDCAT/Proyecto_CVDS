@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
-public class Recurso{
+public class Recurso implements Serializable{
 
     private int id;
     private String estado;
