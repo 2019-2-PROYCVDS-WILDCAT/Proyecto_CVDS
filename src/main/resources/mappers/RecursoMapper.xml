@@ -6,7 +6,27 @@
   <mapper namespace="edu.eci.cvds.persistance.mybatis.mappers.RecursoMapper">
       
       <resultMap type='Recurso' id='RecursoResult'>
-          <id property='id' column='email' />
+          <id property='id' column='id' />
+          <result property='estado' column='estado'/>
           <result property='nombre' column='nombre' />
-          
+          <result property='ubicacion' column='ubicacion' />
+          <result property='tipo' column='tipo' />
+          <result property='capacidad' column='capacidad' />          
       </resultMap>
+      
+        <select id="consultarRecurso" resultMap="RecursoResult" parameterType="map">
+                SELECT *
+                FROM recursos
+                WHERE recursos.id = #{id}
+	</select>
+                                  
+        <select id="consultarRecursos" resultMap="RecursoResult" parameterType="map">
+                SELECT *
+                FROM recursos
+	</select>  
+        
+        
+         
+
+        
+        </mapper>

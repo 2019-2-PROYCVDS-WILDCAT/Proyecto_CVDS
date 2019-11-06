@@ -12,8 +12,9 @@ import java.io.IOException;
  * of {@literal AND} on the specified roles.
  *
  * @see RolesAuthorizationFilter
- * @author Andy Belsky
+ * @author brayitan rojas el cacheton
  */
+
 public class AnyOfRolesAuthorizationFilter extends RolesAuthorizationFilter {
 
     @Override
