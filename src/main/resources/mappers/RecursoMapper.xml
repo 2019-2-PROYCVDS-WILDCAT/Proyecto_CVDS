@@ -5,14 +5,14 @@
   
   <mapper namespace="edu.eci.cvds.persistance.mybatis.mappers.RecursoMapper">
       
-      <resultMap type='Recurso' id='RecursoResult'>
-          <id property='id' column='id' />
-          <result property='estado' column='estado'/>
-          <result property='nombre' column='nombre' />
-          <result property='ubicacion' column='ubicacion' />
-          <result property='tipo' column='tipo' />
-          <result property='capacidad' column='capacidad' />          
-      </resultMap>
+        <resultMap type='Recurso' id='RecursoResult'>
+            <id property='id' column='id' />
+            <result property='estado' column='estado'/>
+            <result property='nombre' column='nombre' />
+            <result property='ubicacion' column='ubicacion' />
+            <result property='tipo' column='tipo' />
+            <result property='capacidad' column='capacidad' />          
+        </resultMap>
       
         <select id="consultarRecurso" resultMap="RecursoResult" parameterType="map">
                 SELECT *
@@ -23,10 +23,13 @@
         <select id="consultarRecursos" resultMap="RecursoResult" parameterType="map">
                 SELECT *
                 FROM recursos
-	</select>  
+	</select>    
+                      
+        <insert id="addRecurso" parameterType="map">
+                INSERT INTO
+                recursos (id, estado, nombre, ubicacion, tipo, capacidad)
+                VALUES (#{rec.id}, #{rec.estado}, #{rec.nombre}, #{rec.ubicacion}, #{rec.tipo}, #{rec.capacidad})
+        </insert>               
+ 
         
-        
-           
-
-        
-        </mapper>
+    </mapper>

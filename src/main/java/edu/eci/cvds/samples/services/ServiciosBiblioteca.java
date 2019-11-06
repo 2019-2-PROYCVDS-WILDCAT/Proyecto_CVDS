@@ -11,5 +11,6 @@ public interface ServiciosBiblioteca {
     public Usuario consultarUsuario(String email) throws PersistenceException;
     public Recurso consultarRecurso (int id) throws PersistenceException;
     public List<Recurso> consultarRecursos() throws PersistenceException;
+    public void addRecurso(Recurso recurso) throws PersistenceException;
     
 }

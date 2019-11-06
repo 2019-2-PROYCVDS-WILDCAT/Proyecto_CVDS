@@ -6,6 +6,7 @@
 package edu.eci.cvds.samples.services.impl;
 
 import edu.eci.cvds.persistance.PersistenceException;
+import edu.eci.cvds.samples.entities.Recurso;
 import edu.eci.cvds.samples.services.ServiciosBiblioteca;
 import edu.eci.cvds.samples.services.ServiciosBibliotecaFactory;
 import java.util.logging.Level;
@@ -23,6 +24,9 @@ public class TestMain {
             System.out.println(sb);
             System.out.println(sb.consultarRecurso(2));
             System.out.println(sb.consultarRecursos());
+            Recurso recurso = new Recurso(4,"disponible","Guia complementaria para quemar el agua", "Taured","Libro",0);
+            sb.addRecurso(recurso);
+            System.out.println(sb.consultarRecurso(4));
             
         } catch (PersistenceException ex) {
             Logger.getLogger(TestMain.class.getName()).log(Level.SEVERE, null, ex);
