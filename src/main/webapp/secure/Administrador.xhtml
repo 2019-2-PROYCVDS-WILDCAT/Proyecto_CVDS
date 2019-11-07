@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
@@ -20,34 +21,35 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
             <div class="container">
-            <a class="navbar-brand" href="#">Recursos</a>
+            <a class="navbar-brand" href="#" style="color:hsl(209.86, 100%, 57.06%)" >Administración de recursos</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
-                        <span class="sr-only">(current)</span>
-                        </a>
-                </li>
-                <li class="nav-item">
+                <li class="nav-item" style="margin-right:10px;">
                     <div class="form-group m-0">
-                        <button type="submit" class="btn btn-primary btn-block" jsf:actionListener="#{LoginBean.cerrarSesion()}">
-                            Registrar Recurso                                          
+                        <button type="submit" class="btn btn-dark btn-block" >
+                            Home
+                            <span class="sr-only">(current)</span>
                         </button>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"></a>
+                <li class="nav-item" style="margin-right:10px;">
+                    <div class="form-group m-0">
+                        <button type="button" class="btn btn-dark btn-block" data-toggle="modal" data-target="#registerModal">
+                            Registrar Recurso
+                        </button>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                <li class="nav-item" >
+                    <a class="nav-link" href="#"></a>
                 </li>
                 <li>
                     <form method="POST" class="my-login-validation" jsf:id="formulario" novalidate=""> 
                             <div class="form-group m-0">
-                                <button type="submit" class="btn btn-primary btn-block" jsf:actionListener="#{LoginBean.cerrarSesion()}">
+                                <button type="submit" class="btn btn-dark btn-block" jsf:actionListener="#{LoginBean.cerrarSesion()}">
                                     Cerrar Sesion                                           
                                 </button>
                             </div>
@@ -122,55 +124,46 @@
         </header>
         
         <!-- Page Content -->
-        <section class="py-5">
-            <div class="container">
+  
+
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Registrar Recurso</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
                 <form method="POST" class="my-login-validation" jsf:id="formut" novalidate="">
-                    <div class="form-group">
-                        <label for="id">Id</label>
-                        <input id="id" type="id" class="form-control" name="id" value="" required="true" autofocus="true" binding="#{id}"/>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="estado">Estado</label>
-                        <input id="estado" type="estado" class="form-control" name="estado" value="" required="true" autofocus="true" binding="#{estado}"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="emanombreil">Nombre</label>
-                        <input id="nombre" type="nombre" class="form-control" name="nombre" value="" required="true" autofocus="true" binding="#{nombre}"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="ubicacion">Ubicacion</label>
-                        <input id="email" type="ubicacion" class="form-control" name="ubicacion" value="" required="true" autofocus="true" binding="#{ubicacion}"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="tipo">Tipo</label>
-                        <input id="email" type="tipo" class="form-control" name="email" value="" required="true" autofocus="true" binding="#{tipo}"/>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="capacidad">Capacidad</label>
-                        <input id="email" type="capacidad" class="form-control" name="capacidad" value="" required="true" autofocus="true" binding="#{capacidad}"/>
-                    </div>
-                    
+                    <div class="modal-body">
 
-                    <div class="form-group m-0">
-                        <button type="submit" class="btn btn-primary btn-block" jsf:actionListener="#{recursosBean.registrarRecurso(id.value,estado.value,nombre.value,ubicacion.value,tipo.value,capacidad.value)}">
-                            Registrar recurso
-                            <f:ajax execute="@form" render="id"/>
-                            <f:ajax execute="@form" render="estado"/> 
-                            <f:ajax execute="@form" render="nombre"/>
-                            <f:ajax execute="@form" render="ubicacion"/>
-                            <f:ajax execute="@form" render="tipo"/>
-                            <f:ajax execute="@form" render="capacidad"/>
-                        </button>
+                            <div class="form-group">
+                                <input id="nombre" type="nombre" class="form-control" name="nombre" value="" required="true" autofocus="true" jsf:value="#{recursosBean.nombre}" placeholder="Nombre"/>
+                            </div>
+                            <div class="form-group">
+                                <input id="ubicacion" type="ubicacion" class="form-control" name="ubicacion" value="" required="true" autofocus="true" jsf:value="#{recursosBean.ubicacion}" placeholder="Ubicacion"/>
+                            </div>
+                            <div class="form-group">
+                                <input id="tipo" type="tipo" class="form-control" name="tipo" required="true" value=""  autofocus="true" jsf:value="#{recursosBean.tipo}" placeholder="Tipo"/>
+                            </div>
+                            <div class="form-group">
+                                <input id="capacidad" type="capacidad" class="form-control" name="capacidad" value="" required="true"  autofocus="true" jsf:value="#{recursosBean.capacidad}" placeholder="Capacidad"/>
+                            </div>
+           
                     </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                      <button type="submit" class="btn btn-primary btn-block" jsf:actionListener="#{recursosBean.registrarRecurso}" data-dismiss="modal">
+                                    Registrar
+                                    <f:ajax  execute="@form" render="nombre ubicacion tipo capacidad" />
                                     
+                      </button>
+                    </div>
                 </form>
-            
+              </div>
             </div>
-        </section>
-
-
+        </div>
 
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -15,6 +15,7 @@ public class MyBatisRecursoDAO implements RecursoDAO{
     private RecursoMapper recursoMapper;
     @Override
     public void addRecurso(Recurso recurso) throws PersistenceException {
+        
         try{
             recursoMapper.addRecurso(recurso);
         }

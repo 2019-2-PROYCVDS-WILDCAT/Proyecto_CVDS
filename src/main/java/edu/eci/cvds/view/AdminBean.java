@@ -40,7 +40,8 @@ public class AdminBean extends BasePageBean{
     private ServiciosBiblioteca serviciosBiblioteca;
     private Recurso selectedRec;
     private List<Recurso> recursos;
-
+    private String nombre,ubicacion,tipo;
+    private int capacidad;
 
     public ServiciosBiblioteca getServiciosBiblioteca() {
         return serviciosBiblioteca;
@@ -71,11 +72,52 @@ public class AdminBean extends BasePageBean{
     public void setSelectedRec(Recurso selectedRec) {
         this.selectedRec = selectedRec;
     }
-    public void registrarRecurso(int id, String estado, String nombre, String ubicacion,String tipo,int capacidad) throws PersistenceException{
-        Recurso newRec = new Recurso(id,estado,nombre,ubicacion,tipo,capacidad);
+    public void registrarRecurso() throws PersistenceException{
+        
+        Recurso newRec = new Recurso(0,"Disponible",this.nombre,this.ubicacion,this.tipo,this.capacidad);
         serviciosBiblioteca.addRecurso(newRec);
+        this.clear();
     }
-   
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+
+    private void clear() {
+        this.capacidad =0;
+        this.nombre = "";
+        this.tipo ="";
+        this.ubicacion ="";
+    }
+    
     
 
 }

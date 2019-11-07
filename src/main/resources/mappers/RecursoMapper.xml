@@ -27,8 +27,8 @@
                       
         <insert id="addRecurso" parameterType="map">
                 INSERT INTO
-                recursos (id, estado, nombre, ubicacion, tipo, capacidad)
-                VALUES (#{rec.id}, #{rec.estado}, #{rec.nombre}, #{rec.ubicacion}, #{rec.tipo}, #{rec.capacidad})
+                recursos (nombre, ubicacion, tipo, capacidad)
+                VALUES (#{rec.nombre}, #{rec.ubicacion}, #{rec.tipo}, #{rec.capacidad})
         </insert>               
  
         
