@@ -6,6 +6,7 @@
 package edu.eci.cvds.samples.services.impl;
 
 import edu.eci.cvds.persistance.PersistenceException;
+import edu.eci.cvds.samples.entities.Horario;
 import edu.eci.cvds.samples.entities.Recurso;
 import edu.eci.cvds.samples.services.ServiciosBiblioteca;
 import edu.eci.cvds.samples.services.ServiciosBibliotecaFactory;
@@ -28,6 +29,10 @@ public class TestMain {
             Recurso recurso = new Recurso(4,"disponible","Guia complementaria para quemar el agua", "Taured","Libro",0);
             //sb.addRecurso(recurso);
             System.out.println(sb.consultarRecurso(4));
+            Horario horario = new Horario(4,"11:30");
+            //sb.addHorario(horario);
+            System.out.println(sb.consultarHorario(1));
+            System.out.println(sb.consultarHorarios());
             
         } catch (PersistenceException ex) {
             Logger.getLogger(TestMain.class.getName()).log(Level.SEVERE, null, ex);

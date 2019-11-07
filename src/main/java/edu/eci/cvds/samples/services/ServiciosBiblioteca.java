@@ -13,6 +13,8 @@ public interface ServiciosBiblioteca {
     public Recurso consultarRecurso (int id) throws PersistenceException;
     public List<Recurso> consultarRecursos() throws PersistenceException;
     public void addRecurso(Recurso recurso) throws PersistenceException;
-    //public void addHorario(Horario horario)throws PersistenceException;
+    public void addHorario(Horario horario)throws PersistenceException;
+    public List<Horario> consultarHorarios()throws PersistenceException;
+    public Horario consultarHorario(int id)throws PersistenceException;
     
 }

@@ -32,6 +32,7 @@ public class RegistrarRecursoTest {
         }                
     }
     
+    @Test
     public void noDeberiaConsultarUnRecursoInexistente(){
         boolean flag = false;
         try {            
@@ -44,6 +45,7 @@ public class RegistrarRecursoTest {
         }                        
     } 
     
+    @Test
     public void noDeberiaPermitirAgregarUnRecursoYaExistente(){
         boolean flag = false;
         try {            

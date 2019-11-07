@@ -1,7 +1,7 @@
 package edu.eci.cvds.samples.services.impl;
 
 import com.google.inject.Inject;
-//import edu.eci.cvds.persistance.HorarioDAO;
+import edu.eci.cvds.persistance.HorarioDAO;
 
 import edu.eci.cvds.persistance.PersistenceException;
 import edu.eci.cvds.persistance.RecursoDAO;
@@ -19,8 +19,8 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
     private UserDAO usuarioDAO;
     @Inject
     private RecursoDAO recursoDAO;
-    //@Inject
-    //private HorarioDAO horarioDAO;
+    @Inject
+    private HorarioDAO horarioDAO;
     
     @Override
     public Usuario consultarUsuario(String email) throws PersistenceException {
@@ -60,7 +60,7 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
             throw ex;
         }
     }
-/**
+
     @Override
     public void addHorario(Horario horario) throws PersistenceException {
         try{
@@ -69,6 +69,26 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
         catch(PersistenceException ex){
             throw ex;
         }
-    }*/
+    }
+
+    @Override
+    public List<Horario> consultarHorarios() throws PersistenceException {
+        try{
+            return horarioDAO.loadHorarios();
+        }
+        catch (PersistenceException ex){
+            throw ex;
+        }
+    }
+
+    @Override
+    public Horario consultarHorario(int id) throws PersistenceException {
+        try{
+            return horarioDAO.loadHorario(id);
+        }
+        catch (PersistenceException ex){
+            throw ex;
+        }
+    }
 }
     
