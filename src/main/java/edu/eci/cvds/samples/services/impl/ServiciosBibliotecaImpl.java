@@ -90,5 +90,15 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
             throw ex;
         }
     }
+
+    @Override
+    public void cambiarEstadoRecurso(int id, String estado) throws PersistenceException {
+        try{
+            recursoDAO.updateEstadoRecurso(id, estado);
+        }
+        catch(PersistenceException ex){
+            throw ex;
+        }
+    }
 }
     

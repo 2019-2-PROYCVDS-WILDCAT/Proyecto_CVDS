@@ -29,7 +29,13 @@
                 INSERT INTO
                 recursos (nombre, ubicacion, tipo, capacidad)
                 VALUES (#{rec.nombre}, #{rec.ubicacion}, #{rec.tipo}, #{rec.capacidad})
-        </insert>               
+        </insert>
+        
+        <update id='cambiarEstadoRecurso'>
+        	UPDATE recursos
+                SET estado = #{state} 
+                WHERE id = #{id} 
+        </update>               
  
         
     </mapper>
