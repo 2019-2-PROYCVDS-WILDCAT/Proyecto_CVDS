@@ -20,6 +20,8 @@
 ![Modelo E-R](https://github.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/blob/master/img/ModeloER3.png)
 ### Diagrama de clases
 ![Diagrama de clases](https://github.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/blob/master/img/DClases.png)
+### Diagrama de paquetes
+![Diagrama de clases](https://github.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/blob/master/img/DiagramaPaquetes.png)
 ### Descripción de la arquitectura y tecnologías utilizadas
 ### Enlace de la aplicación en Heroku
 
