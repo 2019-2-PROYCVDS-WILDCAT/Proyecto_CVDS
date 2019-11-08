@@ -25,7 +25,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import org.primefaces.event.SelectEvent;
+import org.primefaces.event.ToggleEvent;
+import org.primefaces.model.Visibility;
 
 /**
  *
@@ -42,6 +45,15 @@ public class AdminBean extends BasePageBean{
     private List<Recurso> recursos;
     private String nombre,ubicacion,tipo;
     private int capacidad;
+    ArrayList<String> tipos = new ArrayList<String>() { 
+            {
+                add("Tipo");
+                add("Dispositivo multimedia"); 
+                add("Libro"); 
+                add("Sala de estudio"); 
+            } 
+        }; 
+  
 
     public ServiciosBiblioteca getServiciosBiblioteca() {
         return serviciosBiblioteca;
@@ -59,6 +71,16 @@ public class AdminBean extends BasePageBean{
             Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    public void onRowToggle(AjaxBehaviorEvent event) {
+        ToggleEvent toggleEvent = (ToggleEvent) event;
+        FacesMessage msg;
+        if (toggleEvent.getVisibility() == Visibility.VISIBLE) {
+            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Toggled", "Visibility:" + toggleEvent.getVisibility());
+        } else {
+            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Untoggled", "Visibility:" + toggleEvent.getVisibility());
+        }
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     public void setRecursos(List<Recurso> recursos) {
@@ -117,6 +139,15 @@ public class AdminBean extends BasePageBean{
         this.tipo ="";
         this.ubicacion ="";
     }
+
+    public ArrayList<String> getTipos() {
+        return tipos;
+    }
+
+    public void setTipos(ArrayList<String> tipos) {
+        this.tipos = tipos;
+    }
+    
     
     
 
