@@ -7,6 +7,7 @@ package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.persistance.PersistenceException;
+import edu.eci.cvds.samples.entities.Horario;
 import edu.eci.cvds.samples.entities.Recurso;
 import edu.eci.cvds.samples.entities.TipoUsuario;
 import edu.eci.cvds.samples.entities.Usuario;
@@ -43,6 +44,7 @@ public class AdminBean extends BasePageBean{
     private ServiciosBiblioteca serviciosBiblioteca;
     private Recurso selectedRec;
     private List<Recurso> recursos;
+    private List<Horario> horarios;
     private String nombre,ubicacion,tipo;
     private int capacidad;
     ArrayList<String> tipos = new ArrayList<String>() { 
@@ -71,16 +73,6 @@ public class AdminBean extends BasePageBean{
             Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-    }
-    public void onRowToggle(AjaxBehaviorEvent event) {
-        ToggleEvent toggleEvent = (ToggleEvent) event;
-        FacesMessage msg;
-        if (toggleEvent.getVisibility() == Visibility.VISIBLE) {
-            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Toggled", "Visibility:" + toggleEvent.getVisibility());
-        } else {
-            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Untoggled", "Visibility:" + toggleEvent.getVisibility());
-        }
-        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     public void setRecursos(List<Recurso> recursos) {
@@ -147,7 +139,21 @@ public class AdminBean extends BasePageBean{
     public void setTipos(ArrayList<String> tipos) {
         this.tipos = tipos;
     }
+
+    public List<Horario> getHorarios() {
+        
+        try {
+            return serviciosBiblioteca.consultarHorarios();
+        } catch (PersistenceException ex) {
+            Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;  
+    }
     
+
+    public void setHorarios(List<Horario> horarios) {
+        this.horarios = horarios;
+    }
     
     
 
