@@ -17,7 +17,7 @@ CREATE TABLE recursos (
 );
 CREATE TABLE Horarios (
    id int  NOT NULL,
-   fran char(5)  NOT NULL
+   fran char(11)  NOT NULL
 );
 CREATE TABLE Disponibilidad (
    Recursos_id int  NOT NULL,
