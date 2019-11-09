@@ -33,8 +33,10 @@ https://gestion-recursos-bibliotecaeci.herokuapp.com/
 
 ### Calidad del código
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/96529c2ddd674254b403a423975f8402)](https://www.codacy.com/manual/SimonMarinM/Proyecto_CVDS?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS&amp;utm_campaign=Badge_Grade)
+
 ## Descripción del proceso
 
+### Sprint 1
 Durante el desarrollo del Sprint 1 del proyecto de Gestión de Recursos de la Biblioteca tratamos de identificar las clases/entidades y relaciones básicas en la base de datos que eran requeridos en la primera fase del proyecto. Teniendo todos los requerimientos bien formalizados procedemos a hacer un diagrama de clases y un diagrama entidad relación, de esta manera nos sería más claro implementar el código necesario.
 
 La primera sección de código fue relacionada a la base de datos inicial de usuarios, la cual contiene los correos electrónicos y las contraseñas de todas las personas registradas en la plataforma de la biblioteca. Con esto listo procedimos a completar la implementación de MyBatis, la cual establece una "conexión" entre nuestro código de Java y los diferentes elementos almacenados en la base de datos. En esta parte se experimentaron algunas dificultades ya que el cambio del motor de base de datos MySQL a PostgreSQL nos dio algunos inconvenientes principalmente a la hora de configurar la información de acceso a la base de datos.
