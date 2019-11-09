@@ -95,14 +95,14 @@
                                     <td class="details">
                                         <center><i class="far fa-plus-square fa-2x "></i></center>
                                         <span style="display:none;">
-                                            
+
                                             <p style="margin-left: 70px">
                                                 Administrar recurso
                                             </p>
-                                            
-                                            <button type="submit" data-id="recurso.id" class="updateBaja btn btn-dark btn-block" data-toggle="tooltip" data-placement="right" title="El recurso se marcará como no disponible." style="width:300px;">
-                                                Dar de baja este recurso
-                                                
+
+                                            <button type="submit"  class="btn btn-dark btn-block"  data-placement="right" title="Cambia el estado de este recurso(en caso de reparacion)" style="width:300px;" data-toggle="modal" data-target="#changeEModal">
+                                                Modificar estado del recurso
+
                                             </button>
 
 
@@ -167,7 +167,40 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="changeEModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Cambiar estado</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form method="POST" class="my-login-validation" jsf:id="formut2" novalidate="">
+                        <div class="modal-body">
 
+                            
+                            
+                            <div class="form-group">
+                                <h:selectOneMenu value="#{recursosBean.estado}">
+                                    <f:selectItems value="#{recursosBean.estados}" />
+                                </h:selectOneMenu>  
+                            </div>
+
+                            
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary btn-block" data-dismiss="modal">Cambiar</button>
+                                
+                               
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdjsn.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

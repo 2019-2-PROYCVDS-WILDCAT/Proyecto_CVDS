@@ -45,7 +45,7 @@ public class AdminBean extends BasePageBean{
     private Recurso selectedRec;
     private List<Recurso> recursos;
     private List<Horario> horarios;
-    private String nombre,ubicacion,tipo;
+    private String nombre,ubicacion,tipo,estado;
     private int capacidad;
     private int idActual;
     ArrayList<String> tipos = new ArrayList<String>() { 
@@ -56,7 +56,13 @@ public class AdminBean extends BasePageBean{
                 add("Sala de estudio"); 
             } 
         }; 
-  
+    ArrayList<String> estados = new ArrayList<String>() { 
+            {
+                add("Disponible");
+                add("Dañado"); 
+                
+            } 
+        }; 
 
     public ServiciosBiblioteca getServiciosBiblioteca() {
         return serviciosBiblioteca;
@@ -166,7 +172,23 @@ public class AdminBean extends BasePageBean{
     public void actualizarRecursoBaja(int id){
         serviciosBiblioteca.actualizarRecursoBaja(id);
     }
-    
-    
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public ArrayList<String> getEstados() {
+        return estados;
+    }
+
+    public void setEstados(ArrayList<String> estados) {
+        this.estados = estados;
+    }
+    
+    
+    
 }
