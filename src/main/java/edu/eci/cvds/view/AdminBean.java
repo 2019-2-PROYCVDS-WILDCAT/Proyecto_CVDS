@@ -47,6 +47,7 @@ public class AdminBean extends BasePageBean{
     private List<Horario> horarios;
     private String nombre,ubicacion,tipo;
     private int capacidad;
+    private int idActual;
     ArrayList<String> tipos = new ArrayList<String>() { 
             {
                 add("Tipo");
@@ -149,10 +150,21 @@ public class AdminBean extends BasePageBean{
         }
         return null;  
     }
-    
 
+    public int getIdActual() {
+        return idActual;
+    }
+
+    public void setIdActual(int idActual) {
+        this.idActual = idActual;
+    }
+    
+    
     public void setHorarios(List<Horario> horarios) {
         this.horarios = horarios;
+    }
+    public void actualizarRecursoBaja(int id){
+        serviciosBiblioteca.actualizarRecursoBaja(id);
     }
     
     
