@@ -41,10 +41,10 @@ La primera sección de código fue relacionada a la base de datos inicial de usu
 Una vez que la parte lógica de MyBatis fue completada se empezó a trabajar en la implementación del framework ApacheShiro, el cual era vital para completar la tarea más importante, la pantalla de Login de los usuarios. Nuevamente, nos costó trabajo pasar por esta fase del proyecto, debido a que la documentación de ApacheShiro no nos quedó muy clara y no era muy abundante en internet, esta situación fue eventualmente superada tras una mejor lectura y comprensión del uso de este framework, finalmente a lo largo de las tareas "Consultar Recurso", "Cambiar estado de un recurso" y "Registrar un recurso", solo tuvimos que actualizar lo que ya estaba hecho para que soportara estas nuevas características, al principio creíamos que esto sería una tarea trivial, pero a lo largo del Sprint 1 nos costó mucho trabajo actualizar el Front end de la página mediante los scripts hechos en JS y los documentos de estilos CSS. En retrospectiva general este fue el problema más significativo en el proyecto y en su mayor parte fue provocado por la poca experiencia de todos los integrantes del grupo en el uso de JS y CSS.
 
 
-###Sprint 1 Burndown chart
+### Sprint 1 Burndown chart
 
 ![Sprint Backlog](https://github.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/blob/master/img/sprint%201%20backlog.PNG)
 
-###Sprint 1 Backlog
+### Sprint 1 Backlog
 
 ![Sprint Burndown chart](https://github.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/blob/master/img/sprint%201%20burndown%20chart.PNG)
