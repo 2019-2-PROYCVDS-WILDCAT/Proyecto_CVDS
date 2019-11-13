@@ -1,36 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:pe="http://primefaces.org/ui/extensions"><head id="j_idt2"><script type="text/javascript" src="/faces/javax.faces.resource/jsf.js?ln=javax.faces"></script><script type="text/javascript">if(window.PrimeFaces){PrimeFaces.settings.locale='es_CO';}</script>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>Administrador</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" type="text/css" href="css/login.css" />
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+        <title>Comunidad</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <link rel="stylesheet" type="text/css" href="css/login.css"/>
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Arvo" />
-        
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/Administrador.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"/>
+        <link rel='stylesheet' href='https://cdn.datatables.net/s/ju/dt-1.10.10,b-1.1.0,fc-3.2.0,r-2.0.0,sc-1.4.0/datatables.min.css'/>
+        <link rel="stylesheet" href="css/style.css"/>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
         <link rel="stylesheet" href="https://cdn.datatables.net/s/ju/dt-1.10.10,b-1.1.0,fc-3.2.0,r-2.0.0,sc-1.4.0/datatables.min.css" />
         <link rel="stylesheet" href="css/style.css" />
-        <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-        <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
-        <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css" />
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script></head><body class="my-login-page">
+
+    </h:head>
+
+    <h:body class="my-login-page">
 
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="#" style="color:hsl(209.86, 100%, 57.06%)">Administración de recursos</a>
+                <a class="navbar-brand" href="#" style="color:hsl(209.86, 100%, 57.06%)" >Recursos</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -39,31 +42,23 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item" style="margin-right:10px;">
                             <div class="form-group m-0">
-                                <button type="submit" class="btn btn-dark btn-block">
+                                <button type="submit" class="btn btn-dark btn-block" >
                                     Home
                                     <span class="sr-only">(current)</span>
                                 </button>
                             </div>
                         </li>
-                        <li class="nav-item" style="margin-right:10px;">
-                            <div class="form-group m-0">
-                                <button type="button" class="btn btn-dark btn-block" data-toggle="modal" data-target="#registerModal">
-                                    Registrar Recurso
-                                </button>
-                            </div>
-                        </li>
-                        <li class="nav-item">
+                        <li class="nav-item" >
                             <a class="nav-link" href="#"></a>
                         </li>
                         <li>
-<form id="formulario" name="formulario" action="/faces/secure/Administrador.xhtml" enctype="application/x-www-form-urlencoded" method="POST" novalidate="" class="my-login-validation">
-<input type="hidden" name="formulario" value="formulario" />
- 
-                                <div class="form-group m-0"><button name="formulario:j_idt7" value="" type="submit" class="btn btn-dark btn-block">
+                            <form method="POST" class="my-login-validation" jsf:id="formulario" novalidate=""> 
+                                <div class="form-group m-0">
+                                    <button type="submit" class="btn btn-dark btn-block" jsf:actionListener="#{LoginBean.cerrarSesion()}">
                                         Cerrar Sesion                                           
                                     </button>
-                                </div><input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0" value="8207371109572709241:324962645234080658" autocomplete="off" />
-</form>
+                                </div>
+                            </form>
                         </li>
                     </ul>
 
@@ -71,317 +66,66 @@
             </div>
         </nav>
 
-        <table id="example" class="stripe row-border order-column" cellspacing="0" width="100%">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Capacidad</th>
-                    <th>Ubicacion</th>
-                    <th>Tipo</th>
-                    <th>Estado</th>
-                </tr>
-            </thead>
+        <!-- Full Page Image Header with Vertically Centered Content -->
+        <header class="masthead" style="margin-top:50px;">
+            <div class="container h-100">
+                <div class="row h-100 align-items-left">
+                    <table id="example" class="stripe row-border order-column" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Capacidad</th>
+                                <th>Ubicacion</th>
+                                <th>Tipo</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:repeat var="recurso" value="#{recursosBean.recursos}">
+                                <tr>
+                                    <td class="details">
+                                        <center><i class="far fa-plus-square fa-2x "></i></center>
+                                        <span style="display:none;">
 
-            <tbody>
-                    <tr>
-                        <td></td>
-                        <td>8</td>
-                        <td>juanor</td>
-                        <td>0</td>
-                        <td>mejia</td>
-                        <td>Dispositivo multimedia</td>
-                        <td>Disponible</td>
+                                            <p style="margin-left: 70px">
+                                                Aqui agregariamos los horarios de recurso o algo asi xd
+                                            </p>
 
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>14</td>
-                        <td>tom</td>
-                        <td>7</td>
-                        <td>cat</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
+                                            
 
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>15</td>
-                        <td>Black Tepest</td>
-                        <td>0</td>
-                        <td>Bloque A</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
 
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>16</td>
-                        <td>Cien años de soledad</td>
-                        <td>0</td>
-                        <td>Bloque c</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
+                                        </span>
+                                    </td>
+                                    <td>#{recurso.id}</td>
+                                    <td>#{recurso.nombre}</td>
+                                    <td>#{recurso.capacidad}</td>
+                                    <td>#{recurso.ubicacion}</td>
+                                    <td>#{recurso.tipo}</td>
+                                    <td>#{recurso.estado}</td>
 
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>17</td>
-                        <td>Guia complementaria para quemar el agua</td>
-                        <td>0</td>
-                        <td>Taured</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
-
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>18</td>
-                        <td>Guia complementaria para quemar el agua</td>
-                        <td>0</td>
-                        <td>Taured</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
-
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>19</td>
-                        <td>Guia complementaria para quemar el agua</td>
-                        <td>0</td>
-                        <td>Taured</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
-
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>20</td>
-                        <td>Guia complementaria para quemar el agua</td>
-                        <td>0</td>
-                        <td>Taured</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
-
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>21</td>
-                        <td>Guia complementaria para quemar el agua</td>
-                        <td>0</td>
-                        <td>Taured</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
-
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>22</td>
-                        <td>tomy</td>
-                        <td>10</td>
-                        <td>Aca</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
-
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>23</td>
-                        <td>cuarto publico</td>
-                        <td>9</td>
-                        <td>k2</td>
-                        <td>Sala de estudio</td>
-                        <td>Disponible</td>
-
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>24</td>
-                        <td>Guia complementaria para quemar el agua</td>
-                        <td>0</td>
-                        <td>Taured</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
-
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>25</td>
-                        <td>Guia complementaria para quemar el agua</td>
-                        <td>0</td>
-                        <td>Taured</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
-
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>26</td>
-                        <td>Guia complementaria para quemar el agua</td>
-                        <td>0</td>
-                        <td>Taured</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
-
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>27</td>
-                        <td>Guia complementaria para quemar el agua</td>
-                        <td>0</td>
-                        <td>Taured</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
-
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>28</td>
-                        <td>Guia complementaria para quemar el agua</td>
-                        <td>0</td>
-                        <td>Taured</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
-
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>29</td>
-                        <td>Guia complementaria para quemar el agua</td>
-                        <td>0</td>
-                        <td>Taured</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
-
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>30</td>
-                        <td>Guia complementaria para quemar el agua</td>
-                        <td>0</td>
-                        <td>Taured</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
-
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>3</td>
-                        <td>The Lusty Argonian Maid</td>
-                        <td>0</td>
-                        <td>Tamriel</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
-
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>31</td>
-                        <td>Guia complementaria para quemar el agua</td>
-                        <td>0</td>
-                        <td>Taured</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
-
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>1</td>
-                        <td>locaina</td>
-                        <td>0</td>
-                        <td>Bosa-C</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
-
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>2</td>
-                        <td>Necronomicon</td>
-                        <td>0</td>
-                        <td>Michigan</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
-
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>4</td>
-                        <td>Guia complementaria para quemar el agua</td>
-                        <td>0</td>
-                        <td>Taured</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
-
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>6</td>
-                        <td>Cocina para dummies</td>
-                        <td>0</td>
-                        <td>Bloque C</td>
-                        <td>Libro</td>
-                        <td>Disponible</td>
-
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>7</td>
-                        <td>Audifonos</td>
-                        <td>0</td>
-                        <td>Bloque A-Tercer piso</td>
-                        <td>Dispositivo multimedia</td>
-                        <td>Disponible</td>
-
-                    </tr>
-            </tbody>
-        </table>
-
-        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Registrar Recurso</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-<form id="formut" name="formut" action="/faces/secure/Administrador.xhtml" enctype="application/x-www-form-urlencoded" method="POST" novalidate="" class="my-login-validation">
-<input type="hidden" name="formut" value="formut" />
-
-                        <div class="modal-body">
-
-                            <div class="form-group"><input name="formut:nombre" type="nombre" autofocus="true" required="true" placeholder="Nombre" id="nombre" class="form-control" value="" />
-                            </div>
-                            <div class="form-group"><input name="formut:ubicacion" type="ubicacion" autofocus="true" required="true" placeholder="Ubicacion" id="ubicacion" class="form-control" value="" />
-                            </div>
-
-                            <div class="form-group"><input name="formut:capacidad" type="capacidad" autofocus="true" required="true" placeholder="Capacidad" id="capacidad" class="form-control" value="" />
-                            </div>
-                            <div class="form-group"><select name="formut:j_idt18" size="1">	<option value="Tipo">Tipo</option>
-	<option value="Dispositivo multimedia">Dispositivo multimedia</option>
-	<option value="Libro">Libro</option>
-	<option value="Sala de estudio">Sala de estudio</option>
-</select>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button><button id="formut:j_idt21" name="formut:j_idt21" value="" onclick="mojarra.ab(this,event,'action','@form','formut:nombre formut:ubicacion tipo formut:capacidad');return false" type="submit" data-dismiss="modal" class="btn btn-primary btn-block">
-                                Registrar
-                                </button>
-                        </div><input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:1" value="8207371109572709241:324962645234080658" autocomplete="off" />
-</form>
+                                </tr>
+                            </ui:repeat>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
+        </header>
 
+        <!-- Page Content -->
+
+
+        
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdjsn.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="js/my-login.js"></script>
-        
-        <script src="https://cdn.datatables.net/s/ju/dt-1.10.10,b-1.1.0,fc-3.2.0,fh-3.1.0,r-2.0.0,sc-1.4.0/datatables.min.js"></script>
-        <script src="js/script.js"></script></body>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script src='https://cdn.datatables.net/s/ju/dt-1.10.10,b-1.1.0,fc-3.2.0,fh-3.1.0,r-2.0.0,sc-1.4.0/datatables.min.js'></script>
+        <script  src="js/script.js"></script>
+
+
+    </h:body>
 </html>
