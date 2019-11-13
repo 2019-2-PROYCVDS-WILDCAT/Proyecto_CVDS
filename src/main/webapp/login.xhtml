@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width,initial-scale=1"/>
@@ -15,6 +16,7 @@
     </h:head>
 
     <h:body class="my-login-page">
+        
         <section class="h-100">
             <div class="container h-100">
                 <div class="row justify-content-md-center h-100">
@@ -42,12 +44,12 @@
                                             Introduzca contraseña
                                         </div>
                                     </div>
-                                     
+
                                     <div class="form-group m-0">
                                         <button type="submit" class="btn btn-primary btn-block" jsf:actionListener="#{LoginBean.iniciarSesion()}">
                                             Iniciar Sesion
                                             <f:ajax execute="@form" render="email password"/>
-                                                                                       
+
                                         </button>
                                     </div>
                                     <!--<div jsf:id="email">#{LoginBean.contraseña}</div>-->
