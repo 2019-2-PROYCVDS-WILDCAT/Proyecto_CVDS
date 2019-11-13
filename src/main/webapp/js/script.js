@@ -1,3 +1,7 @@
+$(document).on("click", ".modificarEstado", function () {
+     var inStatus = $(this).data('id');
+     $(".modal-body #inStatus").val( inStatus );
+});
 $(document).ready(function() {
     var table = $('#example').DataTable();
      
