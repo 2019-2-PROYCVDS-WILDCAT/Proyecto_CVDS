@@ -1,9 +1,9 @@
-create table Tipo_Usuario(
+create table if not exists Tipo_Usuario(
 	id integer not null,
 	tipo varchar(20)
 );
 
-create table Usuarios(
+create table if not exists Usuarios(
 	nombre varchar(100) not null,
 	apellido varchar(100) not null,
 	email varchar(200) not null,
