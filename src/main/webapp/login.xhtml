@@ -5,6 +5,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <meta charset="utf-8"/>
+        <script name="jquery/jquery.js" library="primefaces"></script>
         <meta name="viewport" content="width=device-width,initial-scale=1"/>
         <title>Login</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
@@ -27,7 +28,10 @@
                         <div class="card fat">
                             <div class="card-body">
                                 <h4 class="card-title">Inicia sesión</h4>
-                                <form method="POST" class="my-login-validation" jsf:id="formulario" novalidate="">
+                                
+                                <h:form class="my-login-validation" id="formulario" novalidate="">
+                                    <p:messages id="messages" autoUpdate="true" closable="true"/>
+                                    
                                     <div class="form-group">
                                         <label for="email">Correo</label>
                                         <input id="email" type="email" class="form-control" name="email" value="" required="true" autofocus="true" jsf:value="#{LoginBean.email}"/>
@@ -46,14 +50,14 @@
                                     </div>
 
                                     <div class="form-group m-0">
-                                        <button type="submit" class="btn btn-primary btn-block" jsf:actionListener="#{LoginBean.iniciarSesion()}">
-                                            Iniciar Sesion
+                                        <p:commandButton type="submit" class="btn btn-primary btn-block" actionListener="#{LoginBean.iniciarSesion()}" value="Iniciar Sesion">
+                                            
                                             <f:ajax execute="@form" render="email password"/>
 
-                                        </button>
+                                        </p:commandButton>
                                     </div>
                                     <!--<div jsf:id="email">#{LoginBean.contraseña}</div>-->
-                                </form>
+                                </h:form>
                             </div>
                         </div>
                     </div>

@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 /**
@@ -33,6 +34,7 @@ import javax.faces.context.FacesContext;
 public class LoginBean extends BasePageBean{
     private String email;
     private String contraseña;
+    private String message;
     private boolean recordarUsuario = true;
     @Inject
     private ServiciosBiblioteca serviciosBiblioteca;
@@ -81,7 +83,7 @@ public class LoginBean extends BasePageBean{
                    
                     
         } catch (ExcepcionServiciosBiblioteca ex) {
-            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            FacesContext.getCurrentInstance().addMessage("usuarioOClave", new FacesMessage(FacesMessage.SEVERITY_WARN,"Usuario o clave incorrectos","Info"));
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -97,4 +99,13 @@ public class LoginBean extends BasePageBean{
         }
         
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    
 }
