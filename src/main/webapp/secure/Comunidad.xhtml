@@ -67,51 +67,51 @@
         </nav>
 
         <!-- Full Page Image Header with Vertically Centered Content -->
-        <header class="masthead" style="margin-top:50px;">
-            <div class="container h-100">
-                <div class="row h-100 align-items-left">
-                    <table id="example" class="stripe row-border order-column" cellspacing="0" width="100%">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Id</th>
-                                <th>Nombre</th>
-                                <th>Capacidad</th>
-                                <th>Ubicacion</th>
-                                <th>Tipo</th>
-                                <th>Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <ui:repeat var="recurso" value="#{recursosBean.recursos}">
-                                <tr>
-                                    <td class="details">
-                                        <center><i class="far fa-plus-square fa-2x "></i></center>
-                                        <span style="display:none;">
+        <div class="table-responsive" style="margin-top:100px;">
+            <table id="example" class="table dstripe row-border order-column">
+                <thead>
+                    <tr>
+                        <th class="th-lg"></th>
+                        <th class="th-lg">Id</th>
+                        <th class="th-lg">Nombre</th>
+                        <th class="th-lg">Capacidad</th>
+                        <th class="th-lg">Ubicacion</th>
+                        <th class="th-lg">Tipo</th>
+                        <th class="th-lg">Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ui:repeat var="recurso" value="#{recursosBean.recursos}">
+                        <tr>
+                            <td class="details">
+                                <center><i class="far fa-plus-square fa-2x "></i></center>
+                                <span style="display:none;">
 
-                                            <p style="margin-left: 70px">
-                                                Aqui agregariamos los horarios de recurso o algo asi xd
-                                            </p>
+                                    <p style="margin-left: 70px">
+                                        Administrar recurso
+                                    </p>
+
+                                    <button type="button" data-id="#{recurso.id}" class="modificarEstado btn btn-dark btn-block" style="width:300px;" data-toggle="modal" data-target="#changeEModal">
+                                        Modificar estado del recurso
+
+                                    </button>
 
 
+                                </span>
+                            </td>
+                            <td>#{recurso.id}</td>
+                            <td>#{recurso.nombre}</td>
+                            <td>#{recurso.capacidad}</td>
+                            <td>#{recurso.ubicacion}</td>
+                            <td>#{recurso.tipo}</td>
+                            <td>#{recurso.estado}</td>
 
+                        </tr>
+                    </ui:repeat>
+                </tbody>
+            </table>
 
-                                        </span>
-                                    </td>
-                                    <td>#{recurso.id}</td>
-                                    <td>#{recurso.nombre}</td>
-                                    <td>#{recurso.capacidad}</td>
-                                    <td>#{recurso.ubicacion}</td>
-                                    <td>#{recurso.tipo}</td>
-                                    <td>#{recurso.estado}</td>
-
-                                </tr>
-                            </ui:repeat>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </header>
+        </div>
 
         <!-- Page Content -->
 
