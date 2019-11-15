@@ -45,6 +45,7 @@ public class AdminBean extends BasePageBean{
     private Recurso selectedRec;
     private List<Recurso> recursos;
     private List<Horario> horarios;
+    private List<String> horariosSeleccionados;
     private String nombre,ubicacion,tipo,estado;
     private int capacidad;
     
@@ -96,7 +97,7 @@ public class AdminBean extends BasePageBean{
     public void registrarRecurso() throws PersistenceException{
         
         Recurso newRec = new Recurso(0,"Disponible",this.nombre,this.ubicacion,this.tipo,this.capacidad);
-        serviciosBiblioteca.addRecurso(newRec);
+        serviciosBiblioteca.addRecurso(newRec,horariosSeleccionados);        
         this.clear();
     }
 

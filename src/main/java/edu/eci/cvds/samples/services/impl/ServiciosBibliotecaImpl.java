@@ -10,7 +10,14 @@ import edu.eci.cvds.samples.entities.Horario;
 import edu.eci.cvds.samples.entities.Recurso;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ServiciosBiblioteca;
+import java.sql.Date;
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -52,12 +59,25 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
     }
     
     @Override
-    public void addRecurso(Recurso recurso) throws PersistenceException{
+    public void addRecurso(Recurso recurso,List<String> horariosSeleccionados) throws PersistenceException{
         try{
             recursoDAO.addRecurso(recurso);
+            for (String hora:horariosSeleccionados){
+                String[] horas=hora.split("-");
+                String horaInicio=horas[0];
+                String horaFin=horas[1];
+                SimpleDateFormat formato= new SimpleDateFormat("hh:mm");
+                long aux1 = formato.parse(horaInicio).getTime();
+                long aux2 = formato.parse(horaFin).getTime();
+                Time horaIni = new Time(aux1);
+                Time horaFi=new Time(aux2);
+                horarioDAO.addHorario(new Horario(horaIni,horaFi));
+            }
         }
         catch(PersistenceException ex){
             throw ex;
+        } catch (ParseException ex) {
+            Logger.getLogger(ServiciosBibliotecaImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -65,6 +85,7 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
     public void addHorario(Horario horario) throws PersistenceException {
         try{
             horarioDAO.addHorario(horario);
+            
         }
         catch(PersistenceException ex){
             throw ex;
@@ -101,9 +122,10 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
         }
     }
 
-   
+    @Override
+    public void actualizarRecursoBaja(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-   
-  
 }
     
