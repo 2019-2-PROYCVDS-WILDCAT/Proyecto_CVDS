@@ -4,14 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.eci.cvds.persistance.mybatis.mappers.HorarioMapper">
 	<resultMap type='Horario' id='HorarioResult'>
-		<id property='id' column='id' />
-		<result property='franja' column='fran' />
+		<id property='horaInicio' column='fechaInicio' />
+		<result property='horaFin' column='fechaFin' />
 	</resultMap>    
         
-        <insert id="addHorario" parameterType="map">
-                INSERT INTO
-                horarios (id, fran)
-                VALUES (#{HorarioObj.id}, #{HorarioObj.franja})
+        <insert id="addHorario" parameterType="map">                
+                INSERT INTO 
+                disponibilidad(id,idrecurso,fechaInicio,fechaFin) 
+                SELECT max(disp.id)+1 ,max(rec.id), #{HorarioObj.horaInicio},#{HorarioObj.horaFin} 
+                FROM disponibilidad disp,recursos rec;
         </insert> 
         
         <select id="consultarHorarios" resultMap="HorarioResult" parameterType="map">

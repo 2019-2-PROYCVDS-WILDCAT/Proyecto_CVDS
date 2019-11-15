@@ -45,9 +45,10 @@ public class AdminBean extends BasePageBean{
     private Recurso selectedRec;
     private List<Recurso> recursos;
     private List<Horario> horarios;
+    private List<String> horariosSeleccionados;
     private String nombre,ubicacion,tipo,estado;
     private int capacidad;
-    
+    private int idActual;
     ArrayList<String> tipos = new ArrayList<String>() { 
             {
                 add("Tipo");
@@ -96,7 +97,7 @@ public class AdminBean extends BasePageBean{
     public void registrarRecurso() throws PersistenceException{
         
         Recurso newRec = new Recurso(0,"Disponible",this.nombre,this.ubicacion,this.tipo,this.capacidad);
-        serviciosBiblioteca.addRecurso(newRec);
+        serviciosBiblioteca.addRecurso(newRec,horariosSeleccionados);        
         this.clear();
     }
 
@@ -157,11 +158,20 @@ public class AdminBean extends BasePageBean{
         return null;  
     }
 
-    
+    public int getIdActual() {
+        return idActual;
+    }
+
+    public void setIdActual(int idActual) {
+        this.idActual = idActual;
+    }
     
     
     public void setHorarios(List<Horario> horarios) {
         this.horarios = horarios;
+    }
+    public void actualizarRecursoBaja(int id){
+        serviciosBiblioteca.actualizarRecursoBaja(id);
     }
 
     public String getEstado() {
@@ -179,19 +189,7 @@ public class AdminBean extends BasePageBean{
     public void setEstados(ArrayList<String> estados) {
         this.estados = estados;
     }
-    public void modificarEstado(int id) throws PersistenceException{
-        
-        serviciosBiblioteca.cambiarEstadoRecurso(id,this.estado);
-        
-    }
-    public void saveMessage() {
-        FacesContext context = FacesContext.getCurrentInstance();
-         
-        context.addMessage(null, new FacesMessage("Cambiado",  "Estado cambiado a: " + estado) );
-        
-    }
-
-   
+    
     
     
 }

@@ -1,13 +1,3 @@
-
-$(document).on("click", ".modificarEstado", function () {
-     var idStatus = $(this).data('id');
-     
-
-     var input = document.getElementById('modifyStatus:idStatus');
-     input.value = idStatus;
-     
-});
-
 $(document).ready(function() {
     var table = $('#example').DataTable();
      

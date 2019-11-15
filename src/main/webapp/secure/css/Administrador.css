@@ -6,14 +6,7 @@
     background-position: center;
     background-repeat: no-repeat;
 }
-.ui-growl{
-    top: 200px;
-    border-radius: 10px;
-}
-.ui-growl-item{
-    background-color: black;
-    color:white;
-}
+
 
 
 .ui-datatable .ui-datatable-header {
