@@ -44,7 +44,6 @@ public class AdminBean extends BasePageBean{
     private ServiciosBiblioteca serviciosBiblioteca;
     private Recurso selectedRec;
     private List<Recurso> recursos;
-    private List<Horario> horarios;
     private List<String> horariosSeleccionados;
     private String nombre,ubicacion,tipo,estado;
     private int capacidad;
@@ -64,6 +63,18 @@ public class AdminBean extends BasePageBean{
                 
             } 
         }; 
+    private ArrayList<String> horarios = new ArrayList<String>() { 
+            {
+                add("7:00-8:30");
+                add("8:30-10:00"); 
+                add("10:00-11:30");
+                add("11:30-13:00");
+                add("13:00-14:30");
+                add("14:30-16:00");
+                add("16:00-17:30");
+                add("17:30-19:00");
+            } 
+    };
 
     public ServiciosBiblioteca getServiciosBiblioteca() {
         return serviciosBiblioteca;
@@ -104,7 +115,7 @@ public class AdminBean extends BasePageBean{
     public String getNombre() {
         return nombre;
     }
-
+    
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -161,7 +172,7 @@ public class AdminBean extends BasePageBean{
     
     
     
-    public void setHorarios(List<Horario> horarios) {
+    public void setHorarios(ArrayList<String> horarios) {
         this.horarios = horarios;
     }
 
