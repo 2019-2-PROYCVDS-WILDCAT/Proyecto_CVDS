@@ -154,6 +154,10 @@
                             <div class="form-group">
                                 <input id="capacidad" type="capacidad" class="form-control" name="capacidad" value="" required="true"  autofocus="true" jsf:value="#{recursosBean.capacidad}" placeholder="Capacidad"/>
                             </div>
+                            <h3>Horarios Disponible</h3>
+                            <p:selectManyCheckbox id="grid2" value="#{checkboxView.selectedCities2}" layout="responsive" columns="3">
+                                <f:selectItems value="#{checkboxView.cities}" var="city" itemLabel="#{city}" itemValue="#{city}" />
+                            </p:selectManyCheckbox>
 
                         </div>
                         <div class="modal-footer">
@@ -183,7 +187,7 @@
                             <p:panel header="">
                                 <p:outputLabel for="msg" value="" style="display:none"/>   
                                 <h:inputHidden id="msg" value="#{recursosBean.estado}" />  
- 
+
                                 <h:inputHidden id="idStatus" binding="#{idStatus}"/>
                                 <div class="form-group">
 
