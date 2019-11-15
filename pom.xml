@@ -21,6 +21,7 @@
             <artifactId>junit</artifactId>
             <version>4.11</version>
         </dependency>
+                     
 
         <dependency>
             <groupId>org.mybatis</groupId>
@@ -37,11 +38,11 @@
             <artifactId>h2</artifactId>
             <version>1.4.191</version>
         </dependency>
-		<dependency>
-        <groupId>org.postgresql</groupId>
-        <artifactId>postgresql</artifactId>
-        <version>42.0.0</version>
-		</dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.0.0</version>
+        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
@@ -101,7 +102,7 @@
             <artifactId>shiro-web</artifactId>
             <version>1.4.0</version>
         </dependency>
-	<dependency>
+        <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
             <version>1.2</version>

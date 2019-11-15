@@ -159,22 +159,7 @@ public class AdminBean extends BasePageBean{
         this.tipos = tipos;
     }
 
-    public List<Horario> getHorarios() {
-        
-        try {
-            return serviciosBiblioteca.consultarHorarios();
-        } catch (PersistenceException ex) {
-            Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;  
-    }
-
-    
-    
-    
-    public void setHorarios(ArrayList<String> horarios) {
-        this.horarios = horarios;
-    }
+       
 
     public String getEstado() {
         return estado;
@@ -203,7 +188,23 @@ public class AdminBean extends BasePageBean{
         
     }
 
-   
+    public List<String> getHorariosSeleccionados() {
+        return horariosSeleccionados;
+    }
+
+    public void setHorariosSeleccionados(List<String> horariosSeleccionados) {
+        this.horariosSeleccionados = horariosSeleccionados;
+    }
+
+    public ArrayList<String> getHorarios() {
+        return horarios;
+    }
+
+    public void setHorarios(ArrayList<String> horarios) {
+        this.horarios = horarios;
+    }
+
+    
     
     
 }

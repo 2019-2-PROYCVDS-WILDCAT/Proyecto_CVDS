@@ -13,7 +13,18 @@
 .table{
     display: block !important;
 }
+.ui-datalist ul {
+    padding: 0px 10px 0 20px;
+    margin: 5px 0;
+}
 
+.ui-datalist {
+    margin-bottom: 10px
+}
+
+.ui-noborder tr.ui-widget-content {
+    background: none;
+}
 td:first-child {
     background: url('https://raw.githubusercontent.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/master/img/plusicon.png') no-repeat center center;
     cursor: pointer;
