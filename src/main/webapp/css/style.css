@@ -1,17 +1,24 @@
-
-
+.ui-growl{
+    top: 200px;
+    border-radius: 10px;
+}
+.ui-growl-item{
+    background-color: black;
+    color:white;
+    
+}
 
 .table{
-     display: block !important;
+    display: block !important;
 }
 
 td:first-child {
-  background: url('https://raw.githubusercontent.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/master/img/plusicon.png') no-repeat center center;
-  cursor: pointer;
+    background: url('https://raw.githubusercontent.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/master/img/plusicon.png') no-repeat center center;
+    cursor: pointer;
 }
 
 tr.shown td:first-child {
-  background: url('https://raw.githubusercontent.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/master/img/minusicon.png') no-repeat center center;
+    background: url('https://raw.githubusercontent.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/master/img/minusicon.png') no-repeat center center;
 }
 
 .masthead {

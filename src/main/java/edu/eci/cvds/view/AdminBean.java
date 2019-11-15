@@ -180,10 +180,18 @@ public class AdminBean extends BasePageBean{
         this.estados = estados;
     }
     public void modificarEstado(int id) throws PersistenceException{
-        System.out.println("hola"+id+estado);
+        
         serviciosBiblioteca.cambiarEstadoRecurso(id,this.estado);
+        
     }
-    
+    public void saveMessage() {
+        FacesContext context = FacesContext.getCurrentInstance();
+         
+        context.addMessage(null, new FacesMessage("Cambiado",  "Estado cambiado a: " + estado) );
+        
+    }
+
+   
     
     
 }

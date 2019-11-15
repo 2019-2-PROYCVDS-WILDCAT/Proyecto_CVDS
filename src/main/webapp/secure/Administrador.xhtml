@@ -179,20 +179,31 @@
                     </div>
                     <div class="modal-body">
                         <h:form id= "modifyStatus">
-                            <input type="text" name="idStatus" id="idStatus" value="" style="display:none"/>	  
-                            <p:inputText id="idStatus" binding="#{idStatus}" type="hidden"/>
-                            <div class="form-group">
-                                                               
+                            <p:growl id="growl" showDetail="true" infoIcon="/img/user.png" sticky="false" life="10000"/>
+                            <p:panel header="">
+                                <p:outputLabel for="msg" value="" style="display:none"/>   
+                                <h:inputHidden id="msg" value="#{recursosBean.estado}" />  
+ 
+                                <h:inputHidden id="idStatus" binding="#{idStatus}"/>
+                                <div class="form-group">
+
                                     <h:selectOneMenu value="#{recursosBean.estado}">
                                         <f:selectItems value="#{recursosBean.estados}" />
                                     </h:selectOneMenu>  
                                 </div>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <p:commandButton type="submit" class="btn btn-primary btn-block" 
-                                                 actionListener="#{recursosBean.modificarEstado(idStatus.value)}" style="width:150px;" value="Cambiar">
+
+                                <div class="modal-footer">
+
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <p:commandButton type="Save" class="btn btn-primary btn-block" 
+                                                     actionListener="#{recursosBean.modificarEstado(idStatus.value)}" style="width:150px;" value="Cambiar" 
+                                                     onclick="PF('modal').hide();
+                                                             $('#form').trigger('reset')" action="#{recursosBean.saveMessage}" update="@form">
 
 
-                                </p:commandButton>
+                                    </p:commandButton>
+                                </div>
+                            </p:panel>
                         </h:form>
 
                     </div>

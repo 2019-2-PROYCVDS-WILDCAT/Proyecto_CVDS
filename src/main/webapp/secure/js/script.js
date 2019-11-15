@@ -1,12 +1,10 @@
-$("#changeEModal").on('shown.bs.modal', function() {
-	$("#modifyStatus\\:idStatus").val($("#idStatus").val());
-        console.log($("#idStatus").val());
-});
 
 $(document).on("click", ".modificarEstado", function () {
      var idStatus = $(this).data('id');
-     console.log(idStatus);
-     $(".modal-body #idStatus").val( idStatus );
+     
+
+     var input = document.getElementById('modifyStatus:idStatus');
+     input.value = idStatus;
      
 });
 
