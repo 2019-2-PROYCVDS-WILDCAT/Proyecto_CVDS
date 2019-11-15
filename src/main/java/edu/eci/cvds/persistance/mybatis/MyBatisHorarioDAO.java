@@ -21,7 +21,6 @@ public class MyBatisHorarioDAO implements HorarioDAO{
             throw e;
         }
     }
-    
 
     @Override
     public List<Horario> loadHorarios() throws PersistenceException {
@@ -42,7 +41,6 @@ public class MyBatisHorarioDAO implements HorarioDAO{
             throw e;
         }
     }
-
     
     
             

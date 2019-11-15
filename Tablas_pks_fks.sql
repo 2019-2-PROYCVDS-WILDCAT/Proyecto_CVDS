@@ -35,13 +35,12 @@ CREATE TABLE if not exists recursos (
    tipo varchar(100)  NOT NULL,
    capacidad int  NOT NULL
 );
-CREATE TABLE if not exists Horarios (
-   id int  NOT NULL,
-   fran char(11)  NOT NULL
-);
-CREATE TABLE if not exists Disponibilidad (
-   Recursos_id int  NOT NULL,
-   Horarios_id int  NOT NULL
+
+create table if not exists disponibilidad(
+	id int not null,
+	idRecurso int not null,
+	fechaInicio date not null,
+	fechaFin date not null
 );
 
 
@@ -63,7 +62,7 @@ create table if not exists reservas(
 alter table reservas add primary key (id);
 alter table recursos add primary key (id);
 alter table horarios add primary key (id);
-alter table disponibilidad add primary key (Recursos_id,Horarios_id);
+alter table disponibilidad add primary key (id);
 
 ALTER TABLE reservas add CONSTRAINT fk_reservas_recursos 
 FOREIGN KEY (id_recurso) REFERENCES recursos(id);
@@ -73,11 +72,9 @@ ALTER TABLE reservas add CONSTRAINT fk_reservas_usuarios
 FOREIGN KEY (id_usuario) REFERENCES usuarios(email);
 
 ALTER TABLE disponibilidad add CONSTRAINT fk_disponibilidad_recursos 
-FOREIGN KEY (recursos_id) REFERENCES recursos(id);
+FOREIGN KEY (idRecurso) REFERENCES recursos(id);
 
 
-ALTER TABLE disponibilidad add CONSTRAINT fk_disponibilidad_horarios
-FOREIGN KEY (horarios_id) REFERENCES horarios(id);
 
 
 
