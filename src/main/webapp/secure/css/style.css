@@ -6,7 +6,9 @@
     background-color: black;
     color:white;
 }
-
+.ui-growl-image-info{
+     background: url('https://raw.githubusercontent.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/master/img/check.png') no-repeat;
+}
 .table{
     display: block !important;
 }
