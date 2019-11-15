@@ -1,7 +1,15 @@
-$(document).on("click", ".modificarEstado", function () {
-     var inStatus = $(this).data('id');
-     $(".modal-body #inStatus").val( inStatus );
+$("#changeEModal").on('shown.bs.modal', function() {
+	$("#modifyStatus\\:idStatus").val($("#idStatus").val());
+        console.log($("#idStatus").val());
 });
+
+$(document).on("click", ".modificarEstado", function () {
+     var idStatus = $(this).data('id');
+     console.log(idStatus);
+     $(".modal-body #idStatus").val( idStatus );
+     
+});
+
 $(document).ready(function() {
     var table = $('#example').DataTable();
      

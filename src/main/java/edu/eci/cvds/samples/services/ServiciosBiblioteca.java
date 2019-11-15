@@ -18,6 +18,5 @@ public interface ServiciosBiblioteca {
     public List<Horario> consultarHorarios()throws PersistenceException;
     public Horario consultarHorario(int id)throws PersistenceException;
 
-    public void actualizarRecursoBaja(int id);
     
 }

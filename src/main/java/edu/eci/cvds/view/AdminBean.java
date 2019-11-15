@@ -47,7 +47,7 @@ public class AdminBean extends BasePageBean{
     private List<Horario> horarios;
     private String nombre,ubicacion,tipo,estado;
     private int capacidad;
-    private int idActual;
+    
     ArrayList<String> tipos = new ArrayList<String>() { 
             {
                 add("Tipo");
@@ -157,20 +157,11 @@ public class AdminBean extends BasePageBean{
         return null;  
     }
 
-    public int getIdActual() {
-        return idActual;
-    }
-
-    public void setIdActual(int idActual) {
-        this.idActual = idActual;
-    }
+    
     
     
     public void setHorarios(List<Horario> horarios) {
         this.horarios = horarios;
-    }
-    public void actualizarRecursoBaja(int id){
-        serviciosBiblioteca.actualizarRecursoBaja(id);
     }
 
     public String getEstado() {
@@ -187,6 +178,10 @@ public class AdminBean extends BasePageBean{
 
     public void setEstados(ArrayList<String> estados) {
         this.estados = estados;
+    }
+    public void modificarEstado(int id) throws PersistenceException{
+        System.out.println("hola"+id+estado);
+        serviciosBiblioteca.cambiarEstadoRecurso(id,this.estado);
     }
     
     
