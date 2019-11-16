@@ -12,8 +12,8 @@
             <result property='ubicacion' column='ubicacion' />
             <result property='tipo' column='tipo' />
             <result property='capacidad' column='capacidad' />    
-            <result property='horainicio' column='horainicio' /> 
-            <result property='horafin' column='horafin' />        
+            <result property='horaInicio' column='horainicio' /> 
+            <result property='horaFin' column='horafin' />        
         </resultMap>
       
         <select id="consultarRecurso" resultMap="RecursoResult" parameterType="map">
@@ -29,8 +29,8 @@
                       
         <insert id="addRecurso" parameterType="map">
                 INSERT INTO
-                recursos (nombre, ubicacion, tipo, capacidad)
-                VALUES (#{rec.nombre}, #{rec.ubicacion}, #{rec.tipo}, #{rec.capacidad})
+                recursos (nombre, ubicacion, tipo, capacidad, horainicio, horafin)
+                VALUES (#{rec.nombre}, #{rec.ubicacion}, #{rec.tipo}, #{rec.capacidad},#{rec.horaInicio},#{rec.horaFin})
         </insert>
         
         <update id='cambiarEstadoRecurso'>

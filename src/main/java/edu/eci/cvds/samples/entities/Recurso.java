@@ -92,7 +92,7 @@ public class Recurso implements Serializable{
     public void setHoraFin(Time horaFin) {
         this.horaFin = horaFin;
     }
-
+    
     @Override
     public String toString() {
         return "Element { id: " + id + ", nombre: " + nombre + ", ubicacion: " + ubicacion + ", tipo: " + tipo + ", capacidad: " + capacidad + ", estado: " + estado + "}";

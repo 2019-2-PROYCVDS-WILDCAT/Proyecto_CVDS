@@ -21,6 +21,8 @@ import edu.eci.cvds.security.IniciarSesion;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -37,46 +39,47 @@ import org.primefaces.model.Visibility;
  * @author 2146516
  */
 @SuppressWarnings("deprecation")
-@ManagedBean(name="recursosBean")
+@ManagedBean(name = "recursosBean")
 @SessionScoped
 
-public class AdminBean extends BasePageBean{
+public class AdminBean extends BasePageBean {
+
     @Inject
     private ServiciosBiblioteca serviciosBiblioteca;
     private Recurso selectedRec;
     private List<Recurso> recursos;
     private List<String> horariosSeleccionados;
-    private String nombre,ubicacion,tipo,estado;
+    private String nombre, ubicacion, tipo, estado;
     private int capacidad;
-    private Time horaInicio;
-    private Time horaFin;
-    
-    ArrayList<String> tipos = new ArrayList<String>() { 
-            {
-                add("Tipo");
-                add("Dispositivo multimedia"); 
-                add("Libro"); 
-                add("Sala de estudio"); 
-            } 
-        }; 
-    ArrayList<String> estados = new ArrayList<String>() { 
-            {
-                add("Disponible");
-                add("Dañado"); 
-                
-            } 
-        }; 
-    private ArrayList<String> horarios = new ArrayList<String>() { 
-            {
-                add("7:00-8:30");
-                add("8:30-10:00"); 
-                add("10:00-11:30");
-                add("11:30-13:00");
-                add("13:00-14:30");
-                add("14:30-16:00");
-                add("16:00-17:30");
-                add("17:30-19:00");
-            } 
+    private String horaInicio;
+    private String horaFin;
+
+    ArrayList<String> tipos = new ArrayList<String>() {
+        {
+            add("Tipo");
+            add("Dispositivo multimedia");
+            add("Libro");
+            add("Sala de estudio");
+        }
+    };
+    ArrayList<String> estados = new ArrayList<String>() {
+        {
+            add("Disponible");
+            add("Dañado");
+
+        }
+    };
+    private ArrayList<String> horarios = new ArrayList<String>() {
+        {
+            add("7:00-8:30");
+            add("8:30-10:00");
+            add("10:00-11:30");
+            add("11:30-13:00");
+            add("13:00-14:30");
+            add("14:30-16:00");
+            add("16:00-17:30");
+            add("17:30-19:00");
+        }
     };
 
     public ServiciosBiblioteca getServiciosBiblioteca() {
@@ -88,7 +91,7 @@ public class AdminBean extends BasePageBean{
     }
 
     public List<Recurso> getRecursos() {
-        
+
         try {
             return serviciosBiblioteca.consultarRecursos();
         } catch (PersistenceException ex) {
@@ -108,17 +111,24 @@ public class AdminBean extends BasePageBean{
     public void setSelectedRec(Recurso selectedRec) {
         this.selectedRec = selectedRec;
     }
-    public void registrarRecurso() throws PersistenceException{
+
+    public void registrarRecurso() throws PersistenceException, ParseException {
+        System.out.println(horaInicio);
+        System.out.println(horaFin);
+        SimpleDateFormat formato = new SimpleDateFormat("hh:mm");
+        long aux1 = formato.parse(horaInicio).getTime();
+        long aux2 = formato.parse(horaFin).getTime();
+        Time horaInicioC = new Time(aux1);
+        Time horaFinC = new Time(aux2);
+        Recurso newRec = new Recurso(0, "Disponible", this.nombre, this.ubicacion, this.tipo, this.capacidad, horaInicioC, horaFinC);
+        serviciosBiblioteca.addRecurso(newRec);
         
-        Recurso newRec = new Recurso(0,"Disponible",this.nombre,this.ubicacion,this.tipo,this.capacidad,this.horaInicio,this.horaFin);
-        serviciosBiblioteca.addRecurso(newRec);        
-        this.clear();
     }
 
     public String getNombre() {
         return nombre;
     }
-    
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -148,10 +158,10 @@ public class AdminBean extends BasePageBean{
     }
 
     private void clear() {
-        this.capacidad =0;
+        this.capacidad = 0;
         this.nombre = "";
-        this.tipo ="";
-        this.ubicacion ="";
+        this.tipo = "";
+        this.ubicacion = "";
     }
 
     public ArrayList<String> getTipos() {
@@ -161,8 +171,6 @@ public class AdminBean extends BasePageBean{
     public void setTipos(ArrayList<String> tipos) {
         this.tipos = tipos;
     }
-
-       
 
     public String getEstado() {
         return estado;
@@ -179,16 +187,18 @@ public class AdminBean extends BasePageBean{
     public void setEstados(ArrayList<String> estados) {
         this.estados = estados;
     }
-    public void modificarEstado(int id) throws PersistenceException{
-        
-        serviciosBiblioteca.cambiarEstadoRecurso(id,this.estado);
-        
+
+    public void modificarEstado(int id) throws PersistenceException {
+
+        serviciosBiblioteca.cambiarEstadoRecurso(id, this.estado);
+
     }
+
     public void saveMessage() {
         FacesContext context = FacesContext.getCurrentInstance();
-         
-        context.addMessage(null, new FacesMessage("Cambiado",  "Estado cambiado a: " + estado) );
-        
+
+        context.addMessage(null, new FacesMessage("Cambiado", "Estado cambiado a: " + estado));
+
     }
 
     public List<String> getHorariosSeleccionados() {
@@ -207,7 +217,20 @@ public class AdminBean extends BasePageBean{
         this.horarios = horarios;
     }
 
-    
-    
+    public String getHoraInicio() {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(String horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public String getHoraFin() {
+        return horaFin;
+    }
+
+    public void setHoraFin(String horaFin) {
+        this.horaFin = horaFin;
+    }
     
 }
