@@ -1,6 +1,7 @@
 package edu.eci.cvds.samples.entities;
 
 import java.io.Serializable;
+import java.sql.Time;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,14 +16,18 @@ public class Recurso implements Serializable{
     private String ubicacion;
     private String tipo;
     private int capacidad;
+    private Time horaInicio;
+    private Time horaFin;
 
-    public Recurso(int id, String estado, String nombre, String ubicacion, String tipo, int capacidad) {
+    public Recurso(int id, String estado, String nombre, String ubicacion, String tipo, int capacidad,Time horaInicio,Time horaFin) {
         this.id = id;
         this.estado = estado;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.tipo = tipo;
         this.capacidad = capacidad;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
     }
 
     public int getId() {
@@ -71,6 +76,21 @@ public class Recurso implements Serializable{
 
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
+    }
+    public Time getHoraInicio() {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(Time horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public Time getHoraFin() {
+        return horaFin;
+    }
+
+    public void setHoraFin(Time horaFin) {
+        this.horaFin = horaFin;
     }
 
     @Override

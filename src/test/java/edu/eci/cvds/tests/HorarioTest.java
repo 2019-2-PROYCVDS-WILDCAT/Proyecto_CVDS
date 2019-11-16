@@ -30,7 +30,7 @@ public class HorarioTest {
                 add("07:00-08:30");
                 add("08:30-10:00");
             }};
-        serviciosBiblioteca.addRecurso(new Recurso(0,"Disponible","Prueba definitiva XD","F-204","Libro",22), tipos);
+        //serviciosBiblioteca.addRecurso(new Recurso(0,"Disponible","Prueba definitiva XD","F-204","Libro",22,"07:00","07:00"), tipos);
     }
     
     

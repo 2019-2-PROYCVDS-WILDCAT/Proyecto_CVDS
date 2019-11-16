@@ -59,9 +59,10 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
     }
     
     @Override
-    public void addRecurso(Recurso recurso,List<String> horariosSeleccionados) throws PersistenceException{
+    public void addRecurso(Recurso recurso) throws PersistenceException{
         try{
             recursoDAO.addRecurso(recurso);
+            /*
             for (String hora:horariosSeleccionados){
                 String[] horas=hora.split("-");
                 String horaInicio=horas[0];
@@ -72,12 +73,10 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
                 Time horaIni = new Time(aux1);
                 Time horaFi=new Time(aux2);
                 horarioDAO.addHorario(new Horario(horaIni,horaFi));
-            }
+            }*/
         }
         catch(PersistenceException ex){
             throw ex;
-        } catch (ParseException ex) {
-            Logger.getLogger(ServiciosBibliotecaImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

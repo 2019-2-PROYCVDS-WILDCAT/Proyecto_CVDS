@@ -20,6 +20,7 @@ import edu.eci.cvds.security.ApacheShiroLogger;
 import edu.eci.cvds.security.IniciarSesion;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -47,6 +48,8 @@ public class AdminBean extends BasePageBean{
     private List<String> horariosSeleccionados;
     private String nombre,ubicacion,tipo,estado;
     private int capacidad;
+    private Time horaInicio;
+    private Time horaFin;
     
     ArrayList<String> tipos = new ArrayList<String>() { 
             {
@@ -107,8 +110,8 @@ public class AdminBean extends BasePageBean{
     }
     public void registrarRecurso() throws PersistenceException{
         
-        Recurso newRec = new Recurso(0,"Disponible",this.nombre,this.ubicacion,this.tipo,this.capacidad);
-        serviciosBiblioteca.addRecurso(newRec,horariosSeleccionados);        
+        Recurso newRec = new Recurso(0,"Disponible",this.nombre,this.ubicacion,this.tipo,this.capacidad,this.horaInicio,this.horaFin);
+        serviciosBiblioteca.addRecurso(newRec);        
         this.clear();
     }
 

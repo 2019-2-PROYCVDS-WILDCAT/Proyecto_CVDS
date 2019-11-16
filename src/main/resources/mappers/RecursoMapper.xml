@@ -11,7 +11,9 @@
             <result property='nombre' column='nombre' />
             <result property='ubicacion' column='ubicacion' />
             <result property='tipo' column='tipo' />
-            <result property='capacidad' column='capacidad' />          
+            <result property='capacidad' column='capacidad' />    
+            <result property='horainicio' column='horainicio' /> 
+            <result property='horafin' column='horafin' />        
         </resultMap>
       
         <select id="consultarRecurso" resultMap="RecursoResult" parameterType="map">
