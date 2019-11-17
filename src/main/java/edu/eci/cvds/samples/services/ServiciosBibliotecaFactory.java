@@ -9,9 +9,11 @@ import java.util.Optional;
 import edu.eci.cvds.persistance.mybatis.MyBatisUserDAO;
 import edu.eci.cvds.samples.services.impl.ServiciosBibliotecaImpl;
 import edu.eci.cvds.persistance.RecursoDAO;
+import edu.eci.cvds.persistance.ReservaDAO;
 import edu.eci.cvds.persistance.UserDAO;
 import edu.eci.cvds.persistance.mybatis.MyBatisHorarioDAO;
 import edu.eci.cvds.persistance.mybatis.MyBatisRecursoDAO;
+import edu.eci.cvds.persistance.mybatis.MyBatisReservaDAO;
 import edu.eci.cvds.security.IniciarSesion;
 import edu.eci.cvds.security.ApacheShiroLogger;
 
@@ -28,6 +30,7 @@ public class ServiciosBibliotecaFactory {
                setClassPathResource(pathResource);
                bind(UserDAO.class).to(MyBatisUserDAO.class);
                bind(RecursoDAO.class).to(MyBatisRecursoDAO.class);
+               bind(ReservaDAO.class).to(MyBatisReservaDAO.class);
                bind(HorarioDAO.class).to(MyBatisHorarioDAO.class);
                bind(IniciarSesion.class).to(ApacheShiroLogger.class);
                bind(ServiciosBiblioteca.class).to(ServiciosBibliotecaImpl.class);

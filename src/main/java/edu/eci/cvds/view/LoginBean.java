@@ -36,6 +36,7 @@ public class LoginBean extends BasePageBean{
     private String contraseña;
     private String message;
     private boolean recordarUsuario = true;
+    private Usuario user;
     @Inject
     private ServiciosBiblioteca serviciosBiblioteca;
     @Inject
@@ -69,7 +70,7 @@ public class LoginBean extends BasePageBean{
         try {
             
             log.login(this.email, this.contraseña, this.recordarUsuario);
-            Usuario user = serviciosBiblioteca.consultarUsuario(this.email);
+            user = serviciosBiblioteca.consultarUsuario(this.email);
             int tipo = user.getTipo();
             
             switch (tipo){
@@ -107,5 +108,14 @@ public class LoginBean extends BasePageBean{
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
+    
     
 }

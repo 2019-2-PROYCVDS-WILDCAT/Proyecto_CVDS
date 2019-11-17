@@ -9,6 +9,7 @@ import com.google.inject.Inject;
 import edu.eci.cvds.persistance.PersistenceException;
 import edu.eci.cvds.samples.entities.Horario;
 import edu.eci.cvds.samples.entities.Recurso;
+import edu.eci.cvds.samples.entities.Reserva;
 import edu.eci.cvds.samples.entities.TipoUsuario;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.exceptions.ExcepcionServiciosBiblioteca;
@@ -20,6 +21,7 @@ import edu.eci.cvds.security.ApacheShiroLogger;
 import edu.eci.cvds.security.IniciarSesion;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -48,11 +50,13 @@ public class AdminBean extends BasePageBean {
     private ServiciosBiblioteca serviciosBiblioteca;
     private Recurso selectedRec;
     private List<Recurso> recursos;
-    private List<String> horariosSeleccionados;
-    private String nombre, ubicacion, tipo, estado;
+    private String nombre, ubicacion, tipo, estado,reserva;
     private int capacidad;
     private String horaInicio;
     private String horaFin;
+    private String horaInicioReserva;
+    private String horaFinReserva;
+    private String tipoReserva;
 
     ArrayList<String> tipos = new ArrayList<String>() {
         {
@@ -66,6 +70,16 @@ public class AdminBean extends BasePageBean {
         {
             add("Disponible");
             add("Dañado");
+
+        }
+    };
+    ArrayList<String> reservas = new ArrayList<String>() {
+        {
+            add("1 Hora");
+            add("2 Horas");
+            add("3 Horas");
+            add("4 Horas");
+            add("5 Horas");
 
         }
     };
@@ -113,8 +127,6 @@ public class AdminBean extends BasePageBean {
     }
 
     public void registrarRecurso() throws PersistenceException, ParseException {
-        System.out.println(horaInicio);
-        System.out.println(horaFin);
         SimpleDateFormat formato = new SimpleDateFormat("hh:mm");
         long aux1 = formato.parse(horaInicio).getTime();
         long aux2 = formato.parse(horaFin).getTime();
@@ -123,6 +135,22 @@ public class AdminBean extends BasePageBean {
         Recurso newRec = new Recurso(0, "Disponible", this.nombre, this.ubicacion, this.tipo, this.capacidad, horaInicioC, horaFinC);
         serviciosBiblioteca.addRecurso(newRec);
         
+    }
+    public void registrarReserva(Usuario usuario){
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        
+        try {
+            long aux1 = formato.parse(horaInicioReserva).getTime();
+            long aux2 = formato.parse(horaFinReserva).getTime();
+                    
+            Date horaInicioR = new Date(aux1);
+            Date horaFinR = new Date(aux2);
+            Reserva newReserva= new Reserva(0,usuario.getCorreo(),this.tipoReserva,this.selectedRec.getId(),horaInicioR,horaFinR);
+            serviciosBiblioteca.addReserva(newReserva);
+        } catch (ParseException ex) {
+            Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     public String getNombre() {
@@ -201,14 +229,6 @@ public class AdminBean extends BasePageBean {
 
     }
 
-    public List<String> getHorariosSeleccionados() {
-        return horariosSeleccionados;
-    }
-
-    public void setHorariosSeleccionados(List<String> horariosSeleccionados) {
-        this.horariosSeleccionados = horariosSeleccionados;
-    }
-
     public ArrayList<String> getHorarios() {
         return horarios;
     }
@@ -232,5 +252,46 @@ public class AdminBean extends BasePageBean {
     public void setHoraFin(String horaFin) {
         this.horaFin = horaFin;
     }
+
+    public String getHoraInicioReserva() {
+        return horaInicioReserva;
+    }
+
+    public void setHoraInicioReserva(String horaInicioReserva) {
+        this.horaInicioReserva = horaInicioReserva;
+    }
+
+    public String getHoraFinReserva() {
+        return horaFinReserva;
+    }
+
+    public void setHoraFinReserva(String horaFinReserva) {
+        this.horaFinReserva = horaFinReserva;
+    }
+
+    public String getTipoReserva() {
+        return tipoReserva;
+    }
+
+    public void setTipoReserva(String tipoReserva) {
+        this.tipoReserva = tipoReserva;
+    }
+
+    public String getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(String reserva) {
+        this.reserva = reserva;
+    }
+
+    public ArrayList<String> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(ArrayList<String> reservas) {
+        this.reservas = reservas;
+    }
+    
     
 }

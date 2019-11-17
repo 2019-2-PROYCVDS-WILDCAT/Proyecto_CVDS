@@ -6,10 +6,12 @@
 package edu.eci.cvds.samples.services.impl;
 
 import edu.eci.cvds.persistance.PersistenceException;
-import edu.eci.cvds.samples.entities.Horario;
 import edu.eci.cvds.samples.entities.Recurso;
+import edu.eci.cvds.samples.entities.Reserva;
 import edu.eci.cvds.samples.services.ServiciosBiblioteca;
 import edu.eci.cvds.samples.services.ServiciosBibliotecaFactory;
+import edu.eci.cvds.view.AdminBean;
+import java.sql.Date;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,11 +44,23 @@ public class TestMain {
             System.out.println(sb.consultarRecurso(4));
             
  
-            //sb.addHorario(horario);
-            System.out.println(sb.consultarHorario(1));
-            System.out.println(sb.consultarHorarios());
             
             sb.cambiarEstadoRecurso(3, "Disponible");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+
+            try {
+                aux1 = format.parse("2019-11-27").getTime();
+                aux2 = format.parse("2019-11-29").getTime();
+
+                Date horaInicioR = new Date(aux1);
+                Date horaFinR = new Date(aux2);
+                Reserva newReserva = new Reserva(0,"hawaii50@mail.com","recurrente",6,horaInicioR,horaFinR);
+                sb.addReserva(newReserva);
+            } catch (ParseException ex) {
+                Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
+            
             
         } catch (PersistenceException ex) {
             Logger.getLogger(TestMain.class.getName()).log(Level.SEVERE, null, ex);

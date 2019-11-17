@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.eci.cvds.persistance.mybatis.mappers.ReservaMapper">
+    <resultMap type='Reserva' id='ReservaResult'>
+        <id property='id' column='id' />
+        <result property='idUsuario' column='id_usuario'/>
+        <result property='idRecurso' column='id_recurso'/>
+        <result property='fechaInicioReserva' column='fecha_inicio_reserva' />
+        <result property='fechaFinReserva' column='fecha_fin_reserva' />
+        <result property='tipo' column='tipo' />                  
+    </resultMap>
+        
+    <insert id="addReserva" parameterType="map">
+        INSERT 
+        INTO reservas(id_usuario,id_recurso,fecha_inicio_reserva,fecha_fin_reserva,tipo) 
+        VALUES (#{reserva.idUsuario},#{reserva.idRecurso},#{reserva.fechaInicioReserva}, #{reserva.fechaFinReserva},#{reserva.tipo});
+    </insert>
+        
+        
+</mapper>

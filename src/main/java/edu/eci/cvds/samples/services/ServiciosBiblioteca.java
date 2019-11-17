@@ -3,6 +3,7 @@ package edu.eci.cvds.samples.services;
 import edu.eci.cvds.persistance.PersistenceException;
 import edu.eci.cvds.samples.entities.Horario;
 import edu.eci.cvds.samples.entities.Recurso;
+import edu.eci.cvds.samples.entities.Reserva;
 import edu.eci.cvds.samples.entities.Usuario;
 import java.util.List;
 
@@ -19,6 +20,8 @@ public interface ServiciosBiblioteca {
     public Horario consultarHorario(int id)throws PersistenceException;
 
     public void actualizarRecursoBaja(int id);
+
+    public void addReserva(Reserva newReserva);
 
     
     
