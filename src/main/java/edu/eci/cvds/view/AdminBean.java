@@ -46,8 +46,15 @@ public class AdminBean extends BasePageBean {
     private int capacidad;
     private String horaInicio;
     private String horaFin;
+<<<<<<< HEAD
 
 
+=======
+    private String horaInicioReserva;
+    private String horaFinReserva;
+    private String tipoReserva;
+    
+>>>>>>> b99beec70f552c596c5e324ee3b5de934a2939e2
     ArrayList<String> tipos = new ArrayList<String>() {
         {
             add("Tipo");
