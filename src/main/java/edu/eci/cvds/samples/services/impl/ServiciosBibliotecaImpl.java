@@ -12,6 +12,7 @@ import edu.eci.cvds.samples.entities.Recurso;
 import edu.eci.cvds.samples.entities.Reserva;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ServiciosBiblioteca;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -119,6 +120,10 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
     @Override
     public List<Reserva> consultarReservas (){
         return reservaDAO.loadReservas();
+    }
+    @Override
+    public ArrayList<Reserva> consultarReservasPorId(int id){
+        return reservaDAO.loadReservaById(id); 
     }
 
 }

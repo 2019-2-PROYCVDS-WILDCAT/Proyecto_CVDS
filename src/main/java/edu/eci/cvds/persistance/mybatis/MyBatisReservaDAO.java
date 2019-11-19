@@ -25,7 +25,7 @@ public class MyBatisReservaDAO implements ReservaDAO{
     }
 
     @Override
-    public ArrayList<Recurso> loadReservaById(int id) {
+    public ArrayList<Reserva> loadReservaById(int id) {
         return reservaMapper.consultarReservasPorId(id);
     }
     

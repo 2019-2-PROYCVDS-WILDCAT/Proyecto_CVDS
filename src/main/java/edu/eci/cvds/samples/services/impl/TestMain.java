@@ -13,8 +13,10 @@ import edu.eci.cvds.samples.services.ServiciosBibliotecaFactory;
 import edu.eci.cvds.view.AdminBean;
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -53,10 +55,11 @@ public class TestMain {
                 aux1 = format.parse("2019-11-27").getTime();
                 aux2 = format.parse("2019-11-29").getTime();
 
-                Date horaInicioR = new Date(aux1);
-                Date horaFinR = new Date(aux2);
+                Timestamp horaInicioR = new Timestamp(aux1);
+                Timestamp horaFinR = new Timestamp(aux2);
                 Reserva newReserva = new Reserva(0,"perrocanchoso@mail.com", 56,horaInicioR,horaFinR, null,"recurrente");
                 sb.addReserva(newReserva);
+                ArrayList<Reserva> reservas=sb.consultarReservasPorId(1);
             } catch (ParseException ex) {
                 Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
             }

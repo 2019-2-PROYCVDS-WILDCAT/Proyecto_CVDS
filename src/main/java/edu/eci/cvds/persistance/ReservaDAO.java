@@ -12,7 +12,7 @@ import java.util.List;
 public interface ReservaDAO {
     public void addReserva(Reserva reserva);
     public List<Reserva> loadReservas();
-    public ArrayList<Recurso> loadReservaById(int id);
+    public ArrayList<Reserva> loadReservaById(int id);
     
     
 }

@@ -15,6 +15,6 @@ public interface ReservaMapper {
 
     public List<Reserva> consultarReservas();
 
-    public ArrayList<Recurso> consultarReservasPorId(int id);
+    public ArrayList<Reserva> consultarReservasPorId(@Param("idRecurso")int id);
     
 }

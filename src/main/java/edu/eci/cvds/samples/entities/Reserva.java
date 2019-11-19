@@ -6,6 +6,7 @@
 package edu.eci.cvds.samples.entities;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -14,9 +15,10 @@ import java.sql.Date;
 public class Reserva {
     private String idUsuario,tipo;
     private int id,idRecurso;
-    Date fechaInicioReserva,fechaFinReserva,fechaReserva;
+    Date fechaReserva;
+    Timestamp fechaInicioReserva,fechaFinReserva; 
 
-    public Reserva(int id,String idUsuario, int idRecurso, Date fechaInicioReserva, Date fechaFinReserva, Date fechaReserva, String tipo) {
+    public Reserva(int id,String idUsuario, int idRecurso, Timestamp fechaInicioReserva, Timestamp fechaFinReserva, Date fechaReserva, String tipo) {
         this.id=id;
         this.idUsuario = idUsuario;        
         this.idRecurso = idRecurso;
@@ -66,21 +68,23 @@ public class Reserva {
         this.idRecurso = idRecurso;
     }
 
-    public Date getFechaInicioReserva() {
+    public Timestamp getFechaInicioReserva() {
         return fechaInicioReserva;
     }
 
-    public void setFechaInicioReserva(Date fechaInicioReserva) {
+    public void setFechaInicioReserva(Timestamp fechaInicioReserva) {
         this.fechaInicioReserva = fechaInicioReserva;
     }
 
-    public Date getFechaFinReserva() {
+    public Timestamp getFechaFinReserva() {
         return fechaFinReserva;
     }
 
-    public void setFechaFinReserva(Date fechaFinReserva) {
+    public void setFechaFinReserva(Timestamp fechaFinReserva) {
         this.fechaFinReserva = fechaFinReserva;
     }
+
+    
 
     @Override
     public String toString() {

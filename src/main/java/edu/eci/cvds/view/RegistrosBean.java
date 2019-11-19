@@ -19,6 +19,7 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,7 +39,6 @@ import org.primefaces.model.Visibility;
 @SessionScoped
 public class RegistrosBean extends BasePageBean{
     @Inject
-    private ReservaDAO reservaDAO;
     private ServiciosBiblioteca serviciosBiblioteca;    
     private String horaInicioReserva;
     private String horaFinReserva;
@@ -114,8 +114,8 @@ public class RegistrosBean extends BasePageBean{
             long aux1 = formato.parse(horaInicioReserva).getTime();
             long aux2 = formato.parse(horaFinReserva).getTime();
                     
-            Date horaInicioR = new Date(aux1);
-            Date horaFinR = new Date(aux2);
+            Timestamp horaInicioR = new Timestamp(aux1);
+            Timestamp horaFinR = new Timestamp(aux2);
             Reserva newReserva= new Reserva(0,usuario.getCorreo(),this.selectedRec.getId(),horaInicioR,horaFinR, null, this.tipoReserva);
             serviciosBiblioteca.addReserva(newReserva);
         } catch (ParseException ex) {
@@ -180,8 +180,9 @@ public class RegistrosBean extends BasePageBean{
     public void setServiciosBiblioteca(ServiciosBiblioteca serviciosBiblioteca) {
         this.serviciosBiblioteca = serviciosBiblioteca;
     }    
-    public ArrayList<Recurso> consultarReservasPorId(int id){
-        return reservaDAO.loadReservaById(id);
+    public ArrayList<Reserva> consultarReservasPorId(int id){
+        return serviciosBiblioteca.consultarReservasPorId(id);
+        
     }
     
 }

@@ -5,6 +5,7 @@ import edu.eci.cvds.samples.entities.Horario;
 import edu.eci.cvds.samples.entities.Recurso;
 import edu.eci.cvds.samples.entities.Reserva;
 import edu.eci.cvds.samples.entities.Usuario;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,6 +25,6 @@ public interface ServiciosBiblioteca {
     public void addReserva(Reserva newReserva);
     public List<Reserva> consultarReservas();
 
-    
+    public ArrayList<Reserva> consultarReservasPorId(int id);
     
 }
