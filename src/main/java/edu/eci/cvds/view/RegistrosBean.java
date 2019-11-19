@@ -2,6 +2,7 @@ package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.persistance.PersistenceException;
+import edu.eci.cvds.persistance.ReservaDAO;
 import edu.eci.cvds.samples.entities.Horario;
 import edu.eci.cvds.samples.entities.Recurso;
 import edu.eci.cvds.samples.entities.Reserva;
@@ -37,6 +38,7 @@ import org.primefaces.model.Visibility;
 @SessionScoped
 public class RegistrosBean extends BasePageBean{
     @Inject
+    private ReservaDAO reservaDAO;
     private ServiciosBiblioteca serviciosBiblioteca;    
     private String horaInicioReserva;
     private String horaFinReserva;
@@ -178,5 +180,8 @@ public class RegistrosBean extends BasePageBean{
     public void setServiciosBiblioteca(ServiciosBiblioteca serviciosBiblioteca) {
         this.serviciosBiblioteca = serviciosBiblioteca;
     }    
+    public ArrayList<Recurso> consultarReservasPorId(int id){
+        return reservaDAO.loadReservaById(id);
+    }
     
 }
