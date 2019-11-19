@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
@@ -36,10 +31,7 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.event.ToggleEvent;
 import org.primefaces.model.Visibility;
 
-/**
- *
- * @author 2146516
- */
+
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "recursosBean")
 @SessionScoped
@@ -54,9 +46,7 @@ public class AdminBean extends BasePageBean {
     private int capacidad;
     private String horaInicio;
     private String horaFin;
-    private String horaInicioReserva;
-    private String horaFinReserva;
-    private String tipoReserva;
+
 
     ArrayList<String> tipos = new ArrayList<String>() {
         {
@@ -73,28 +63,7 @@ public class AdminBean extends BasePageBean {
 
         }
     };
-    ArrayList<String> reservas = new ArrayList<String>() {
-        {
-            add("1 Hora");
-            add("2 Horas");
-            add("3 Horas");
-            add("4 Horas");
-            add("5 Horas");
 
-        }
-    };
-    private ArrayList<String> horarios = new ArrayList<String>() {
-        {
-            add("7:00-8:30");
-            add("8:30-10:00");
-            add("10:00-11:30");
-            add("11:30-13:00");
-            add("13:00-14:30");
-            add("14:30-16:00");
-            add("16:00-17:30");
-            add("17:30-19:00");
-        }
-    };
 
     public ServiciosBiblioteca getServiciosBiblioteca() {
         return serviciosBiblioteca;
@@ -136,22 +105,7 @@ public class AdminBean extends BasePageBean {
         serviciosBiblioteca.addRecurso(newRec);
         
     }
-    public void registrarReserva(Usuario usuario){
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        
-        try {
-            long aux1 = formato.parse(horaInicioReserva).getTime();
-            long aux2 = formato.parse(horaFinReserva).getTime();
-                    
-            Date horaInicioR = new Date(aux1);
-            Date horaFinR = new Date(aux2);
-            Reserva newReserva= new Reserva(0,usuario.getCorreo(),this.tipoReserva,this.selectedRec.getId(),horaInicioR,horaFinR);
-            serviciosBiblioteca.addReserva(newReserva);
-        } catch (ParseException ex) {
-            Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-    }
 
     public String getNombre() {
         return nombre;
@@ -229,13 +183,7 @@ public class AdminBean extends BasePageBean {
 
     }
 
-    public ArrayList<String> getHorarios() {
-        return horarios;
-    }
 
-    public void setHorarios(ArrayList<String> horarios) {
-        this.horarios = horarios;
-    }
 
     public String getHoraInicio() {
         return horaInicio;
@@ -253,29 +201,9 @@ public class AdminBean extends BasePageBean {
         this.horaFin = horaFin;
     }
 
-    public String getHoraInicioReserva() {
-        return horaInicioReserva;
-    }
 
-    public void setHoraInicioReserva(String horaInicioReserva) {
-        this.horaInicioReserva = horaInicioReserva;
-    }
 
-    public String getHoraFinReserva() {
-        return horaFinReserva;
-    }
 
-    public void setHoraFinReserva(String horaFinReserva) {
-        this.horaFinReserva = horaFinReserva;
-    }
-
-    public String getTipoReserva() {
-        return tipoReserva;
-    }
-
-    public void setTipoReserva(String tipoReserva) {
-        this.tipoReserva = tipoReserva;
-    }
 
     public String getReserva() {
         return reserva;
@@ -285,13 +213,7 @@ public class AdminBean extends BasePageBean {
         this.reserva = reserva;
     }
 
-    public ArrayList<String> getReservas() {
-        return reservas;
-    }
 
-    public void setReservas(ArrayList<String> reservas) {
-        this.reservas = reservas;
-    }
     
     
 }

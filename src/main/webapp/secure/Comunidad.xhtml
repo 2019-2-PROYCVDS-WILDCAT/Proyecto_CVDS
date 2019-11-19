@@ -81,7 +81,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <ui:repeat var="recurso" value="#{recursosBean.recursos}">
+                    <ui:repeat var="recurso" value="#{registrosBean.recursos}">
                         <tr>
                             <td class="details">
                                 <center><i class="far fa-plus-square fa-2x "></i></center>
@@ -124,23 +124,27 @@
                             <p:growl id="growl" showDetail="true" sticky="false" life="10000"/>
                             <p:panel header="">
                                 <p:outputLabel for="msg" value="" style="display:none"/>   
-                                <h:inputHidden id="msg" value="#{recursosBean.estado}" />  
+                                <h:inputHidden id="msg" value="#{registrosBean.estado}" />  
 
                                 <h:inputHidden id="idStatus" binding="#{idStatus}"/>
                                 <div class="form-group">
 
-                                    <h:selectOneMenu value="#{recursosBean.estado}">
-                                        <f:selectItems value="#{recursosBean.estados}" />
+                                    <h:selectOneMenu value="#{registrosBean.estado}">
+                                        <f:selectItems value="#{registrosBean.reservas}" />                                        
                                     </h:selectOneMenu>  
-                                </div>
+                                    
+                                    <h:selectOneMenu value="#{registrosBean.estado}">                                        
+                                        <f:selectItems value="#{registrosBean.tiposReserva}" />
+                                    </h:selectOneMenu>                                    
+                                </div> 
 
                                 <div class="modal-footer">
 
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                     <p:commandButton type="Save" class="btn btn-primary btn-block" 
-                                                     actionListener="#{recursosBean.modificarEstado(idStatus.value)}" style="width:150px;" value="Cambiar" 
+                                                     actionListener="#{registrosBean.modificarEstado(idStatus.value)}" style="width:150px;" value="Cambiar" 
                                                      onclick="PF('modal').hide();
-                                                             $('#form').trigger('reset')" action="#{recursosBean.saveMessage}" update="@form">
+                                                             $('#form').trigger('reset')" action="#{registrosBean.saveMessage}" update="@form">
 
 
                                     </p:commandButton>

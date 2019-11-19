@@ -22,6 +22,7 @@ public interface ServiciosBiblioteca {
     public void actualizarRecursoBaja(int id);
 
     public void addReserva(Reserva newReserva);
+    public List<Reserva> consultarReservas();
 
     
     

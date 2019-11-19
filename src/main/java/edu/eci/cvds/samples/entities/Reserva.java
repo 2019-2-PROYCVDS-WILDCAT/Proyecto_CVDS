@@ -14,15 +14,24 @@ import java.sql.Date;
 public class Reserva {
     private String idUsuario,tipo;
     private int id,idRecurso;
-    Date fechaInicioReserva,fechaFinReserva;
+    Date fechaInicioReserva,fechaFinReserva,fechaReserva;
 
-    public Reserva(int id,String idUsuario, String tipo, int idRecurso, Date fechaInicioReserva, Date fechaFinReserva) {
+    public Reserva(int id,String idUsuario, int idRecurso, Date fechaInicioReserva, Date fechaFinReserva, Date fechaReserva, String tipo) {
         this.id=id;
-        this.idUsuario = idUsuario;
-        this.tipo = tipo;
+        this.idUsuario = idUsuario;        
         this.idRecurso = idRecurso;
         this.fechaInicioReserva = fechaInicioReserva;
         this.fechaFinReserva = fechaFinReserva;
+        this.fechaReserva=fechaReserva;
+        this.tipo = tipo;
+    }
+
+    public Date getFechaReserva() {
+        return fechaReserva;
+    }
+
+    public void setFechaReserva(Date fechaReserva) {
+        this.fechaReserva = fechaReserva;
     }
 
     public String getIdUsuario() {
@@ -71,6 +80,11 @@ public class Reserva {
 
     public void setFechaFinReserva(Date fechaFinReserva) {
         this.fechaFinReserva = fechaFinReserva;
+    }
+
+    @Override
+    public String toString() {
+        return "Reserva{" + "idUsuario=" + idUsuario + ", tipo=" + tipo + ", id=" + id + ", idRecurso=" + idRecurso + ", fechaInicioReserva=" + fechaInicioReserva + ", fechaFinReserva=" + fechaFinReserva + ", fechaReserva=" + fechaReserva + '}';
     }
     
     

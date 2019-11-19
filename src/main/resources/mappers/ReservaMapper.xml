@@ -11,12 +11,21 @@
         <result property='fechaFinReserva' column='fecha_fin_reserva' />
         <result property='tipo' column='tipo' />                  
     </resultMap>
-        
+    
+    <select id="consultarReservas" resultMap="ReservaResult" parameterType="map">
+        SELECT *
+        FROM reservas        
+    </select>        
+    
     <insert id="addReserva" parameterType="map">
         INSERT 
         INTO reservas(id_usuario,id_recurso,fecha_inicio_reserva,fecha_fin_reserva,tipo) 
         VALUES (#{reserva.idUsuario},#{reserva.idRecurso},#{reserva.fechaInicioReserva}, #{reserva.fechaFinReserva},#{reserva.tipo});
     </insert>
+    
+
+    
+    
         
         
 </mapper>

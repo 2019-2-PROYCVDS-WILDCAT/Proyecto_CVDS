@@ -116,6 +116,10 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
         reservaDAO.addReserva(newReserva);
         
     }
+    @Override
+    public List<Reserva> consultarReservas (){
+        return reservaDAO.loadReservas();
+    }
 
 }
     
