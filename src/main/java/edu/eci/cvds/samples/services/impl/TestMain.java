@@ -43,23 +43,23 @@ public class TestMain {
             
             System.out.println(sb.consultarRecurso(4));
             
-            System.out.println("UN EJEMPLO NI EL HIJUEPUTA!!!!!!!!!!!!!!!!!!!");
+            
             System.out.println(sb.consultarReservas());
             
-//            sb.cambiarEstadoRecurso(3, "Disponible");
-//            SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
-//
-//            try {
-//                aux1 = format.parse("2019-11-27").getTime();
-//                aux2 = format.parse("2019-11-29").getTime();
-//
-//                Date horaInicioR = new Date(aux1);
-//                Date horaFinR = new Date(aux2);
-//                Reserva newReserva = new Reserva(0,"hawaii50@mail.com","recurrente",6,horaInicioR,horaFinR);
-//                sb.addReserva(newReserva);
-//            } catch (ParseException ex) {
-//                Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            //sb.cambiarEstadoRecurso(3, "Disponible");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+
+            try {
+                aux1 = format.parse("2019-11-27").getTime();
+                aux2 = format.parse("2019-11-29").getTime();
+
+                Date horaInicioR = new Date(aux1);
+                Date horaFinR = new Date(aux2);
+                Reserva newReserva = new Reserva(0,"perrocanchoso@mail.com", 56,horaInicioR,horaFinR, null,"recurrente");
+                sb.addReserva(newReserva);
+            } catch (ParseException ex) {
+                Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
            
             
             

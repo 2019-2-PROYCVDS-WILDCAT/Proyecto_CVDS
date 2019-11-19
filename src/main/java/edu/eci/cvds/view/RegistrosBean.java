@@ -114,7 +114,7 @@ public class RegistrosBean extends BasePageBean{
                     
             Date horaInicioR = new Date(aux1);
             Date horaFinR = new Date(aux2);
-            Reserva newReserva= new Reserva(0,usuario.getCorreo(),this.tipoReserva,this.selectedRec.getId(),horaInicioR,horaFinR);
+            Reserva newReserva= new Reserva(0,usuario.getCorreo(),this.selectedRec.getId(),horaInicioR,horaFinR, null, this.tipoReserva);
             serviciosBiblioteca.addReserva(newReserva);
         } catch (ParseException ex) {
             Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
