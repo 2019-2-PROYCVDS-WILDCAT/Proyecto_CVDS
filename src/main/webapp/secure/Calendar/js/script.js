@@ -46,107 +46,18 @@ jQuery(document).ready(function () {
                 center: 'month,agendaWeek,agendaDay',
                 right: 'today prev,next'
             },
-            
-            events: [
+            eventSources: [
                 {
-                    title: 'Barber',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu pellentesque nibh. In nisl nulla, convallis ac nulla eget, pellentesque pellentesque magna.',
-                    start: '2019-07-07',
-                    end: '2019-07-07',
-                    className: 'fc-bg-default',
-                    icon: "circle"
-                },
-                {
-                    title: 'Flight Paris',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu pellentesque nibh. In nisl nulla, convallis ac nulla eget, pellentesque pellentesque magna.',
-                    start: '2019-08-08T14:00:00',
-                    end: '2019-08-08T20:00:00',
-                    className: 'fc-bg-deepskyblue',
-                    icon: "cog",
-                    allDay: false
-                },
-                {
-                    title: 'Team Meeting',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu pellentesque nibh. In nisl nulla, convallis ac nulla eget, pellentesque pellentesque magna.',
-                    start: '2019-07-10T13:00:00',
-                    end: '2019-07-10T16:00:00',
-                    className: 'fc-bg-pinkred',
-                    icon: "group",
-                    allDay: false
-                },
-                {
-                    title: 'Meeting',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu pellentesque nibh. In nisl nulla, convallis ac nulla eget, pellentesque pellentesque magna.',
-                    start: '2019-08-12',
-                    className: 'fc-bg-lightgreen',
-                    icon: "suitcase"
-                },
-                {
-                    title: 'Conference',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu pellentesque nibh. In nisl nulla, convallis ac nulla eget, pellentesque pellentesque magna.',
-                    start: '2019-08-13',
-                    end: '2019-08-15',
-                    className: 'fc-bg-blue',
-                    icon: "calendar"
-                },
-                {
-                    title: 'Baby Shower',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu pellentesque nibh. In nisl nulla, convallis ac nulla eget, pellentesque pellentesque magna.',
-                    start: '2019-08-13',
-                    end: '2019-08-14',
-                    className: 'fc-bg-default',
-                    icon: "child"
-                },
-                {
-                    title: 'Birthday',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu pellentesque nibh. In nisl nulla, convallis ac nulla eget, pellentesque pellentesque magna.',
-                    start: '2019-09-13',
-                    end: '2019-09-14',
-                    className: 'fc-bg-default',
-                    icon: "birthday-cake"
-                },
-                {
-                    title: 'Restaurant',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu pellentesque nibh. In nisl nulla, convallis ac nulla eget, pellentesque pellentesque magna.',
-                    start: '2019-10-15T09:30:00',
-                    end: '2019-10-15T11:45:00',
-                    className: 'fc-bg-default',
-                    icon: "glass",
-                    allDay: false
-                },
-                {
-                    title: 'Dinner',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu pellentesque nibh. In nisl nulla, convallis ac nulla eget, pellentesque pellentesque magna.',
-                    start: '2019-11-15T20:00:00',
-                    end: '2019-11-15T22:30:00',
-                    className: 'fc-bg-default',
-                    icon: "cutlery",
-                    allDay: false
-                },
-                {
-                    title: 'Shooting',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu pellentesque nibh. In nisl nulla, convallis ac nulla eget, pellentesque pellentesque magna.',
-                    start: '2019-08-25',
-                    end: '2019-08-25',
-                    className: 'fc-bg-blue',
-                    icon: "camera"
-                },
-                {
-                    title: 'Go Space :)',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu pellentesque nibh. In nisl nulla, convallis ac nulla eget, pellentesque pellentesque magna.',
-                    start: '2019-12-27',
-                    end: '2019-12-27',
-                    className: 'fc-bg-default',
-                    icon: "rocket"
-                },
-                {
-                    title: 'Dentist',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu pellentesque nibh. In nisl nulla, convallis ac nulla eget, pellentesque pellentesque magna.',
-                    start: '2019-12-29T11:30:00',
-                    end: '2019-12-29T012:30:00',
-                    className: 'fc-bg-blue',
-                    icon: "medkit",
-                    allDay: false
+                    url: '/calendarServlet',
+                    type: 'POST',
+                    data: {
+                        start: 'start',
+                        end: 'end',
+                        id: 'id'
+                    },
+                    error: function () {
+                        alert('there was an error while fetching events!');
+                    }
                 }
             ],
             eventRender: function (event, element) {
@@ -159,18 +70,18 @@ jQuery(document).ready(function () {
                 inputfechaini.value = date.format("MM/DD/YYYY");
                 var inputfechafin = document.getElementById('fechaFin');
                 inputfechafin.value = date.format("MM/DD/YYYY");
-                
+
                 var inputhora = document.getElementById('horaInicio');
                 var inputfin = document.getElementById('horaFin');
-                if (date.format("HH:mm") === '00:00'){
-                   inputhora.value = '07:00';
-                   inputfin.value = '09:00'
-                }else{
-                   inputhora.value = date.format("HH:mm");
-                   var horaFn = date.add(2,'h');
-                   inputfin.value = horaFn.format("HH:mm");
-                   
-                }      
+                if (date.format("HH:mm") === '00:00') {
+                    inputhora.value = '07:00';
+                    inputfin.value = '09:00'
+                } else {
+                    inputhora.value = date.format("HH:mm");
+                    var horaFn = date.add(2, 'h');
+                    inputfin.value = horaFn.format("HH:mm");
+
+                }
 
                 jQuery('#modal-view-event-add').modal();
             },
