@@ -155,7 +155,8 @@ jQuery(document).ready(function () {
                 }
             },
             dayClick: function (date, jsEvent, view, resourceObj) {
-
+                var inputfechaini = document.getElementById('fechaInicio');
+                inputfechaini.value = date.format("MM/DD/YYYY");
                 var inputhora = document.getElementById('horaInicio');
                 if (date.format("HH:mm") === '00:00'){
                    inputhora.value = '07:00';  
