@@ -57,7 +57,7 @@ public class AdminBean extends BasePageBean {
     private String horaInicioReserva;
     private String horaFinReserva;
     private String tipoReserva;
-
+    
     ArrayList<String> tipos = new ArrayList<String>() {
         {
             add("Tipo");
