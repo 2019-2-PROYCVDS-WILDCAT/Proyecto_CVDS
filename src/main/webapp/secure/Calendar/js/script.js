@@ -2,7 +2,8 @@ var eventos = [];
 var reservaId = document.getElementById('reservaId').value;
 var horaMin = document.getElementById('hIni').value;
 var horaMax = document.getElementById('hFin').value;
-console.log(horaMin);
+var tipo = document.getElementById('reservaTipo').value;
+
 jQuery(document).ready(function () {
     jQuery('.datetimepicker').datepicker({
         timepicker: true,
@@ -92,14 +93,18 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
                 var inputfin = document.getElementById('horaFin');
                 if (date.format("HH:mm") === '00:00') {
                     inputhora.value = '07:00';
-                    inputfin.value = '09:00'
+                    inputfin.value = '09:00';
                 } else {
                     inputhora.value = date.format("HH:mm");
                     var horaFn = date.add(2, 'h');
                     inputfin.value = horaFn.format("HH:mm");
                 }
-
-                jQuery('#modal-view-event-add').modal();
+                if (!(tipo === 'Libro')) {
+                    
+                    $('#colFechaFin').hide();
+                    
+                }
+                jQuery('#seleccionTipoReserva').modal();
             },
             eventClick: function (event, jsEvent, view) {
                 jQuery('.event-icon').html("<i class='fa fa-" + event.icon + "'></i>");

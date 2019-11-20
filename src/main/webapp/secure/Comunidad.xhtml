@@ -87,14 +87,9 @@
                                 <center><i class="far fa-plus-square fa-2x "></i></center>
                                 <span style="display:none;">
                                     <h:form>
-                                        <button type="button" data-id="#{recurso.id}" class="modificarEstado btn btn-dark btn-block" style="width:300px;" data-toggle="modal" data-target="#modalReserva">
-                                            Reservar recurso.
-
-                                        </button>
-                                        <p:commandButton type="submit" class="btn btn-primary btn-block" actionListener="#{registrosBean.goToCalendar(recurso.id,recurso.tipo,recurso.horaInicio,recurso.horaFin)}" value="Reservar">
-
-                                            <f:ajax execute="@form" render="email password"/>
-
+                                        
+                                        <p:commandButton type="submit" class="btn btn-dark btn-block" style="width:300px;" 
+                                                         actionListener="#{registrosBean.goToCalendar(recurso.id,recurso.tipo,recurso.horaInicio,recurso.horaFin)}" value="Reservar">
                                         </p:commandButton>
                                     </h:form>
 
