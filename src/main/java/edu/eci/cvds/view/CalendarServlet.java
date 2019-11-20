@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServlet;
 
 public class CalendarServlet extends HttpServlet{
 
-    private ServiciosBiblioteca sb = ServiciosBibliotecaFactory.getServiciosBiblioteca();
+    private final ServiciosBiblioteca sb = ServiciosBibliotecaFactory.getServiciosBiblioteca();
     
     
     @Override
@@ -38,9 +38,6 @@ public class CalendarServlet extends HttpServlet{
        
         ArrayList<Reserva> events = sb.consultarReservasPorId(id);
         
-        for(Reserva k : events){
-            System.out.println(k.getFechaInicioReserva());
-        }
         String json = new Gson().toJson(events);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
