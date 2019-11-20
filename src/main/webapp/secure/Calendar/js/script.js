@@ -1,3 +1,4 @@
+
 jQuery(document).ready(function () {
     jQuery('.datetimepicker').datepicker({
         timepicker: true,
@@ -18,7 +19,13 @@ jQuery(document).ready(function () {
                 );
     });
 });
-
+$.getJSON('/jsonGetEvents',{id: "2"},function(events) {
+    // `events` is a JSON string. Do your thing with it. This examples loops over it.
+    $.each(events, function(index, event) {
+        var start = event.fechaInicioReserva;
+        var end = event.fechaFinReserva;
+    });
+});
 (function () {
     'use strict';
     // ------------------------------------------------------- //
@@ -48,12 +55,11 @@ jQuery(document).ready(function () {
             },
             eventSources: [
                 {
-                    url: '/calendarServlet',
-                    type: 'POST',
+                    url: '/jsonGetEvents',
+                    type: 'GET',
                     data: {
                         start: 'start',
-                        end: 'end',
-                        id: 'id'
+                        end: 'end'
                     },
                     error: function () {
                         alert('there was an error while fetching events!');
@@ -92,6 +98,7 @@ jQuery(document).ready(function () {
                 jQuery('.eventUrl').attr('href', event.url);
                 jQuery('#modal-view-event').modal();
             },
+            
         })
     });
 

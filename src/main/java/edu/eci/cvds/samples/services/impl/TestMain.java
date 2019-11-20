@@ -60,6 +60,9 @@ public class TestMain {
                 Reserva newReserva = new Reserva(0,"perrocanchoso@mail.com", 56,horaInicioR,horaFinR, null,"recurrente");
                 sb.addReserva(newReserva);
                 ArrayList<Reserva> reservas=sb.consultarReservasPorId(1);
+                for(Reserva k : reservas){
+                    System.out.println(k.getFechaInicioReserva());
+                }   
             } catch (ParseException ex) {
                 Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
             }

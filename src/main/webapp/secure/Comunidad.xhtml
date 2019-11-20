@@ -90,7 +90,11 @@
                                         Reservar recurso.
 
                                     </button>
-                                    
+                                    <form name ="formNumero" action="/calendar.xhtml" method="POST" >                           
+                                        
+                                        <input  id="prueba" name="id" value="#{recurso.id}" type="hidden"/>
+                                        <input type="submit" value="Reserva este recurso." class="btn btn-dark btn-block" style="width:300px;"> </input>
+                                    </form>
 
 
                                 </span>
