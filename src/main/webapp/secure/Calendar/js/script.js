@@ -1,4 +1,8 @@
 var eventos = [];
+var reservaId = document.getElementById('reservaId').value;
+var horaMin = document.getElementById('hIni').value;
+var horaMax = document.getElementById('hFin').value;
+console.log(horaMin);
 jQuery(document).ready(function () {
     jQuery('.datetimepicker').datepicker({
         timepicker: true,
@@ -20,7 +24,7 @@ jQuery(document).ready(function () {
     });
 });
 
-$.getJSON('/jsonGetEvents', {id: "1"}, function (events) {
+$.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
     // `events` is a JSON string. Do your thing with it. This examples loops over it.
 
     $.each(events, function (index, event) {
@@ -62,8 +66,8 @@ $.getJSON('/jsonGetEvents', {id: "1"}, function (events) {
             locale: 'es',
             // emphasizes business hours
             businessHours: false,
-            minTime: '07:00:00',
-            maxTime: '19:30:00',
+            minTime: horaMin,
+            maxTime: horaMax,
             defaultView: 'month',
             // event dragging & resizing
             editable: true,

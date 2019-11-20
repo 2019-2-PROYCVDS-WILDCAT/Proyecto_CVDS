@@ -40,12 +40,14 @@ import org.primefaces.model.Visibility;
 public class RegistrosBean extends BasePageBean{
     @Inject
     private ServiciosBiblioteca serviciosBiblioteca;    
-    private String horaInicioReserva;
-    private String horaFinReserva;
-    private String tipoReserva;
+    private int idReserva;
+    private String tipoRecurso,horaInicioReserva,horaFinReserva,tipoReserva;
+    private String hDisponibleInicio,hDisponibleFin;
     private Recurso selectedRec;
     private String estado;
-    private List<Recurso> recursos;    
+    private List<Recurso> recursos;
+    
+    
     ArrayList<String> reservas = new ArrayList<String>() {
         {
             add("1 Hora");
@@ -184,5 +186,44 @@ public class RegistrosBean extends BasePageBean{
         return serviciosBiblioteca.consultarReservasPorId(id);
         
     }
+
+    public int getIdReserva() {
+        return idReserva;
+    }
+
+    public void setIdReserva(int idReserva) {
+        this.idReserva = idReserva;
+    }
+
+    public String getTipoRecurso() {
+        return tipoRecurso;
+    }
+
+    public void setTipoRecurso(String tipoRecurso) {
+        this.tipoRecurso = tipoRecurso;
+    }
+
+    public String gethDisponibleInicio() {
+        return hDisponibleInicio;
+    }
+
+    public void sethDisponibleInicio(String hDisponibleInicio) {
+        this.hDisponibleInicio = hDisponibleInicio;
+    }
+
+    public String gethDisponibleFin() {
+        return hDisponibleFin;
+    }
+
+    public void sethDisponibleFin(String hDisponibleFin) {
+        this.hDisponibleFin = hDisponibleFin;
+    }
     
+    public void goToCalendar(int idReserva,String tipo,String horaInicio, String horaFin) throws IOException{
+        this.idReserva = idReserva;
+        this.tipoRecurso = tipo;
+        this.hDisponibleInicio = horaInicio;
+        this.hDisponibleFin = horaFin;
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/secure/Calendar/calendar.xhtml");
+    }
 }
