@@ -2,24 +2,42 @@ package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.persistance.PersistenceException;
+import edu.eci.cvds.persistance.ReservaDAO;
+import edu.eci.cvds.samples.entities.Horario;
 import edu.eci.cvds.samples.entities.Recurso;
 import edu.eci.cvds.samples.entities.Reserva;
+import edu.eci.cvds.samples.entities.TipoUsuario;
+import edu.eci.cvds.samples.entities.Usuario;
+import edu.eci.cvds.samples.services.exceptions.ExcepcionServiciosBiblioteca;
 import edu.eci.cvds.samples.services.ServiciosBiblioteca;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import edu.eci.cvds.security.ApacheShiroLogger;
+import edu.eci.cvds.security.IniciarSesion;
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.postgresql.util.PSQLException;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.ToggleEvent;
+import org.primefaces.model.Visibility;
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "registrosBean")

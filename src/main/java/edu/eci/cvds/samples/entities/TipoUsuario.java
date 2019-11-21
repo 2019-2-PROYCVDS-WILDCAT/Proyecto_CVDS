@@ -12,7 +12,7 @@ package edu.eci.cvds.samples.entities;
 public enum TipoUsuario {
     Comunidad(1),
     Administrador(2);
-    private final Integer id;
+    private Integer id;
     TipoUsuario(Integer value){
         this.id = value;
     }

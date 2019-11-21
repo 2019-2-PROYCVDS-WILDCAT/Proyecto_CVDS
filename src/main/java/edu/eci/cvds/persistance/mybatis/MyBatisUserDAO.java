@@ -10,6 +10,8 @@ import edu.eci.cvds.persistance.PersistenceException;
 import edu.eci.cvds.persistance.UserDAO;
 import edu.eci.cvds.persistance.mybatis.mappers.UserMapper;
 import edu.eci.cvds.samples.entities.Usuario;
+import java.util.Date;
+import java.util.List;
 
 /**
  *

@@ -19,7 +19,7 @@ import edu.eci.cvds.security.ApacheShiroLogger;
 
 public class ServiciosBibliotecaFactory {
     
-   private static final ServiciosBibliotecaFactory instance = new ServiciosBibliotecaFactory();
+   private static ServiciosBibliotecaFactory instance = new ServiciosBibliotecaFactory();
    private static Optional<Injector> optInjector;
    
    private static Injector myBatisInjector(String env, String pathResource) {

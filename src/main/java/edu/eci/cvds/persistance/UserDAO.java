@@ -5,6 +5,8 @@
  */
 package edu.eci.cvds.persistance;
 import edu.eci.cvds.samples.entities.Usuario;
+import java.util.Date;
+import java.util.List;
 
 /**
  *

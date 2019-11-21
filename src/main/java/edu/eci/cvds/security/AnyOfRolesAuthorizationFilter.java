@@ -1,4 +1,3 @@
-package edu.eci.cvds.security;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authz.RolesAuthorizationFilter;
 

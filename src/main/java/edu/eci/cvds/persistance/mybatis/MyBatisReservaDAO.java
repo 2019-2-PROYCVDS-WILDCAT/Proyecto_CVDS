@@ -3,9 +3,11 @@ package edu.eci.cvds.persistance.mybatis;
 import com.google.inject.Inject;
 import edu.eci.cvds.persistance.ReservaDAO;
 import edu.eci.cvds.persistance.mybatis.mappers.ReservaMapper;
+import edu.eci.cvds.samples.entities.Recurso;
 import edu.eci.cvds.samples.entities.Reserva;
 import java.util.ArrayList;
 import java.util.List;
+import org.postgresql.util.PSQLException;
 
 /**
  *
