@@ -114,9 +114,14 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
 
     @Override
     public void addReserva(Reserva newReserva) {
-        reservaDAO.addReserva(newReserva);
-        
+        reservaDAO.addReserva(newReserva);        
     }
+    
+    @Override
+    public void addReservaRecursiva (Reserva newReserva, String periodoReserva) {
+        reservaDAO.addReservaRecursiva(newReserva, periodoReserva);
+    }
+    
     @Override
     public List<Reserva> consultarReservas (){
         return reservaDAO.loadReservas();
@@ -125,6 +130,8 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
     public ArrayList<Reserva> consultarReservasPorId(int id){
         return reservaDAO.loadReservaById(id); 
     }
+
+
 
 }
     

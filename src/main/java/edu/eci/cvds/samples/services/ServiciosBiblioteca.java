@@ -23,6 +23,7 @@ public interface ServiciosBiblioteca {
     public void actualizarRecursoBaja(int id);
 
     public void addReserva(Reserva newReserva);
+    public void addReservaRecursiva(Reserva newReserva, String periodoReserva);
     public List<Reserva> consultarReservas();
 
     public ArrayList<Reserva> consultarReservasPorId(int id);
