@@ -222,7 +222,7 @@
                                     <p:commandButton type="Save" class="btn btn-primary btn-block" 
                                                      actionListener="#{recursosBean.modificarEstado(idStatus.value)}" style="width:150px;" value="Cambiar" 
                                                      onclick="PF('modal').hide();
-                                                             $('#form').trigger('reset')" action="#{recursosBean.saveMessage}" update="@form">
+                                                             $('#modifyStatus').trigger('reset')" action="#{recursosBean.saveMessage}" update="@form">
 
 
                                     </p:commandButton>

@@ -35,6 +35,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.postgresql.util.PSQLException;
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.ToggleEvent;
 import org.primefaces.model.Visibility;
@@ -78,7 +79,7 @@ public class RegistrosBean extends BasePageBean {
     };
     private ArrayList<String> tiposApartado = new ArrayList<String>() {
         {
-            add("Diaria");
+            add("Diario");
             add("Semanal");
             add("Mensual");
         }
@@ -114,33 +115,59 @@ public class RegistrosBean extends BasePageBean {
         this.tiposApartado = tiposApartado;
     }
 
-    public void registrarReservaNormal() throws ParseException {
-        //Sacar Usuario
+    public String getUsuario() {
         Subject currentUser = SecurityUtils.getSubject();
         Session session = currentUser.getSession();
         String usuario = session.getAttribute("email").toString();
+        return usuario;
+    }
+
+    public void crearFechas() {
+
+        fechaInicio = fechaInicio.replaceAll("(\\d+)/(\\d+)/(\\d+)", "$3-$1-$2") + " " + horaInicioReserva + ":00";
+        fechaFin = fechaFin.replaceAll("(\\d+)/(\\d+)/(\\d+)", "$3-$1-$2") + " " + horaFinReserva + ":00";
+    }
+
+    public void registrarReservaNormal() throws ParseException {
         if (!tipoRecurso.equals("Libro")) {
-            fechaInicio = fechaFin;
+            fechaFin = fechaInicio;
         }
-        //Unir fechas con horas
         Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        String fechaInicioString = fechaInicio.replaceAll("(\\d+)/(\\d+)/(\\d+)", "$3-$1-$2") + " " + horaInicioReserva +":00";
-        String fechaFinString = fechaFin.replaceAll("(\\d+)/(\\d+)/(\\d+)", "$3-$1-$2") + " " + horaFinReserva+":00";
+        //Sacar Usuario
+        String usuario = getUsuario();
+        //Unir fechas con horas
+        crearFechas();
         //Castear a timeStamp
-        Timestamp tsFechaInicio = Timestamp.valueOf(fechaInicioString);
-        Timestamp tsFechaFin = Timestamp.valueOf(fechaFinString);
+        Timestamp tsFechaInicio = Timestamp.valueOf(fechaInicio);
+        Timestamp tsFechaFin = Timestamp.valueOf(fechaFin);
         //Insertar reserva
-        Reserva reservaInsert = new Reserva(0,usuario,idReserva,tsFechaInicio,tsFechaFin,date, "Normal");
-        
-        try{
-          serviciosBiblioteca.addReserva(reservaInsert);   
-        }catch(Exception e){
-            System.out.println(e.getMessage());
+        Reserva reservaInsert = new Reserva(0, usuario, idReserva, tsFechaInicio, tsFechaFin, date, "Normal");
+        try {
+            serviciosBiblioteca.addReserva(reservaInsert);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Reserva realizada correctamente.", ""));
+            
+            
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al realizar reserva!", ""));
         }
-        
-        
-        
-        
+    }
+
+    public void registrarReservaRecurrente() throws ParseException {
+        System.out.println("Hola Mundo");
+        Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        String usuario = getUsuario();
+        crearFechas();
+        Timestamp tsFechaInicio = Timestamp.valueOf(fechaInicio);
+        Timestamp tsFechaFin = Timestamp.valueOf(fechaFin);
+        Reserva reservaInsert = new Reserva(0, usuario, idReserva, tsFechaInicio, tsFechaFin, date, "Recurrente");
+        try {
+            serviciosBiblioteca.addReservaRecursiva(reservaInsert, this.tipoApartado);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Reserva realizada correctamente.", ""));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al realizar reserva!", ""));
+
+        }
     }
 
     public Recurso getSelectedRec() {

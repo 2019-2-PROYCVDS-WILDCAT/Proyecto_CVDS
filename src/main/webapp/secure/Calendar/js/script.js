@@ -4,6 +4,9 @@ var horaMin = document.getElementById('hIni').value;
 var horaMax = document.getElementById('hFin').value;
 var tipo = document.getElementById('reservaTipo').value;
 
+
+
+    
 jQuery(document).ready(function () {
     jQuery('.datetimepicker').datepicker({
         timepicker: true,
@@ -14,14 +17,20 @@ jQuery(document).ready(function () {
         multipleDatesSeparator: " - "
     });
     jQuery("#add-event").submit(function () {
-        alert("Submitted");
+        
         var values = {};
         $.each($('#add-event').serializeArray(), function (i, field) {
             values[field.name] = field.value;
         });
-        console.log(
-                values
-                );
+        
+    });
+    jQuery("#add-event-rec").submit(function () {
+        
+        var values = {};
+        $.each($('#add-event-rec').serializeArray(), function (i, field) {
+            values[field.name] = field.value;
+        });
+        
     });
 });
 
@@ -73,7 +82,7 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
             allDaySlot: false,
             slotDuration: '00:10:00',
             // event dragging & resizing
-            
+
             // header
             header: {
                 left: 'title',
@@ -101,11 +110,21 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
                     var horaFn = date.add(2, 'h');
                     inputfin.value = horaFn.format("HH:mm");
                 }
-                if (!(tipo === 'Libro')) {
-                    
-                    $('#colFechaFin').hide();
-                    
+                var inputfechainiRec = document.getElementById('fechaInicioRec');
+                inputfechainiRec.value = date.format("MM/DD/YYYY");
+                var inputfechafinRec = document.getElementById('fechaFinRec');
+                inputfechafinRec.value = date.format("MM/DD/YYYY");
+                var inputhoraRec = document.getElementById('horaInicioRec');
+                var inputfinRec = document.getElementById('horaFinRec');
+                if (date.format("HH:mm") === '00:00') {
+                    inputhoraRec.value = '07:00';
+                    inputfinRec.value = '09:00';
+                } else {
+                    inputhoraRec.value = date.format("HH:mm");
+                    var horaFnRec = date.add(2, 'h');
+                    inputfinRec.value = horaFnRec.format("HH:mm");
                 }
+               
                 jQuery('#seleccionTipoReserva').modal();
             },
             eventClick: function (event, jsEvent, view) {

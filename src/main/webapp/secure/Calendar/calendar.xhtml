@@ -31,7 +31,7 @@
             <h:inputHidden value="#{registrosBean.idReserva}" id="reservaId"></h:inputHidden>
             <h:inputHidden value="#{registrosBean.hDisponibleInicio}" id="hIni"></h:inputHidden>
             <h:inputHidden value="#{registrosBean.hDisponibleFin}" id="hFin"></h:inputHidden>
-            
+
             <div class="card">
                 <div class="card-body p-0">
                     <div id="calendar"></div>
@@ -85,8 +85,10 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <h:form id="add-event-rec">
+
+
                         <div class="modal-header">
-                            
+
                             <h4>Reserva recurrente</h4>
                             <p style="font-size:12px;">La reserva se realizará diaria,mensual o semanalmente hasta la fecha de entrega</p>
                         </div>
@@ -96,7 +98,7 @@
                                 <div class="col-sm-6"> 
                                     <div class="form-group" >
                                         <label for="fechaInicioRec">Fecha de reserva</label>
-                                        <input id="fechaInicioRec" type="fechaInicioRec" class="form-control" name="fechaInicioRec" value="" required="true" autofocus="true" width="200" jsf:value="#{reservaBean.horaInicio}" placeholder="Fecha Inicio" />
+                                        <input id="fechaInicioRec" type="fechaInicioRec" class="form-control" name="fechaInicioRec" value="" required="true" autofocus="true" width="200" jsf:value="#{registrosBean.fechaInicio}" placeholder="Fecha Inicio" />
                                         <script>
                                             $("#fechaInicioRec").datepicker({
                                                 "setDate": new Date(),
@@ -108,7 +110,7 @@
                                 <div class="col-sm-6" id="colFechaFin-rec"> 
                                     <div class="form-group" >
                                         <label for="fechaFinRec">Fecha de entrega</label>
-                                        <input id="fechaFinRec" type="fechaFinRec" class="form-control" name="fechaFinRec" value="" required="true" autofocus="true" width="200" jsf:value="#{reservaBean.horaInicio}" />
+                                        <input id="fechaFinRec" type="fechaFinRec" class="form-control" name="fechaFinRec" value="" required="true" autofocus="true" width="200" jsf:value="#{registrosBean.fechaFin}" />
                                         <script>
                                             $("#fechaFinRec").datepicker({
                                                 "setDate": new Date(),
@@ -122,7 +124,7 @@
                                 <div class="col-sm-6"> 
                                     <div class="form-group">
                                         <label for="horaInicioRec">Hora de reserva</label>
-                                        <input id="horaInicioRec" type="horaInicioRec" class="form-control" name="horaInicioRec" value="" required="true" autofocus="true" width="200" jsf:value="#{reservaBean.horaInicio}" placeholder="Hora Inicio"/>
+                                        <input id="horaInicioRec" type="horaInicioRec" class="form-control" name="horaInicioRec" value="" required="true" autofocus="true" width="200" jsf:value="#{registrosBean.horaInicioReserva}" placeholder="Hora Inicio"/>
                                         <script>
                                             $('#horaInicioRec').timepicker({
                                                 showOtherMonths: true
@@ -133,7 +135,7 @@
                                 <div class="col-sm-6"> 
                                     <div class="form-group" >
                                         <label for="horaFinRec">Hora de entrega</label>
-                                        <input id="horaFinRec" type="horaFinRec" class="form-control" name="horaFinRec" value="" required="true" autofocus="true" width="200" jsf:value="#{reservaBean.horaFin}" />
+                                        <input id="horaFinRec" type="horaFinRec" class="form-control" name="horaFinRec" value="" required="true" autofocus="true" width="200" jsf:value="#{registrosBean.horaFinReserva}" />
                                         <script>
                                             $('#horaFinRec').timepicker({
                                                 showOtherMonths: true
@@ -155,14 +157,12 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" style="float:left;margin-right:20px;height:50px">Cancelar</button>
 
-                            <p:commandButton id="btnreservaRec" type="submit" class="btn btn-primary btn-block" value="Reservar" actionListener="#{recursosBean.registrarRecurso}" onclick="PF('modal').hide();
-                                    $('#form').trigger('reset')"  update="@form">
-
-                                <f:ajax  execute="@form" render="fechaInicio fechaFin horaInicio horafin" />
-
+                            <p:commandButton id="btnreservaRec" type="submit" class="btn btn-primary btn-block" value="Reservar" actionListener="#{registrosBean.registrarReservaRecurrente}" onclick="PF('modal').hide();
+                                        $('#add-event-rec').trigger('reset')"  update="@form">
                             </p:commandButton> 
 
                         </div>
+
                     </h:form>
                 </div>
             </div>
@@ -171,6 +171,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <h:form id="add-event">
+                        <p:growl id="growlLong" showDetail="true" life="10000" />
                         <div class="modal-header">
                             <h4>Reserva normal</h4> 
                         </div>
@@ -232,17 +233,19 @@
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" style="float:left;margin-right:20px;height:50px">Cancelar</button>
 
                             <p:commandButton id="btnreserva" type="submit" class="btn btn-primary btn-block" value="Reservar" actionListener="#{registrosBean.registrarReservaNormal}" onclick="PF('modal').hide();
-                                    $('#form').trigger('reset')"  update="@form">
+                                    $('#add-event').trigger('reset')"  update="@form">
 
-                                <f:ajax  execute="@form" render="fechaInicio fechaFin horaInicio horaFin" />
+                                
 
                             </p:commandButton> 
 
                         </div>
                     </h:form>
                 </div>
+
             </div>
         </div>
+       
         <!-- partial -->
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
