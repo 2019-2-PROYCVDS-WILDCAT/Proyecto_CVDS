@@ -28,6 +28,7 @@ public class TestMain {
             try {
                 long aux1 = formato.parse("2019-11-20 22:22:01").getTime();
                 long aux2 = formato.parse("2019-11-29 23:23:01").getTime();
+
                 Timestamp horaInicioR = new Timestamp(aux1);
                 Timestamp horaFinR = new Timestamp(aux2);
                 Reserva newReserva = new Reserva(0,"perrocanchoso@mail.com", 56,horaInicioR,horaFinR, null,"recurrente");                

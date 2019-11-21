@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.postgresql.util.PSQLException;
 
 
 /**
@@ -24,7 +25,7 @@ public class MyBatisReservaDAO implements ReservaDAO{
     private ReservaMapper reservaMapper;
     @Override
     public void addReserva(Reserva reserva) {
-        reservaMapper.addReserva(reserva);
+        reservaMapper.addReserva(reserva);   
     }
     @Override
     public List<Reserva> loadReservas(){
@@ -40,6 +41,11 @@ public class MyBatisReservaDAO implements ReservaDAO{
     public void addReservaRecursiva(Reserva reserva, String periodoReserva) {
         Timestamp fechaInicio = reserva.getFechaInicioReserva();
         Timestamp fechaFin = reserva.getFechaFinReserva();
+        try {        
+            reserva.setFechaFinReserva(UtilidadFecha.intercambiarHoras(fechaInicio.toString(), fechaFin.toString()));
+        } catch (ParseException ex) {
+            Logger.getLogger(MyBatisReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         int intervaloEnDias = UtilidadFecha.intervaloEnDias(fechaInicio, fechaFin);  
         switch (periodoReserva){
