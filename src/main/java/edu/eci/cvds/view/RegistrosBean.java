@@ -18,6 +18,7 @@ import edu.eci.cvds.security.IniciarSesion;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -33,6 +34,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.postgresql.util.PSQLException;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.ToggleEvent;
 import org.primefaces.model.Visibility;
@@ -129,7 +131,15 @@ public class RegistrosBean extends BasePageBean {
         Timestamp tsFechaFin = Timestamp.valueOf(fechaFinString);
         //Insertar reserva
         Reserva reservaInsert = new Reserva(0,usuario,idReserva,tsFechaInicio,tsFechaFin,date, "Normal");
-        serviciosBiblioteca.addReserva(reservaInsert);
+        
+        try{
+          serviciosBiblioteca.addReserva(reservaInsert);   
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        
+        
+        
         
     }
 

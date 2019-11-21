@@ -7,6 +7,7 @@ import edu.eci.cvds.samples.entities.Recurso;
 import edu.eci.cvds.samples.entities.Reserva;
 import java.util.ArrayList;
 import java.util.List;
+import org.postgresql.util.PSQLException;
 
 /**
  *
@@ -17,7 +18,7 @@ public class MyBatisReservaDAO implements ReservaDAO{
     private ReservaMapper reservaMapper;
     @Override
     public void addReserva(Reserva reserva) {
-        reservaMapper.addReserva(reserva);
+        reservaMapper.addReserva(reserva);   
     }
     @Override
     public List<Reserva> loadReservas(){
