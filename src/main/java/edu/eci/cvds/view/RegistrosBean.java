@@ -41,8 +41,9 @@ public class RegistrosBean extends BasePageBean{
     @Inject
     private ServiciosBiblioteca serviciosBiblioteca;    
     private int idReserva;
-    private String tipoRecurso,horaInicioReserva,horaFinReserva,tipoReserva;
+    private String tipoRecurso,horaInicioReserva,horaFinReserva,tipoReserva,tipoApartado;
     private String hDisponibleInicio,hDisponibleFin;
+    
     private Recurso selectedRec;
     private String estado;
     private List<Recurso> recursos;
@@ -70,10 +71,11 @@ public class RegistrosBean extends BasePageBean{
             add("17:30-19:00");
         }
     };
-    private ArrayList<String> tiposReserva = new ArrayList<String>() {
+    private ArrayList<String> tiposApartado = new ArrayList<String>() {
         {
-            add("Comun");
-            add("Recurrente");            
+            add("Diaria");
+            add("Semanal");
+            add("Mensual");            
         }
     };    
     
@@ -99,12 +101,12 @@ public class RegistrosBean extends BasePageBean{
         this.estado = estado;
     }
 
-    public ArrayList<String> getTiposReserva() {
-        return tiposReserva;
+    public ArrayList<String> getTiposApartado() {
+        return tiposApartado;
     }
 
-    public void setTiposReserva(ArrayList<String> tiposReserva) {
-        this.tiposReserva = tiposReserva;
+    public void setTiposReserva(ArrayList<String> tiposApartado) {
+        this.tiposApartado = tiposApartado;
     }
     
     
@@ -226,4 +228,13 @@ public class RegistrosBean extends BasePageBean{
         this.hDisponibleFin = horaFin;
         FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/secure/Calendar/calendar.xhtml");
     }
+
+    public String getTipoApartado() {
+        return tipoApartado;
+    }
+
+    public void setTipoApartado(String tipoApartado) {
+        this.tipoApartado = tipoApartado;
+    }
+    
 }

@@ -165,11 +165,7 @@
                                 <input id="horainicio" type="horainicio" class="form-control" name="horainicio" value="" required="true" autofocus="true" width="120" jsf:value="#{recursosBean.horaInicio}" placeholder="Hora inicio"/>                                
                                 <script>
                                     $('#horainicio').timepicker({
-                                        timeFormat: 'HH:mm',
-                                        minTime: '7:00', // 11:45:00 AM,
-                                        maxHour: 19,
-                                        maxMinutes: 30,
-                                        startTime: new Date(0, 0, 0, 7, 0, 0) // 3:00:00 PM - noon
+                                        
 
                                     });
                                 </script>
@@ -178,7 +174,7 @@
                                 <input id="horafin" type="horafin" class="form-control" name="horafin" value="" required="true" autofocus="true" width="120" jsf:value="#{recursosBean.horaFin}" placeholder="Hora fin"/>
                                 <script>
                                     $('#horafin').timepicker({
-                                        showOtherMonths: true
+                                        
                                     });
                                 </script>
                             </div>

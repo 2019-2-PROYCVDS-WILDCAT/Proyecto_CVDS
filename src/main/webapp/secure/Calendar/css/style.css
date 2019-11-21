@@ -218,7 +218,7 @@ hr.fc-divider {
   border-style: solid;
   border-width: 1px 1px 0 1px !important;
   padding: 0;
-  border-color: #eee;
+  border-color: #ccc;
   vertical-align: top;
 }
 
@@ -1366,7 +1366,8 @@ be a descendant of the grid when it is being dragged.
 }
 body{
   font-family: 'Nunito', sans-serif;
-  background: #F3F5F9;
+  
+
 }
 .card{
   border: 0;
@@ -1384,9 +1385,10 @@ h2{
 }
 .btn{
   font-size: 15px !important;
-  font-weight: 450;
+  text-transform: uppercase;
+  font-weight: 700;
   letter-spacing: 2.5px;
-
+  font-family: 'Nunito', sans-serif;
   box-shadow: none !important;
   border: 0;
   padding: 10px 20px !important;
@@ -1399,12 +1401,8 @@ h2{
   color: #ffffff;
 }
 .form-group label{
-  font-weight: 450;
+  font-weight: 600;
   letter-spacing: 0.010em;
   font-size: 18px;
   margin-bottom: 5px;
-}
-
-#btnreserva{
-    float:left;
 }

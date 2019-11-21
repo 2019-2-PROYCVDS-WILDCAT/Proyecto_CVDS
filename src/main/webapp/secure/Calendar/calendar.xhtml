@@ -85,7 +85,9 @@
                 <div class="modal-content">
                     <h:form id="add-event-rec">
                         <div class="modal-header">
-                            <h4>Reserva recurrente</h4> 
+                            
+                            <h4>Reserva recurrente</h4>
+                            <p style="font-size:12px;">La reserva se realizará diaria,mensual o semanalmente hasta la fecha de entrega</p>
                         </div>
                         <div class="modal-body">
 
@@ -119,7 +121,7 @@
                                 <div class="col-sm-6"> 
                                     <div class="form-group">
                                         <label for="horaInicioRec">Hora de reserva</label>
-                                        <input id="horaInicio" type="horaInicioRec" class="form-control" name="horaInicioRec" value="" required="true" autofocus="true" width="200" jsf:value="#{reservaBean.horaInicio}" placeholder="Hora Inicio"/>
+                                        <input id="horaInicioRec" type="horaInicioRec" class="form-control" name="horaInicioRec" value="" required="true" autofocus="true" width="200" jsf:value="#{reservaBean.horaInicio}" placeholder="Hora Inicio"/>
                                         <script>
                                             $('#horaInicioRec').timepicker({
                                                 showOtherMonths: true
@@ -130,7 +132,7 @@
                                 <div class="col-sm-6"> 
                                     <div class="form-group" >
                                         <label for="horaFinRec">Hora de entrega</label>
-                                        <input id="horaFin" type="horaFinRec" class="form-control" name="horaFinRec" value="" required="true" autofocus="true" width="200" jsf:value="#{reservaBean.horaFin}" />
+                                        <input id="horaFinRec" type="horaFinRec" class="form-control" name="horaFinRec" value="" required="true" autofocus="true" width="200" jsf:value="#{reservaBean.horaFin}" />
                                         <script>
                                             $('#horaFinRec').timepicker({
                                                 showOtherMonths: true
@@ -139,7 +141,15 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="row">
+                                <div class="col-sm-6"> 
+                                    <div class="form-group" >
+                                        <h:selectOneMenu value="#{registrosBean.tipoApartado}" style="width:150px;border-radius:7px;margin-top:10px;height:35px;">
+                                            <f:selectItems value="#{registrosBean.tiposApartado}" />
+                                        </h:selectOneMenu>  
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" style="float:left;margin-right:20px;height:50px">Cancelar</button>

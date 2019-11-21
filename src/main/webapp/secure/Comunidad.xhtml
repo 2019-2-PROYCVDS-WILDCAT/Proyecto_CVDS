@@ -87,9 +87,14 @@
                                 <center><i class="far fa-plus-square fa-2x "></i></center>
                                 <span style="display:none;">
                                     <h:form>
-                                        
-                                        <p:commandButton type="submit" class="btn btn-dark btn-block" style="width:300px;" 
-                                                         actionListener="#{registrosBean.goToCalendar(recurso.id,recurso.tipo,recurso.horaInicio,recurso.horaFin)}" value="Reservar">
+                                        <button type="button" data-id="#{recurso.id}" class="modificarEstado btn btn-dark btn-block" style="width:300px;" data-toggle="modal" data-target="#modalReserva">
+                                            Reservar recurso.
+
+                                        </button>
+                                        <p:commandButton type="submit" class="btn btn-primary btn-block" actionListener="#{registrosBean.goToCalendar(recurso.id,recurso.tipo,recurso.horaInicio,recurso.horaFin)}" value="Reservar">
+
+                                            <f:ajax execute="@form" render="email password"/>
+
                                         </p:commandButton>
                                     </h:form>
 
@@ -111,56 +116,6 @@
         </div>
 
         <!-- Page Content -->
-        <div class="modal fade" id="modalReserva" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Información nueva Reserva</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <h:form id= "modifyStatus">
-                            <p:growl id="growl" showDetail="true" sticky="false" life="10000"/>
-                            <p:panel header="">
-                                <p:outputLabel for="msg" value="" style="display:none"/>   
-                                <h:inputHidden id="msg" value="#{registrosBean.estado}" />  
-
-                                <h:inputHidden id="idStatus" binding="#{idStatus}"/>
-                                <div class="form-group">
-
-                                    <h:selectOneMenu value="#{registrosBean.estado}">
-                                        <f:selectItems value="#{registrosBean.reservas}" />                                        
-                                    </h:selectOneMenu>  
-
-                                    <h:selectOneMenu value="#{registrosBean.estado}">                                        
-                                        <f:selectItems value="#{registrosBean.tiposReserva}" />
-                                    </h:selectOneMenu>                                    
-                                </div> 
-
-                                <div class="modal-footer">
-
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <p:commandButton type="Save" class="btn btn-primary btn-block" 
-                                                     actionListener="#{registrosBean.modificarEstado(idStatus.value)}" style="width:150px;" value="Cambiar" 
-                                                     onclick="PF('modal').hide();
-                                                             $('#form').trigger('reset')" action="#{registrosBean.saveMessage}" update="@form">
-
-
-                                    </p:commandButton>
-                                </div>
-                            </p:panel>
-                        </h:form>
-
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-
-
 
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

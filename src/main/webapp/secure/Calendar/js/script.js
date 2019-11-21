@@ -70,6 +70,8 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
             minTime: horaMin,
             maxTime: horaMax,
             defaultView: 'month',
+            allDaySlot: false,
+            slotDuration: '00:10:00',
             // event dragging & resizing
             editable: true,
             // header
