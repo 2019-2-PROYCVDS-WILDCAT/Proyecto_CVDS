@@ -5,7 +5,6 @@ import edu.eci.cvds.persistance.HorarioDAO;
 import edu.eci.cvds.persistance.PersistenceException;
 import edu.eci.cvds.persistance.mybatis.mappers.HorarioMapper;
 import edu.eci.cvds.samples.entities.Horario;
-import edu.eci.cvds.samples.entities.Recurso;
 import java.util.List;
 
 public class MyBatisHorarioDAO implements HorarioDAO{

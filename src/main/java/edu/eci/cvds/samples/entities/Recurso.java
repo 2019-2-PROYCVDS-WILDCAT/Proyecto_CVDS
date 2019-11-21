@@ -2,10 +2,6 @@ package edu.eci.cvds.samples.entities;
 
 import java.io.Serializable;
 import java.sql.Time;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 
 public class Recurso implements Serializable{

@@ -1,7 +1,6 @@
 package edu.eci.cvds.persistance;
 
 import edu.eci.cvds.samples.entities.Recurso;
-import static java.util.Collections.list;
 import java.util.List;
 
 

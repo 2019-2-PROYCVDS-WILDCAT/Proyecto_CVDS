@@ -7,16 +7,12 @@ package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.persistance.PersistenceException;
-import edu.eci.cvds.samples.entities.TipoUsuario;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.exceptions.ExcepcionServiciosBiblioteca;
 import edu.eci.cvds.samples.services.ServiciosBiblioteca;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import edu.eci.cvds.security.ApacheShiroLogger;
 import edu.eci.cvds.security.IniciarSesion;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
