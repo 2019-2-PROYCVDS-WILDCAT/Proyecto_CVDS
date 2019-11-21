@@ -23,32 +23,35 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.ToggleEvent;
 import org.primefaces.model.Visibility;
 
-
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "registrosBean")
 @SessionScoped
-public class RegistrosBean extends BasePageBean{
+public class RegistrosBean extends BasePageBean {
+
     @Inject
-    private ServiciosBiblioteca serviciosBiblioteca;    
+    private ServiciosBiblioteca serviciosBiblioteca;
     private int idReserva;
-    private String tipoRecurso,horaInicioReserva,horaFinReserva,tipoReserva,tipoApartado;
-    private String hDisponibleInicio,hDisponibleFin;
-    
+    private String tipoRecurso, horaInicioReserva, horaFinReserva, tipoReserva, tipoApartado;
+    private String hDisponibleInicio, hDisponibleFin, fechaInicio, fechaFin;
+
     private Recurso selectedRec;
     private String estado;
     private List<Recurso> recursos;
-    
-    
+
     ArrayList<String> reservas = new ArrayList<String>() {
         {
             add("1 Hora");
@@ -75,10 +78,10 @@ public class RegistrosBean extends BasePageBean{
         {
             add("Diaria");
             add("Semanal");
-            add("Mensual");            
+            add("Mensual");
         }
-    };    
-    
+    };
+
     public List<Recurso> getRecursos() {
 
         try {
@@ -91,7 +94,7 @@ public class RegistrosBean extends BasePageBean{
 
     public void setRecursos(List<Recurso> recursos) {
         this.recursos = recursos;
-    }    
+    }
 
     public String getEstado() {
         return estado;
@@ -108,34 +111,36 @@ public class RegistrosBean extends BasePageBean{
     public void setTiposReserva(ArrayList<String> tiposApartado) {
         this.tiposApartado = tiposApartado;
     }
-    
-    
-    
-    public void registrarReserva(Usuario usuario){
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        
-        try {
-            long aux1 = formato.parse(horaInicioReserva).getTime();
-            long aux2 = formato.parse(horaFinReserva).getTime();
-                    
-            Timestamp horaInicioR = new Timestamp(aux1);
-            Timestamp horaFinR = new Timestamp(aux2);
-            Reserva newReserva= new Reserva(0,usuario.getCorreo(),this.selectedRec.getId(),horaInicioR,horaFinR, null, this.tipoReserva);
-            serviciosBiblioteca.addReserva(newReserva);
-        } catch (ParseException ex) {
-            Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
+    public void registrarReservaNormal() throws ParseException {
+        //Sacar Usuario
+        Subject currentUser = SecurityUtils.getSubject();
+        Session session = currentUser.getSession();
+        String usuario = session.getAttribute("email").toString();
+        if (!tipoRecurso.equals("Libro")) {
+            fechaInicio = fechaFin;
+        }
+        //Unir fechas con horas
+        Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        String fechaInicioString = fechaInicio.replaceAll("(\\d+)/(\\d+)/(\\d+)", "$3-$1-$2") + " " + horaInicioReserva +":00";
+        String fechaFinString = fechaFin.replaceAll("(\\d+)/(\\d+)/(\\d+)", "$3-$1-$2") + " " + horaFinReserva+":00";
+        //Castear a timeStamp
+        Timestamp tsFechaInicio = Timestamp.valueOf(fechaInicioString);
+        Timestamp tsFechaFin = Timestamp.valueOf(fechaFinString);
+        //Insertar reserva
+        Reserva reservaInsert = new Reserva(0,usuario,idReserva,tsFechaInicio,tsFechaFin,date, "Normal");
+        serviciosBiblioteca.addReserva(reservaInsert);
+        
     }
-    
+
     public Recurso getSelectedRec() {
         return selectedRec;
     }
 
     public void setSelectedRec(Recurso selectedRec) {
         this.selectedRec = selectedRec;
-    }    
-    
+    }
+
     public String getHoraInicioReserva() {
         return horaInicioReserva;
     }
@@ -158,8 +163,7 @@ public class RegistrosBean extends BasePageBean{
 
     public void setTipoReserva(String tipoReserva) {
         this.tipoReserva = tipoReserva;
-    }    
-    
+    }
 
     public ArrayList<String> getHorarios() {
         return horarios;
@@ -167,8 +171,8 @@ public class RegistrosBean extends BasePageBean{
 
     public void setHorarios(ArrayList<String> horarios) {
         this.horarios = horarios;
-    }    
-    
+    }
+
     public ArrayList<String> getReservas() {
         return reservas;
     }
@@ -176,17 +180,18 @@ public class RegistrosBean extends BasePageBean{
     public void setReservas(ArrayList<String> reservas) {
         this.reservas = reservas;
     }
-    
+
     public ServiciosBiblioteca getServiciosBiblioteca() {
         return serviciosBiblioteca;
     }
 
     public void setServiciosBiblioteca(ServiciosBiblioteca serviciosBiblioteca) {
         this.serviciosBiblioteca = serviciosBiblioteca;
-    }    
-    public ArrayList<Reserva> consultarReservasPorId(int id){
+    }
+
+    public ArrayList<Reserva> consultarReservasPorId(int id) {
         return serviciosBiblioteca.consultarReservasPorId(id);
-        
+
     }
 
     public int getIdReserva() {
@@ -220,8 +225,8 @@ public class RegistrosBean extends BasePageBean{
     public void sethDisponibleFin(String hDisponibleFin) {
         this.hDisponibleFin = hDisponibleFin;
     }
-    
-    public void goToCalendar(int idReserva,String tipo,String horaInicio, String horaFin) throws IOException{
+
+    public void goToCalendar(int idReserva, String tipo, String horaInicio, String horaFin) throws IOException {
         this.idReserva = idReserva;
         this.tipoRecurso = tipo;
         this.hDisponibleInicio = horaInicio;
@@ -236,5 +241,21 @@ public class RegistrosBean extends BasePageBean{
     public void setTipoApartado(String tipoApartado) {
         this.tipoApartado = tipoApartado;
     }
-    
+
+    public String getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(String fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public String getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(String fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
 }

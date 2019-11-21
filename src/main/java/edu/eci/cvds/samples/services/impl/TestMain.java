@@ -54,7 +54,7 @@ public class TestMain {
             try {
                 aux1 = format.parse("2019-11-27").getTime();
                 aux2 = format.parse("2019-11-29").getTime();
-
+                
                 Timestamp horaInicioR = new Timestamp(aux1);
                 Timestamp horaFinR = new Timestamp(aux2);
                 Reserva newReserva = new Reserva(0,"perrocanchoso@mail.com", 56,horaInicioR,horaFinR, null,"recurrente");

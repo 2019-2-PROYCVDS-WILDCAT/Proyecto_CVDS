@@ -73,7 +73,7 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
             allDaySlot: false,
             slotDuration: '00:10:00',
             // event dragging & resizing
-            editable: true,
+            
             // header
             header: {
                 left: 'title',
