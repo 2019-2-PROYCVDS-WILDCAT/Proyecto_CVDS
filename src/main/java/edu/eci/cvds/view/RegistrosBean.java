@@ -49,22 +49,13 @@ public class RegistrosBean extends BasePageBean {
     private ServiciosBiblioteca serviciosBiblioteca;
     private int idReserva;
     private String tipoRecurso, horaInicioReserva, horaFinReserva, tipoReserva, tipoApartado;
-    private String hDisponibleInicio, hDisponibleFin, fechaInicio, fechaFin;
+    private String hDisponibleInicio, hDisponibleFin, fechaInicio, fechaFin, nombreRecurso;
 
     private Recurso selectedRec;
     private String estado;
     private List<Recurso> recursos;
+    private String usuario;
 
-    ArrayList<String> reservas = new ArrayList<String>() {
-        {
-            add("1 Hora");
-            add("2 Horas");
-            add("3 Horas");
-            add("4 Horas");
-            add("5 Horas");
-
-        }
-    };
     private ArrayList<String> horarios = new ArrayList<String>() {
         {
             add("7:00-8:30");
@@ -116,10 +107,15 @@ public class RegistrosBean extends BasePageBean {
     }
 
     public String getUsuario() {
-        Subject currentUser = SecurityUtils.getSubject();
-        Session session = currentUser.getSession();
-        String usuario = session.getAttribute("email").toString();
-        return usuario;
+        try {
+            Subject currentUser = SecurityUtils.getSubject();
+            Session session = currentUser.getSession();
+            String user = session.getAttribute("email").toString();
+            return user;
+        }catch (java.lang.NullPointerException e){
+            return "";
+        }
+
     }
 
     public void crearFechas() {
@@ -133,8 +129,7 @@ public class RegistrosBean extends BasePageBean {
             fechaFin = fechaInicio;
         }
         Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        //Sacar Usuario
-        String usuario = getUsuario();
+
         //Unir fechas con horas
         crearFechas();
         //Castear a timeStamp
@@ -145,8 +140,7 @@ public class RegistrosBean extends BasePageBean {
         try {
             serviciosBiblioteca.addReserva(reservaInsert);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Reserva realizada correctamente.", ""));
-            
-            
+
         } catch (org.apache.ibatis.exceptions.PersistenceException e) {
 
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al realizar reserva!", ""));
@@ -154,9 +148,9 @@ public class RegistrosBean extends BasePageBean {
     }
 
     public void registrarReservaRecurrente() throws ParseException {
-        System.out.println("Hola Mundo");
+
         Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        String usuario = getUsuario();
+
         crearFechas();
         Timestamp tsFechaInicio = Timestamp.valueOf(fechaInicio);
         Timestamp tsFechaFin = Timestamp.valueOf(fechaFin);
@@ -210,14 +204,6 @@ public class RegistrosBean extends BasePageBean {
         this.horarios = horarios;
     }
 
-    public ArrayList<String> getReservas() {
-        return reservas;
-    }
-
-    public void setReservas(ArrayList<String> reservas) {
-        this.reservas = reservas;
-    }
-
     public ServiciosBiblioteca getServiciosBiblioteca() {
         return serviciosBiblioteca;
     }
@@ -263,12 +249,14 @@ public class RegistrosBean extends BasePageBean {
         this.hDisponibleFin = hDisponibleFin;
     }
 
-    public void goToCalendar(int idReserva, String tipo, String horaInicio, String horaFin) throws IOException {
+    public void goToCalendar(int idReserva, String tipo, String horaInicio, String horaFin, String nombreRecurso) throws IOException {
+        this.usuario = getUsuario();
         this.idReserva = idReserva;
         this.tipoRecurso = tipo;
         this.hDisponibleInicio = horaInicio;
         this.hDisponibleFin = horaFin;
-        FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/secure/Calendar/calendar.xhtml");
+        this.nombreRecurso = nombreRecurso;
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/Calendar/calendar.xhtml");
     }
 
     public String getTipoApartado() {
@@ -293,6 +281,14 @@ public class RegistrosBean extends BasePageBean {
 
     public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
+    }
+
+    public String getNombreRecurso() {
+        return nombreRecurso;
+    }
+
+    public void setNombreRecurso(String nombreRecurso) {
+        this.nombreRecurso = nombreRecurso;
     }
 
 }

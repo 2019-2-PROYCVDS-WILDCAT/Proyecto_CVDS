@@ -25,13 +25,14 @@
     <h:body>
         <!-- partial:index.partial.html -->
         <div class="p-5">
-            <h2 class="mb-4">Reservar un recurso</h2>
+            <h2 class="mb-4">Reservas del recurso #{registrosBean.nombreRecurso}</h2>
             <h:inputHidden value="#{registrosBean.tipoRecurso}" id="reservaTipo"></h:inputHidden>
 
             <h:inputHidden value="#{registrosBean.idReserva}" id="reservaId"></h:inputHidden>
             <h:inputHidden value="#{registrosBean.hDisponibleInicio}" id="hIni"></h:inputHidden>
             <h:inputHidden value="#{registrosBean.hDisponibleFin}" id="hFin"></h:inputHidden>
-
+            <h:inputHidden value="#{registrosBean.usuario}" id="inputUsuario"></h:inputHidden>
+            
             <div class="card">
                 <div class="card-body p-0">
                     <div id="calendar"></div>

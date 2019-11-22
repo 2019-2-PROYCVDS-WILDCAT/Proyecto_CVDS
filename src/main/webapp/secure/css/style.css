@@ -11,7 +11,7 @@
      background-position: -4px -1px; 
 }
 .table{
-    display: block !important;
+    
 }
 .ui-datalist ul {
     padding: 0px 10px 0 20px;
@@ -32,4 +32,7 @@ td:first-child {
 
 tr.shown td:first-child {
     background: url('https://raw.githubusercontent.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/master/img/minusicon.png') no-repeat center center;
+}
+.table-nonfluid {
+   width: auto !important;
 }

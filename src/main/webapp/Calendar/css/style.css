@@ -4,7 +4,7 @@
  * (c) 2018 Adam Shaw
  */
 .ui-growl{
-    top: 200px;
+    top: 0px;
     border-radius: 10px;
 }
 .ui-growl-item{
@@ -368,7 +368,7 @@ temporary rendered events).
   color: #5d5386;
   position: relative;
   /* default BACKGROUND color */ }
-.fc-event:before,
+.fc-event.fc-bg-blue:before,
 .fc-event-dot:before{
     content: "";
     position: absolute;
@@ -378,6 +378,20 @@ temporary rendered events).
     height: 100%;
     border-left: 3px solid #5d5386;
     border-bottom: 3px solid #5d5386;
+    -webkit-border-radius: 3px 0px 0px 3px;
+    -moz-border-radius: 3px 0px 0px 3px;
+    border-radius: 3px 0px 0px 3px;
+}
+.fc-event.fc-bg-pinkred:before,
+.fc-event-dot:before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 50px;
+    height: 100%;
+    border-left: 3px solid #FF4136;
+    border-bottom: 3px solid #FF4136;
     -webkit-border-radius: 3px 0px 0px 3px;
     -moz-border-radius: 3px 0px 0px 3px;
     border-radius: 3px 0px 0px 3px;

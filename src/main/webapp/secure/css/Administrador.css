@@ -1,3 +1,6 @@
+.table-nonfluid {
+   width: 100% !important;
+}
 .masthead {
     height: 100vh;
     min-height: 500px;

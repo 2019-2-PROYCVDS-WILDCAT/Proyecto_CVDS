@@ -67,17 +67,17 @@
         </nav>
 
         <!-- Full Page Image Header with Vertically Centered Content -->
-        <div class="table-responsive" style="margin-top:100px;">
-            <table id="example" class="table dstripe row-border order-column">
+        <div class="table-responsive" style="margin-top:75px; ">
+            <table id="example" class="table  table-striped row-border order-column" >
                 <thead class="thead-dark">
                     <tr>
-                        <th class="th-lg"></th>
-                        <th class="th-lg">Id</th>
-                        <th class="th-lg">Nombre</th>
-                        <th class="th-lg">Capacidad</th>
-                        <th class="th-lg">Ubicacion</th>
-                        <th class="th-lg">Tipo</th>
-                        <th class="th-lg">Estado</th>
+                        <th class="th-sm"></th>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Capacidad</th>
+                        <th>Ubicacion</th>
+                        <th>Tipo</th>
+                        <th>Estado</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -86,15 +86,8 @@
                             <td class="details">
                                 <center><i class="far fa-plus-square fa-2x "></i></center>
                                 <span style="display:none;">
-                                    <h:form>
-                                        <button type="button" data-id="#{recurso.id}" class="modificarEstado btn btn-dark btn-block" style="width:300px;" data-toggle="modal" data-target="#modalReserva">
-                                            Reservar recurso.
-
-                                        </button>
-                                        <p:commandButton type="submit" class="btn btn-primary btn-block" actionListener="#{registrosBean.goToCalendar(recurso.id,recurso.tipo,recurso.horaInicio,recurso.horaFin)}" value="Reservar">
-
-                                            <f:ajax execute="@form" render="email password"/>
-
+                                    <h:form>                                       
+                                        <p:commandButton type="submit"  style="width:300px;" class="btn btn-dark btn-block" actionListener="#{registrosBean.goToCalendar(recurso.id,recurso.tipo,recurso.horaInicio,recurso.horaFin,recurso.nombre)}" value="Visualizar reservas / Reservar">
                                         </p:commandButton>
                                     </h:form>
 

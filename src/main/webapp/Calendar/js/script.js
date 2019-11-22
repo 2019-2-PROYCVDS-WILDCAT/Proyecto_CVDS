@@ -3,10 +3,13 @@ var reservaId = document.getElementById('reservaId').value;
 var horaMin = document.getElementById('hIni').value;
 var horaMax = document.getElementById('hFin').value;
 var tipo = document.getElementById('reservaTipo').value;
+var usuario = document.getElementById('inputUsuario').value;
 
+function stoperror() {
+    return true;
+}
+window.onerror = stoperror;
 
-
-    
 jQuery(document).ready(function () {
     jQuery('.datetimepicker').datepicker({
         timepicker: true,
@@ -17,20 +20,20 @@ jQuery(document).ready(function () {
         multipleDatesSeparator: " - "
     });
     jQuery("#add-event").submit(function () {
-        
+
         var values = {};
         $.each($('#add-event').serializeArray(), function (i, field) {
             values[field.name] = field.value;
         });
-        
+
     });
     jQuery("#add-event-rec").submit(function () {
-        
+
         var values = {};
         $.each($('#add-event-rec').serializeArray(), function (i, field) {
             values[field.name] = field.value;
         });
-        
+
     });
 });
 
@@ -42,12 +45,23 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
 
         var start = new Date(event.fechaInicioReserva);
         var end = new Date(event.fechaFinReserva);
+        var classN;
+        if (event.tipo === "Normal" || event.tipo === "normal") {
+            classN = "fc-bg-blue";
+        } else if (event.tipo === "Recurrente" || event.tipo === "recurrente") {
+            classN = "fc-bg-pinkred";
+        }
+        console.log(classN);
         eventos.push({
-            title: 'Reserva' + id,
-            description: 'Lorem ipsum dolor sit amet',
+            title: 'Reservado',
+            description: '<strong>Reservado por: </strong>' + event.idUsuario +
+                    '<br /><strong> Fecha de apartado: </strong>' + event.fechaReserva
+                    + '<br /><strong> Fecha de reserva: </strong>' + event.fechaInicioReserva
+                    + '<br /><strong> Fecha de entrega: </strong>' + event.fechaFinReserva
+                    + '<br /><strong> Tipo de reserva: </strong>' + event.tipo,
             start: start,
             end: end,
-            className: 'fc-bg-blue',
+            className: classN,
             icon: "calendar"
         });
         $("#calendar").fullCalendar('removeEvents');
@@ -96,36 +110,42 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
                 }
             },
             dayClick: function (date, jsEvent, view, resourceObj) {
-                var inputfechaini = document.getElementById('fechaInicio');
-                inputfechaini.value = date.format("MM/DD/YYYY");
-                var inputfechafin = document.getElementById('fechaFin');
-                inputfechafin.value = date.format("MM/DD/YYYY");
-                var inputhora = document.getElementById('horaInicio');
-                var inputfin = document.getElementById('horaFin');
-                if (date.format("HH:mm") === '00:00') {
-                    inputhora.value = '07:00';
-                    inputfin.value = '09:00';
-                } else {
-                    inputhora.value = date.format("HH:mm");
-                    var horaFn = date.add(2, 'h');
-                    inputfin.value = horaFn.format("HH:mm");
+                
+                if (!(usuario === "")) {
+                    var inputfechaini = document.getElementById('fechaInicio');
+                    inputfechaini.value = date.format("MM/DD/YYYY");
+                    var inputfechafin = document.getElementById('fechaFin');
+                    inputfechafin.value = date.format("MM/DD/YYYY");
+                    var inputhora = document.getElementById('horaInicio');
+                    var inputfin = document.getElementById('horaFin');
+                    if (date.format("HH:mm") === '00:00') {
+                        inputhora.value = '07:00';
+                        inputfin.value = '09:00';
+                    } else {
+                        inputhora.value = date.format("HH:mm");
+                        var horaFn = date.add(2, 'h');
+                        inputfin.value = horaFn.format("HH:mm");
+                    }
+                    var inputfechainiRec = document.getElementById('fechaInicioRec');
+                    inputfechainiRec.value = date.format("MM/DD/YYYY");
+                    var inputfechafinRec = document.getElementById('fechaFinRec');
+                    inputfechafinRec.value = date.format("MM/DD/YYYY");
+                    var inputhoraRec = document.getElementById('horaInicioRec');
+                    var inputfinRec = document.getElementById('horaFinRec');
+                    if (date.format("HH:mm") === '00:00') {
+                        inputhoraRec.value = '07:00';
+                        inputfinRec.value = '09:00';
+                    } else {
+                        inputhoraRec.value = date.format("HH:mm");
+                        var horaFnRec = date.add(2, 'h');
+                        inputfinRec.value = horaFnRec.format("HH:mm");
+                    }
+
+                    jQuery('#seleccionTipoReserva').modal();
+                }else{
+                    alert("Solo los usuarios registrados pueden realizar reservas.");
                 }
-                var inputfechainiRec = document.getElementById('fechaInicioRec');
-                inputfechainiRec.value = date.format("MM/DD/YYYY");
-                var inputfechafinRec = document.getElementById('fechaFinRec');
-                inputfechafinRec.value = date.format("MM/DD/YYYY");
-                var inputhoraRec = document.getElementById('horaInicioRec');
-                var inputfinRec = document.getElementById('horaFinRec');
-                if (date.format("HH:mm") === '00:00') {
-                    inputhoraRec.value = '07:00';
-                    inputfinRec.value = '09:00';
-                } else {
-                    inputhoraRec.value = date.format("HH:mm");
-                    var horaFnRec = date.add(2, 'h');
-                    inputfinRec.value = horaFnRec.format("HH:mm");
-                }
-               
-                jQuery('#seleccionTipoReserva').modal();
+
             },
             eventClick: function (event, jsEvent, view) {
                 jQuery('.event-icon').html("<i class='fa fa-" + event.icon + "'></i>");
@@ -135,6 +155,6 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
                 jQuery('#modal-view-event').modal();
             }
 
-        })
+        });
     });
 })(jQuery);
