@@ -25,7 +25,7 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/s/ju/dt-1.10.10,b-1.1.0,fc-3.2.0,r-2.0.0,sc-1.4.0/datatables.min.css" />
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css" />
-
+        
     </h:head>
 
     <h:body >
@@ -48,8 +48,8 @@
                                 </form>
                             </div>
                         </li>
-                        
-                        
+
+
                     </ul>
 
                 </div>
@@ -58,8 +58,8 @@
 
         <!-- Full Page Image Header with Vertically Centered Content -->
         <div class="table-responsive" style="margin-top:75px;">
-            <table id="example" class="table table-striped row-border order-column">
-                <thead class="thead-dark">
+            <table id="example" class="table  table-striped row-border order-column">
+                <thead class="thead-dark" >
                     <tr>
                         <th class="th-sm"></th>
                         <th>Id</th>
@@ -77,8 +77,8 @@
                                 <center><i class="far fa-plus-square fa-2x "></i></center>
                                 <span style="display:none;">
 
-                                <h:form>                                       
-                                        <p:commandButton type="submit"  style="width:300px;" class="btn btn-dark btn-block" actionListener="#{registrosBean.goToCalendar(recurso.id,recurso.tipo,recurso.horaInicio,recurso.horaFin,recurso.nombre)}" value="Visualizar reservas / Reservar">
+                                    <h:form>                                       
+                                        <p:commandButton type="submit"  style="width:300px;" class="btn btn-dark btn-block" actionListener="#{registrosBean.goToCalendar(recurso.id,recurso.tipo,recurso.horaInicio,recurso.horaFin,recurso.nombre)}" value="Visualizar reservas ">
                                         </p:commandButton>
                                     </h:form>
 
@@ -96,13 +96,13 @@
                     </ui:repeat>
                 </tbody>
             </table>
-
+            
         </div>
 
         <!-- Page Content -->
 
 
-        
+
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdjsn.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

@@ -11,10 +11,7 @@
      background: url('https://raw.githubusercontent.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/master/img/check.png') no-repeat;
      background-position: -4 -1px;
 }
-.table{
-    
 
-}
 
 td:first-child {
     background: url('https://raw.githubusercontent.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/master/img/plusicon.png') no-repeat center center;
@@ -38,6 +35,7 @@ tr.shown td:first-child {
 
 .ui-datatable .ui-datatable-header {
     text-align: right !important;
+    
 }
 
 .ui-button-text-only .ui-button-text {
@@ -61,4 +59,32 @@ tr.shown td:first-child {
     background-image: none !important;
     background-color: var(red) !important;
     color: var(black) !important;
+}
+.fg-buttonset{
+    background-color: whitesmoke;
+    
+    border-radius: 5px;
+    
+}
+.fg-button {
+    
+    color:black;
+}
+.fg-button:hover{
+    background-color: #696969;
+    color:white;
+    border-radius: 6px;
+}
+.ui-state-disabled{
+    background-color: #696969;
+    border-radius: 6px;
+    opacity: 0.5;
+    color:white;
+}
+thead{
+    font-size: 30px;
+}
+tr { text-align: left;
+     font-size: 20px;
+     height: 60px;
 }

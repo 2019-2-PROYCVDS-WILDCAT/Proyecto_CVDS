@@ -36,3 +36,31 @@ tr.shown td:first-child {
 .table-nonfluid {
    width: auto !important;
 }
+.fg-buttonset{
+    background-color: whitesmoke;
+    
+    border-radius: 5px;
+    
+}
+.fg-button {
+    
+    color:black;
+}
+.fg-button:hover{
+    background-color: #696969;
+    color:white;
+    border-radius: 6px;
+}
+.ui-state-disabled{
+    background-color: #696969;
+    border-radius: 6px;
+    opacity: 0.5;
+    color:white;
+}
+thead{
+    font-size: 30px;
+}
+tr { text-align: left;
+     font-size: 20px;
+     height: 60px;
+}

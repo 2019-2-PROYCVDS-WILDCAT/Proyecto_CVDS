@@ -23,6 +23,13 @@
 
     </h:head>
     <h:body>
+        <button onclick="goBack()" class="btn btn-primary" style="position:fixed;z-index:3000;">Volver</button>
+
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
         <!-- partial:index.partial.html -->
         <div class="p-5">
             <h2 class="mb-4">Reservas del recurso #{registrosBean.nombreRecurso}</h2>
@@ -32,7 +39,7 @@
             <h:inputHidden value="#{registrosBean.hDisponibleInicio}" id="hIni"></h:inputHidden>
             <h:inputHidden value="#{registrosBean.hDisponibleFin}" id="hFin"></h:inputHidden>
             <h:inputHidden value="#{registrosBean.usuario}" id="inputUsuario"></h:inputHidden>
-            
+
             <div class="card">
                 <div class="card-body p-0">
                     <div id="calendar"></div>
@@ -159,7 +166,7 @@
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" style="float:left;margin-right:20px;height:50px">Cancelar</button>
 
                             <p:commandButton id="btnreservaRec" type="submit" class="btn btn-primary btn-block" value="Reservar" actionListener="#{registrosBean.registrarReservaRecurrente}" onclick="PF('modal').hide();
-                                        $('#add-event-rec').trigger('reset')"  update="@form">
+                                    $('#add-event-rec').trigger('reset')"  update="@form">
                             </p:commandButton> 
 
                         </div>
@@ -236,7 +243,7 @@
                             <p:commandButton id="btnreserva" type="submit" class="btn btn-primary btn-block" value="Reservar" actionListener="#{registrosBean.registrarReservaNormal}" onclick="PF('modal').hide();
                                     $('#add-event').trigger('reset')"  update="@form">
 
-                                
+
 
                             </p:commandButton> 
 
@@ -246,7 +253,7 @@
 
             </div>
         </div>
-       
+
         <!-- partial -->
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
