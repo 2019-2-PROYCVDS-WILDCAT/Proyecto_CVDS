@@ -2,27 +2,17 @@ package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.persistance.PersistenceException;
-import edu.eci.cvds.persistance.ReservaDAO;
-import edu.eci.cvds.samples.entities.Horario;
 import edu.eci.cvds.samples.entities.Recurso;
 import edu.eci.cvds.samples.entities.Reserva;
-import edu.eci.cvds.samples.entities.TipoUsuario;
-import edu.eci.cvds.samples.entities.Usuario;
-import edu.eci.cvds.samples.services.exceptions.ExcepcionServiciosBiblioteca;
 import edu.eci.cvds.samples.services.ServiciosBiblioteca;
+import edu.eci.cvds.samples.services.exceptions.ExcepcionServiciosBiblioteca;
+import edu.eci.cvds.utility.UtilidadFecha;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import edu.eci.cvds.security.ApacheShiroLogger;
-import edu.eci.cvds.security.IniciarSesion;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.Date;
-import java.sql.SQLException;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -30,15 +20,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.event.AjaxBehaviorEvent;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
-import org.postgresql.util.PSQLException;
-import org.primefaces.PrimeFaces;
-import org.primefaces.event.SelectEvent;
-import org.primefaces.event.ToggleEvent;
-import org.primefaces.model.Visibility;
+import org.joda.time.DateTime;
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "registrosBean")
@@ -50,7 +35,7 @@ public class RegistrosBean extends BasePageBean {
     private int idReserva;
     private String tipoRecurso, horaInicioReserva, horaFinReserva, tipoReserva, tipoApartado;
     private String hDisponibleInicio, hDisponibleFin, fechaInicio, fechaFin, nombreRecurso;
-
+    private UtilidadFecha utilidadFecha = new UtilidadFecha();
     private Recurso selectedRec;
     private String estado;
     private List<Recurso> recursos;
@@ -112,7 +97,7 @@ public class RegistrosBean extends BasePageBean {
             Session session = currentUser.getSession();
             String user = session.getAttribute("email").toString();
             return user;
-        }catch (java.lang.NullPointerException e){
+        } catch (java.lang.NullPointerException e) {
             return "";
         }
 
@@ -127,41 +112,57 @@ public class RegistrosBean extends BasePageBean {
     public void registrarReservaNormal() throws ParseException {
         if (!tipoRecurso.equals("Libro")) {
             fechaFin = fechaInicio;
-        }
-        Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-
+        }Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         //Unir fechas con horas
         crearFechas();
         //Castear a timeStamp
         Timestamp tsFechaInicio = Timestamp.valueOf(fechaInicio);
         Timestamp tsFechaFin = Timestamp.valueOf(fechaFin);
-        //Insertar reserva
-        Reserva reservaInsert = new Reserva(0, usuario, idReserva, tsFechaInicio, tsFechaFin, date, "Normal");
         try {
-            serviciosBiblioteca.addReserva(reservaInsert);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Reserva realizada correctamente.", ""));
-
-        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
-
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al realizar reserva!", ""));
+            if (!utilidadFecha.isOverlapping(idReserva, new DateTime(tsFechaInicio.getTime()), new DateTime(tsFechaFin.getTime()))) {
+                //Insertar reserva
+                Reserva reservaInsert = new Reserva(0, usuario, idReserva, tsFechaInicio, tsFechaFin, date, "Normal");
+                try {
+                    serviciosBiblioteca.addReserva(reservaInsert);
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Reserva realizada correctamente.", ""));
+                    
+                } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+                    
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Tiempo m\u00e1ximo de reserva: 2horas",""));
+                                            }
+            }else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "La reserva se cruza con una existente.", ""));
+            }
+        } catch (ExcepcionServiciosBiblioteca ex) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage(), ""));
         }
+
     }
 
     public void registrarReservaRecurrente() throws ParseException {
 
-        Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-
-        crearFechas();
-        Timestamp tsFechaInicio = Timestamp.valueOf(fechaInicio);
-        Timestamp tsFechaFin = Timestamp.valueOf(fechaFin);
-        Reserva reservaInsert = new Reserva(0, usuario, idReserva, tsFechaInicio, tsFechaFin, date, "Recurrente");
         try {
-            serviciosBiblioteca.addReservaRecursiva(reservaInsert, this.tipoApartado);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Reserva realizada correctamente.", ""));
-        } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al realizar reserva!", ""));
-
+            Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+            
+            crearFechas();
+            Timestamp tsFechaInicio = Timestamp.valueOf(fechaInicio);
+            Timestamp tsFechaFin = Timestamp.valueOf(fechaFin);
+            Reserva reservaInsert = new Reserva(0, usuario, idReserva, tsFechaInicio, tsFechaFin, date, "Recurrente");
+            if (!utilidadFecha.isOverlapping(idReserva, new DateTime(tsFechaInicio.getTime()), new DateTime(tsFechaFin.getTime()))) {
+                try {
+                    serviciosBiblioteca.addReservaRecursiva(reservaInsert, this.tipoApartado);
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Reserva realizada correctamente.", ""));
+                } catch (Exception e) {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Tiempo m\u00e1ximo de reserva: 2 horas.",""));
+                    
+                }
+            } else{
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "La reserva se cruza con una existente.", ""));
+            }
+        } catch (ExcepcionServiciosBiblioteca ex) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage(), ""));
         }
+
     }
 
     public Recurso getSelectedRec() {

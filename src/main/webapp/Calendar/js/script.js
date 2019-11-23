@@ -104,6 +104,9 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
                 right: 'today prev,next'
             },
             events: eventos,
+            eventOverlap: false,
+            selectOverlap:false,
+            slotEventOverlap:false,
             eventRender: function (event, element) {
                 if (event.icon) {
                     element.find(".fc-title").prepend("<i class='fa fa-" + event.icon + "'></i>");
@@ -112,6 +115,9 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
             dayClick: function (date, jsEvent, view, resourceObj) {
                 
                 if (!(usuario === "")) {
+                    if (!(tipo === "Libro")){
+                        $('#colFechaFin').hide();
+                    }
                     var inputfechaini = document.getElementById('fechaInicio');
                     inputfechaini.value = date.format("MM/DD/YYYY");
                     var inputfechafin = document.getElementById('fechaFin');
