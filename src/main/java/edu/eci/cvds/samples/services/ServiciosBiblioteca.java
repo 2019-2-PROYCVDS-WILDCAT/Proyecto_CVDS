@@ -27,5 +27,7 @@ public interface ServiciosBiblioteca {
     public List<Reserva> consultarReservas();
 
     public ArrayList<Reserva> consultarReservasPorId(int id);
+
+    public List<Recurso> consultarRecursosDisponibles() throws PersistenceException;
     
 }

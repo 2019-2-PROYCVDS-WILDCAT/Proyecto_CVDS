@@ -25,7 +25,11 @@
         <select id="consultarRecursos" resultMap="RecursoResult" parameterType="map">
                 SELECT *
                 FROM recursos
-	</select>    
+	</select>
+        <select id="consultarRecursosDisponibles" resultMap="RecursoResult" parameterType="map">
+                SELECT *
+                FROM recursos where estado = 'Disponible'
+	</select>   
                       
         <insert id="addRecurso" parameterType="map">
                 INSERT INTO

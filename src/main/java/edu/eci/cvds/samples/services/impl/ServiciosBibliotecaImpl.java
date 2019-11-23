@@ -55,6 +55,15 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
             throw ex;
         }        
     }
+    @Override
+    public List<Recurso> consultarRecursosDisponibles() throws PersistenceException{
+        try{
+            return recursoDAO.loadRecursosDisponibles();
+        }        
+         catch (PersistenceException ex) {
+            throw ex;
+        }        
+    }
     
     @Override
     public void addRecurso(Recurso recurso) throws PersistenceException{

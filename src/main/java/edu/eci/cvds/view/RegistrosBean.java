@@ -79,9 +79,9 @@ public class RegistrosBean extends BasePageBean {
     public List<Recurso> getRecursos() {
 
         try {
-            return serviciosBiblioteca.consultarRecursos();
+            return serviciosBiblioteca.consultarRecursosDisponibles();
         } catch (PersistenceException ex) {
-            Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RecursosBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

@@ -5,7 +5,7 @@ import edu.eci.cvds.samples.entities.Recurso;
 import edu.eci.cvds.samples.entities.Reserva;
 import edu.eci.cvds.samples.services.ServiciosBiblioteca;
 import edu.eci.cvds.samples.services.ServiciosBibliotecaFactory;
-import edu.eci.cvds.view.AdminBean;
+import edu.eci.cvds.view.RecursosBean;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -35,7 +35,7 @@ public class TestMain {
                 sb.addReservaRecursiva(newReserva, "Diario");
                                 
             } catch (ParseException ex) {
-                Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RecursosBean.class.getName()).log(Level.SEVERE, null, ex);
             }        
 
 //        try {

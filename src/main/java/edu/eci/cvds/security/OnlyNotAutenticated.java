@@ -46,6 +46,7 @@ public class OnlyNotAutenticated extends AccessControlFilter {
         subject = getSubject(request, response);
 
         if (subject.hasRole("comunidad")) {
+            
             welcomeurl="/faces/secure/Comunidad.xhtml";
         } else if (subject.hasRole("administrador")) {
             welcomeurl="/faces/secure/Administrador.xhtml";

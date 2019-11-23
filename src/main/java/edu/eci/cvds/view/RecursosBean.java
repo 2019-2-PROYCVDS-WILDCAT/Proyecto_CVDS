@@ -36,12 +36,13 @@ import org.primefaces.model.Visibility;
 @ManagedBean(name = "recursosBean")
 @SessionScoped
 
-public class AdminBean extends BasePageBean {
+public class RecursosBean extends BasePageBean {
 
     @Inject
     private ServiciosBiblioteca serviciosBiblioteca;
     private Recurso selectedRec;
     private List<Recurso> recursos;
+    private List<Recurso> recursosDisponibles;
     private String nombre, ubicacion, tipo, estado,reserva;
     private int capacidad;
     private String horaInicio;
@@ -77,7 +78,7 @@ public class AdminBean extends BasePageBean {
         try {
             return serviciosBiblioteca.consultarRecursos();
         } catch (PersistenceException ex) {
-            Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
         return null;
     }
@@ -212,6 +213,20 @@ public class AdminBean extends BasePageBean {
         this.reserva = reserva;
     }
 
+    public List<Recurso> getRecursosDisponibles() {
+        
+        try {
+            return serviciosBiblioteca.consultarRecursosDisponibles();
+        } catch (PersistenceException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
+    }
+
+    public void setRecursosDisponibles(List<Recurso> recursosDisponibles) {
+        this.recursosDisponibles = recursosDisponibles;
+    }
+    
 
     
     
