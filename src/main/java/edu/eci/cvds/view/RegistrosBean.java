@@ -291,5 +291,21 @@ public class RegistrosBean extends BasePageBean {
     public void setNombreRecurso(String nombreRecurso) {
         this.nombreRecurso = nombreRecurso;
     }
+    public void volver() throws IOException{
+        
+        try{
+            Subject currentUser = SecurityUtils.getSubject();
+            Session session = currentUser.getSession();
+            if (currentUser.hasRole("comunidad")){
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/secure/Comunidad.xhtml");
+            }else if(currentUser.hasRole("administrador")){
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/secure/Administrador.xhtml");
+            }else{
+              FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/public.xhtml");  
+            }
+        }catch(java.lang.NullPointerException ex){
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/public.xhtml");
+        }
+    }
 
 }

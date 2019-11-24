@@ -23,13 +23,10 @@
 
     </h:head>
     <h:body>
-        <button onclick="goBack()" class="btn btn-primary" style="position:fixed;z-index:3000;">Volver</button>
+        <h:form>
+            <p:commandButton type="submit" actionListener="#{registrosBean.volver}" class="btn btn-primary" style="position:fixed;z-index:3000;" value="Volver"></p:commandButton>
+        </h:form>
 
-        <script>
-            function goBack() {
-                window.history.back();
-            }
-        </script>
         <!-- partial:index.partial.html -->
         <div class="p-5">
             <h2 class="mb-4">Reservas del recurso #{registrosBean.nombreRecurso}</h2>
