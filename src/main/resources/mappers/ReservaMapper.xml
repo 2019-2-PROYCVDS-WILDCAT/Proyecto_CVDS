@@ -22,15 +22,18 @@
         INTO reservas(id_usuario,id_recurso,fecha_inicio_reserva,fecha_fin_reserva,tipo) 
         VALUES (#{reserva.idUsuario},#{reserva.idRecurso},#{reserva.fechaInicioReserva}, #{reserva.fechaFinReserva},#{reserva.tipo});
     </insert>
+    
     <select id="consultarReservasPorId" resultMap="ReservaResult" parameterType="map">
         SELECT *
         FROM reservas
         WHERE id_recurso = #{idRecurso}
     </select>
     
-
+    <select id="reservaDisponibleEnFecha" resultMap="ReservaResult" parameterType="map">
+        SELECT COUNT (*)
+        FROM reservas       
+        WHERE id_recurso = #{idRecurso} AND fecha_inicio_reserva &gt;= #{fechaInicio} AND fecha_fin_reserva &lt;= #{fechaFin}
+    </select>    
     
-    
-        
-        
+                          
 </mapper>

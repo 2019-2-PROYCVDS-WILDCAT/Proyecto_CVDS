@@ -5,6 +5,7 @@ import edu.eci.cvds.samples.entities.Horario;
 import edu.eci.cvds.samples.entities.Recurso;
 import edu.eci.cvds.samples.entities.Reserva;
 import edu.eci.cvds.samples.entities.Usuario;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,5 +30,7 @@ public interface ServiciosBiblioteca {
     public ArrayList<Reserva> consultarReservasPorId(int id);
 
     public List<Recurso> consultarRecursosDisponibles() throws PersistenceException;
+    
+    public boolean reservaDisponibleEnFecha(Reserva reserva) throws PersistenceException;    
     
 }

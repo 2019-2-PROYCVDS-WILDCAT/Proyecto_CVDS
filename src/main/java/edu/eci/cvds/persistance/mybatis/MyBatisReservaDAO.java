@@ -37,6 +37,18 @@ public class MyBatisReservaDAO implements ReservaDAO{
     public ArrayList<Reserva> loadReservaById(int id) {
         return reservaMapper.consultarReservasPorId(id);
     }
+    
+    @Override
+    public boolean ReservasDisponbiles(Reserva reserva) {
+        Integer cantidadReservas=reservaMapper.reservaDisponibleEnFecha(reserva.getIdRecurso(),reserva.getFechaInicioReserva(),reserva.getFechaFinReserva());        
+        if (cantidadReservas==0){
+            return true;
+        }
+        else{
+            return false;
+        }        
+        
+    }    
 
     @Override
     public void addReservaRecursiva(Reserva reserva, String periodoReserva) {
@@ -99,6 +111,8 @@ public class MyBatisReservaDAO implements ReservaDAO{
         
         
     }
+
+
     
     
     

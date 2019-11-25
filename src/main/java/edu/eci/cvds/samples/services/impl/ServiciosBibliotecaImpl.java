@@ -140,6 +140,11 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
         return reservaDAO.loadReservaById(id); 
     }
 
+    @Override
+    public boolean reservaDisponibleEnFecha(Reserva reserva) throws PersistenceException {
+        return reservaDAO.ReservasDisponbiles(reserva);
+    }
+
 
 
 }

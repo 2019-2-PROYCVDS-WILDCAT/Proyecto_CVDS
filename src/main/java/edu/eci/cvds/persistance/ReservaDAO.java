@@ -14,6 +14,8 @@ public interface ReservaDAO {
     public List<Reserva> loadReservas();
     public ArrayList<Reserva> loadReservaById(int id);
     public void addReservaRecursiva(Reserva reserva, String periodoReserva);
+    public boolean ReservasDisponbiles (Reserva reserva);
+    
     
     
 }
