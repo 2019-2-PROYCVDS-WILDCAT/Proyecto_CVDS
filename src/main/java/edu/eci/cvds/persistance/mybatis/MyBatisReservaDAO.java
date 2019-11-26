@@ -3,17 +3,15 @@ package edu.eci.cvds.persistance.mybatis;
 import com.google.inject.Inject;
 import edu.eci.cvds.persistance.ReservaDAO;
 import edu.eci.cvds.persistance.mybatis.mappers.ReservaMapper;
-import edu.eci.cvds.samples.entities.Recurso;
 import edu.eci.cvds.samples.entities.Reserva;
+import edu.eci.cvds.samples.services.exceptions.ExcepcionServiciosBiblioteca;
 import edu.eci.cvds.utility.UtilidadFecha;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.postgresql.util.PSQLException;
 
 
 /**
@@ -25,8 +23,13 @@ public class MyBatisReservaDAO implements ReservaDAO{
     @Inject
     private ReservaMapper reservaMapper;
     @Override
-    public void addReserva(Reserva reserva) {
-        reservaMapper.addReserva(reserva);   
+    public void addReserva(Reserva reserva) throws ExcepcionServiciosBiblioteca{
+        if (reserva.getFechaInicioReserva().before(reserva.getFechaFinReserva())){
+            reservaMapper.addReserva(reserva);   
+        }
+        else{
+            throw new ExcepcionServiciosBiblioteca("Se introdujo una fecha invalida");
+        }
     }
     @Override
     public List<Reserva> loadReservas(){
@@ -51,7 +54,7 @@ public class MyBatisReservaDAO implements ReservaDAO{
     }    
 
     @Override
-    public void addReservaRecursiva(Reserva reserva, String periodoReserva) {
+    public void addReservaRecursiva(Reserva reserva, String periodoReserva) throws ExcepcionServiciosBiblioteca{
         Timestamp fechaInicio = reserva.getFechaInicioReserva();
         Timestamp fechaFin = reserva.getFechaFinReserva();
         try {        
@@ -116,6 +119,9 @@ public class MyBatisReservaDAO implements ReservaDAO{
                     break;                 
 
             }
+        }
+        else{
+            throw new ExcepcionServiciosBiblioteca("Se introdujo una fecha invalida");
         }
         
         

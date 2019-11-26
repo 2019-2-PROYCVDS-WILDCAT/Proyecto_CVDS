@@ -12,6 +12,7 @@ import edu.eci.cvds.samples.entities.Recurso;
 import edu.eci.cvds.samples.entities.Reserva;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ServiciosBiblioteca;
+import edu.eci.cvds.samples.services.exceptions.ExcepcionServiciosBiblioteca;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,12 +123,12 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
     }
 
     @Override
-    public void addReserva(Reserva newReserva) {
+    public void addReserva(Reserva newReserva) throws ExcepcionServiciosBiblioteca{
         reservaDAO.addReserva(newReserva);        
     }
     
     @Override
-    public void addReservaRecursiva (Reserva newReserva, String periodoReserva) {
+    public void addReservaRecursiva (Reserva newReserva, String periodoReserva) throws ExcepcionServiciosBiblioteca {
         reservaDAO.addReservaRecursiva(newReserva, periodoReserva);
     }
     

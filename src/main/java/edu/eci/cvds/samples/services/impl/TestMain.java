@@ -1,25 +1,20 @@
 package edu.eci.cvds.samples.services.impl;
 
-import edu.eci.cvds.persistance.PersistenceException;
-import edu.eci.cvds.samples.entities.Recurso;
 import edu.eci.cvds.samples.entities.Reserva;
 import edu.eci.cvds.samples.services.ServiciosBiblioteca;
 import edu.eci.cvds.samples.services.ServiciosBibliotecaFactory;
+import edu.eci.cvds.samples.services.exceptions.ExcepcionServiciosBiblioteca;
 import edu.eci.cvds.view.RecursosBean;
-import java.sql.Date;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import edu.eci.cvds.utility.UtilidadFecha;
 
 public class TestMain {
 
-    public static void main(String[] args) throws ParseException{
+    public static void main(String[] args) throws ParseException, ExcepcionServiciosBiblioteca{
         UtilidadFecha uf = new UtilidadFecha();
         SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         
@@ -27,13 +22,13 @@ public class TestMain {
         
         
             try {
-                long aux1 = formato.parse("2019-10-29 22:22:01").getTime();
-                long aux2 = formato.parse("2019-11-29 23:23:01").getTime();
+                long aux1 = formato.parse("2019-11-29 22:22:01").getTime();
+                long aux2 = formato.parse("2019-10-29 23:23:01").getTime();
 
                 Timestamp horaInicioR = new Timestamp(aux1);
                 Timestamp horaFinR = new Timestamp(aux2);
                 Reserva newReserva = new Reserva(0,"perrocanchoso@mail.com", 56,horaInicioR,horaFinR, null,"recurrente");                
-                sb.addReservaRecursiva(newReserva, "Semanal");
+                sb.addReserva(newReserva);
                 System.out.println(horaInicioR.before(horaFinR));
                                 
             } catch (ParseException ex) {

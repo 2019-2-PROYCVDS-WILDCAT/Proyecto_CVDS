@@ -5,6 +5,7 @@ import edu.eci.cvds.samples.entities.Horario;
 import edu.eci.cvds.samples.entities.Recurso;
 import edu.eci.cvds.samples.entities.Reserva;
 import edu.eci.cvds.samples.entities.Usuario;
+import edu.eci.cvds.samples.services.exceptions.ExcepcionServiciosBiblioteca;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +24,8 @@ public interface ServiciosBiblioteca {
 
     public void actualizarRecursoBaja(int id);
 
-    public void addReserva(Reserva newReserva);
-    public void addReservaRecursiva(Reserva newReserva, String periodoReserva);
+    public void addReserva(Reserva newReserva)throws ExcepcionServiciosBiblioteca;
+    public void addReservaRecursiva(Reserva newReserva, String periodoReserva) throws ExcepcionServiciosBiblioteca;
     public List<Reserva> consultarReservas();
 
     public ArrayList<Reserva> consultarReservasPorId(int id);
