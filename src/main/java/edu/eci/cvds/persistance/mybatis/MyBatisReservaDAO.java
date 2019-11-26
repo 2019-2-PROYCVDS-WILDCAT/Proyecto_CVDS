@@ -60,49 +60,62 @@ public class MyBatisReservaDAO implements ReservaDAO{
             Logger.getLogger(MyBatisReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        int intervaloEnDias = utilidadFecha.intervaloEnDias(fechaInicio, fechaFin);  
-        switch (periodoReserva){
-            case "Diario":
-                for (int i=0;i<intervaloEnDias+1;i++){                                                            
-                    addReserva(reserva); 
-                    Timestamp nuevaFechaInicio =  utilidadFecha.incrementarFecha(reserva.getFechaInicioReserva(),1);
-                    reserva.setFechaInicioReserva(nuevaFechaInicio);
-                    try {
-                        reserva.setFechaFinReserva(utilidadFecha.intercambiarHoras(nuevaFechaInicio.toString(), fechaFin.toString()));
-                    } catch (ParseException ex) {
-                        Logger.getLogger(MyBatisReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                                                           
-                }
-                break;   
-            case "Semanal":
-               for (int i=0;i<(intervaloEnDias+1)/7;i++){
+        int intervaloEnDias = utilidadFecha.intervaloEnDias(fechaInicio, fechaFin);
+        if(fechaInicio.before(fechaFin)){
+            switch (periodoReserva){
+                case "Diario":
+                        for (int i=0;i<intervaloEnDias+1;i++){                                                            
+                            addReserva(reserva); 
+                            Timestamp nuevaFechaInicio =  utilidadFecha.incrementarFecha(reserva.getFechaInicioReserva(),1);
+                            reserva.setFechaInicioReserva(nuevaFechaInicio);
+                            try {
+                                reserva.setFechaFinReserva(utilidadFecha.intercambiarHoras(nuevaFechaInicio.toString(), fechaFin.toString()));
+                            } catch (ParseException ex) {
+                                Logger.getLogger(MyBatisReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+
+                        }
+
                     
-                    addReserva(reserva); 
-                    Timestamp nuevaFechaInicio =  utilidadFecha.incrementarFecha(reserva.getFechaInicioReserva(),7);
-                    reserva.setFechaInicioReserva(nuevaFechaInicio);
-                    try {
-                        reserva.setFechaFinReserva(utilidadFecha.intercambiarHoras(nuevaFechaInicio.toString(), fechaFin.toString()));
-                    } catch (ParseException ex) {
-                        Logger.getLogger(MyBatisReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    break;   
+                case "Semanal":
+                        addReserva(reserva); 
+                        for (int i=0;i<(intervaloEnDias)/7;i++){
+
+                             
+                             Timestamp nuevaFechaInicio =  utilidadFecha.incrementarFecha(reserva.getFechaInicioReserva(),7);
+                             reserva.setFechaInicioReserva(nuevaFechaInicio);
+                             try {
+                                 reserva.setFechaFinReserva(utilidadFecha.intercambiarHoras(nuevaFechaInicio.toString(), fechaFin.toString()));
+                                 addReserva(reserva);
+                             } catch (ParseException ex) {
+                                 Logger.getLogger(MyBatisReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                             }
+
+                        }
+
+
+                    break;                
+                case "Mensual":
+                   addReserva(reserva); 
+                   for (int i=0;i<(intervaloEnDias)/30;i++){                                                            
+                        
+                        Timestamp nuevaFechaInicio =  utilidadFecha.incrementarMes(reserva.getFechaInicioReserva(),1);
+                        reserva.setFechaInicioReserva(nuevaFechaInicio);
+                        try {
+                            reserva.setFechaFinReserva(utilidadFecha.intercambiarHoras(nuevaFechaInicio.toString(), fechaFin.toString()));
+                            addReserva(reserva);
+                        } catch (ParseException ex) {
+                            Logger.getLogger(MyBatisReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
                     }
-                                                           
-                }
-                break;                
-            case "Mensual":
-               for (int i=0;i<(intervaloEnDias+1)/30;i++){                                                            
-                    addReserva(reserva); 
-                    Timestamp nuevaFechaInicio =  utilidadFecha.incrementarMes(reserva.getFechaInicioReserva(),1);
-                    reserva.setFechaInicioReserva(nuevaFechaInicio);
-                    try {
-                        reserva.setFechaFinReserva(utilidadFecha.intercambiarHoras(nuevaFechaInicio.toString(), fechaFin.toString()));
-                    } catch (ParseException ex) {
-                        Logger.getLogger(MyBatisReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                                                           
-                }
-                break;                 
-                
+                   if (intervaloEnDias+1<30 && intervaloEnDias>0){
+                       addReserva(reserva);
+                   }               
+                    break;                 
+
+            }
         }
         
         

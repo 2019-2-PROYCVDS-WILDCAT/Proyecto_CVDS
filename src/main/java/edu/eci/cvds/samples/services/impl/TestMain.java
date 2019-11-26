@@ -20,23 +20,26 @@ import edu.eci.cvds.utility.UtilidadFecha;
 public class TestMain {
 
     public static void main(String[] args) throws ParseException{
+        UtilidadFecha uf = new UtilidadFecha();
         SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         
         ServiciosBiblioteca sb = ServiciosBibliotecaFactory.getServiciosBiblioteca();
-        System.out.println(7/8);
+        
         
             try {
-                long aux1 = formato.parse("2019-11-20 22:22:01").getTime();
+                long aux1 = formato.parse("2019-10-29 22:22:01").getTime();
                 long aux2 = formato.parse("2019-11-29 23:23:01").getTime();
 
                 Timestamp horaInicioR = new Timestamp(aux1);
                 Timestamp horaFinR = new Timestamp(aux2);
                 Reserva newReserva = new Reserva(0,"perrocanchoso@mail.com", 56,horaInicioR,horaFinR, null,"recurrente");                
-                sb.addReservaRecursiva(newReserva, "Diario");
+                sb.addReservaRecursiva(newReserva, "Semanal");
+                System.out.println(horaInicioR.before(horaFinR));
                                 
             } catch (ParseException ex) {
                 Logger.getLogger(RecursosBean.class.getName()).log(Level.SEVERE, null, ex);
             }        
+            
 
 //        try {
 //                SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
