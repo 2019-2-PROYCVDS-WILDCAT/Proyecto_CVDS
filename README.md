@@ -17,7 +17,7 @@
 ## Arquitectura y diseño detallado
 
 ### Modelo E-R (Entidad-Relación)
-![Modelo E-R](https://github.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/blob/master/img/ModeloER4.png)
+![Modelo E-R](https://github.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/blob/master/img/ModeloER3.png)
 ### Diagrama de clases de Entidades
 ![Diagrama de clases](https://github.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/blob/master/img/DClases.png)
 ### Diagrama de paquetes
