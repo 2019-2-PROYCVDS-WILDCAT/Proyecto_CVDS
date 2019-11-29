@@ -4,6 +4,7 @@ var horaMin = document.getElementById('hIni').value;
 var horaMax = document.getElementById('hFin').value;
 var tipo = document.getElementById('reservaTipo').value;
 var usuario = document.getElementById('inputUsuario').value;
+var tipoUsuario = document.getElementById('inputTipoUsuario').value;
 
 function stoperror() {
     return true;
@@ -46,19 +47,33 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
         var start = new Date(event.fechaInicioReserva);
         var end = new Date(event.fechaFinReserva);
         var classN;
+        var descripcion;
+        if (tipoUsuario === "administrador") {
+            descripcion = '<strong>Reservado por: </strong>' + event.idUsuario +
+                    '<br /><strong> Fecha de apartado: </strong>' + event.fechaReserva
+                    + '<br /><strong> Fecha de reserva: </strong>' + event.fechaInicioReserva
+                    + '<br /><strong> Fecha de entrega: </strong>' + event.fechaFinReserva
+                    + '<br /><strong> Tipo de reserva: </strong>' + event.tipo
+                    + '<br /><strong> Id del recurso: </strong>' + event.id;
+        } else if (tipoUsuario === "comunidad") {
+            descripcion = '<br /><strong> Fecha de reserva: </strong>' + event.fechaInicioReserva
+                    + '<br /><strong> Fecha de entrega: </strong>' + event.fechaFinReserva
+                    + '<br /><strong> Tipo de reserva: </strong>' + event.tipo
+                    + '<br /><strong> Id del recurso: </strong>' + event.id;
+        } else if (tipoUsuario === "none") {
+            descripcion = '<br /><strong> Fecha de reserva: </strong>' + event.fechaInicioReserva
+                    + '<br /><strong> Fecha de entrega: </strong>' + event.fechaFinReserva;
+
+        }
         if (event.tipo === "Normal" || event.tipo === "normal") {
             classN = "fc-bg-blue";
         } else if (event.tipo === "Recurrente" || event.tipo === "recurrente") {
             classN = "fc-bg-pinkred";
         }
-        console.log(classN);
+        
         eventos.push({
             title: 'Reservado',
-            description: '<strong>Reservado por: </strong>' + event.idUsuario +
-                    '<br /><strong> Fecha de apartado: </strong>' + event.fechaReserva
-                    + '<br /><strong> Fecha de reserva: </strong>' + event.fechaInicioReserva
-                    + '<br /><strong> Fecha de entrega: </strong>' + event.fechaFinReserva
-                    + '<br /><strong> Tipo de reserva: </strong>' + event.tipo,
+            description: descripcion,
             start: start,
             end: end,
             className: classN,
@@ -105,17 +120,17 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
             },
             events: eventos,
             eventOverlap: false,
-            selectOverlap:false,
-            slotEventOverlap:false,
+            selectOverlap: false,
+            slotEventOverlap: false,
             eventRender: function (event, element) {
                 if (event.icon) {
                     element.find(".fc-title").prepend("<i class='fa fa-" + event.icon + "'></i>");
                 }
             },
             dayClick: function (date, jsEvent, view, resourceObj) {
-                
+
                 if (!(usuario === "")) {
-                    if (!(tipo === "Libro")){
+                    if (!(tipo === "Libro")) {
                         $('#colFechaFin').hide();
                     }
                     var inputfechaini = document.getElementById('fechaInicio');
@@ -148,7 +163,7 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
                     }
 
                     jQuery('#seleccionTipoReserva').modal();
-                }else{
+                } else {
                     alert("Solo los usuarios registrados pueden realizar reservas.");
                 }
 

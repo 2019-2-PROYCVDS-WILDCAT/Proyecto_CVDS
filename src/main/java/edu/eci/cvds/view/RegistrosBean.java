@@ -39,7 +39,7 @@ public class RegistrosBean extends BasePageBean {
     private Recurso selectedRec;
     private String estado;
     private List<Recurso> recursos;
-    private String usuario;
+    private String usuario,tipoUsuario;
 
     private ArrayList<String> horarios = new ArrayList<String>() {
         {
@@ -251,6 +251,7 @@ public class RegistrosBean extends BasePageBean {
     }
 
     public void goToCalendar(int idReserva, String tipo, String horaInicio, String horaFin, String nombreRecurso) throws IOException {
+        setTipoU();
         this.usuario = getUsuario();
         this.idReserva = idReserva;
         this.tipoRecurso = tipo;
@@ -263,6 +264,33 @@ public class RegistrosBean extends BasePageBean {
     public String getTipoApartado() {
         return tipoApartado;
     }
+    public void setTipoU(){
+        try{
+            Subject currentUser = SecurityUtils.getSubject();
+            Session session = currentUser.getSession();
+            if (currentUser.hasRole("comunidad")){
+                setTipoUsuario("comunidad");
+            }else if(currentUser.hasRole("administrador")){
+                setTipoUsuario("administrador");
+            }else{
+              setTipoUsuario("none"); 
+            }
+        }catch(java.lang.NullPointerException ex){
+            setTipoUsuario("none");
+        }
+    }
+    
+    
+
+    public String getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+    
+    
 
     public void setTipoApartado(String tipoApartado) {
         this.tipoApartado = tipoApartado;
