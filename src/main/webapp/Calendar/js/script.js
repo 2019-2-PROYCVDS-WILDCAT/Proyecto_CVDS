@@ -70,7 +70,7 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
         } else if (event.tipo === "Recurrente" || event.tipo === "recurrente") {
             classN = "fc-bg-pinkred";
         }
-        
+
         eventos.push({
             title: 'Reservado',
             description: descripcion,
@@ -130,39 +130,45 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
             dayClick: function (date, jsEvent, view, resourceObj) {
 
                 if (!(usuario === "")) {
-                    if (!(tipo === "Libro")) {
-                        $('#colFechaFin').hide();
-                    }
-                    var inputfechaini = document.getElementById('fechaInicio');
-                    inputfechaini.value = date.format("MM/DD/YYYY");
-                    var inputfechafin = document.getElementById('fechaFin');
-                    inputfechafin.value = date.format("MM/DD/YYYY");
-                    var inputhora = document.getElementById('horaInicio');
-                    var inputfin = document.getElementById('horaFin');
-                    if (date.format("HH:mm") === '00:00') {
-                        inputhora.value = '07:00';
-                        inputfin.value = '09:00';
+                    var now = Date.now();
+                    if (date < now) {
+                        alert("La fecha debe ser mayor a la actual");
                     } else {
-                        inputhora.value = date.format("HH:mm");
-                        var horaFn = date.add(2, 'h');
-                        inputfin.value = horaFn.format("HH:mm");
-                    }
-                    var inputfechainiRec = document.getElementById('fechaInicioRec');
-                    inputfechainiRec.value = date.format("MM/DD/YYYY");
-                    var inputfechafinRec = document.getElementById('fechaFinRec');
-                    inputfechafinRec.value = date.format("MM/DD/YYYY");
-                    var inputhoraRec = document.getElementById('horaInicioRec');
-                    var inputfinRec = document.getElementById('horaFinRec');
-                    if (date.format("HH:mm") === '00:00') {
-                        inputhoraRec.value = '07:00';
-                        inputfinRec.value = '09:00';
-                    } else {
-                        inputhoraRec.value = date.format("HH:mm");
-                        var horaFnRec = date.add(2, 'h');
-                        inputfinRec.value = horaFnRec.format("HH:mm");
+                        if (!(tipo === "Libro")) {
+                            $('#colFechaFin').hide();
+                        }
+                        var inputfechaini = document.getElementById('fechaInicio');
+                        inputfechaini.value = date.format("MM/DD/YYYY");
+                        var inputfechafin = document.getElementById('fechaFin');
+                        inputfechafin.value = date.format("MM/DD/YYYY");
+                        var inputhora = document.getElementById('horaInicio');
+                        var inputfin = document.getElementById('horaFin');
+                        if (date.format("HH:mm") === '00:00') {
+                            inputhora.value = '07:00';
+                            inputfin.value = '09:00';
+                        } else {
+                            inputhora.value = date.format("HH:mm");
+                            var horaFn = date.add(2, 'h');
+                            inputfin.value = horaFn.format("HH:mm");
+                        }
+                        var inputfechainiRec = document.getElementById('fechaInicioRec');
+                        inputfechainiRec.value = date.format("MM/DD/YYYY");
+                        var inputfechafinRec = document.getElementById('fechaFinRec');
+                        inputfechafinRec.value = date.format("MM/DD/YYYY");
+                        var inputhoraRec = document.getElementById('horaInicioRec');
+                        var inputfinRec = document.getElementById('horaFinRec');
+                        if (date.format("HH:mm") === '00:00') {
+                            inputhoraRec.value = '07:00';
+                            inputfinRec.value = '09:00';
+                        } else {
+                            inputhoraRec.value = date.format("HH:mm");
+                            var horaFnRec = date.add(2, 'h');
+                            inputfinRec.value = horaFnRec.format("HH:mm");
+                        }
+
+                        jQuery('#seleccionTipoReserva').modal();
                     }
 
-                    jQuery('#seleccionTipoReserva').modal();
                 } else {
                     alert("Solo los usuarios registrados pueden realizar reservas.");
                 }
