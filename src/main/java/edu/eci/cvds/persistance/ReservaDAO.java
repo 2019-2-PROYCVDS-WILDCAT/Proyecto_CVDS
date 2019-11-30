@@ -15,6 +15,8 @@ public interface ReservaDAO {
     public ArrayList<Reserva> loadReservaById(int id);
     public void addReservaRecursiva(Reserva reserva, String periodoReserva) throws ExcepcionServiciosBiblioteca;
     public boolean ReservasDisponbiles (Reserva reserva);
+
+    public ArrayList<Reserva> loadReservaByActiveId(Integer id);
     
     
     

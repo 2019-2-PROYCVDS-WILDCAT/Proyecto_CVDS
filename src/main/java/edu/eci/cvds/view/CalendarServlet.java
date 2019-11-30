@@ -36,7 +36,7 @@ public class CalendarServlet extends HttpServlet{
         Integer id = Integer.parseInt(name);
         
        
-        ArrayList<Reserva> events = sb.consultarReservasPorId(id);
+        ArrayList<Reserva> events = sb.consultarReservasPorIdActivo(id);
         
         String json = new Gson().toJson(events);
         response.setContentType("application/json");

@@ -17,8 +17,9 @@ public class Reserva {
     private int id,idRecurso;
     Date fechaReserva;
     Timestamp fechaInicioReserva,fechaFinReserva; 
+    boolean activo;
 
-    public Reserva(int id,String idUsuario, int idRecurso, Timestamp fechaInicioReserva, Timestamp fechaFinReserva, Date fechaReserva, String tipo) {
+    public Reserva(int id,String idUsuario, int idRecurso, Timestamp fechaInicioReserva, Timestamp fechaFinReserva, Date fechaReserva, String tipo,boolean activo) {
         this.id=id;
         this.idUsuario = idUsuario;        
         this.idRecurso = idRecurso;
@@ -26,6 +27,15 @@ public class Reserva {
         this.fechaFinReserva = fechaFinReserva;
         this.fechaReserva=fechaReserva;
         this.tipo = tipo;
+        this.activo=activo;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     public Date getFechaReserva() {
@@ -84,12 +94,14 @@ public class Reserva {
         this.fechaFinReserva = fechaFinReserva;
     }
 
-    
-
     @Override
     public String toString() {
-        return "Reserva{" + "idUsuario=" + idUsuario + ", tipo=" + tipo + ", id=" + id + ", idRecurso=" + idRecurso + ", fechaInicioReserva=" + fechaInicioReserva + ", fechaFinReserva=" + fechaFinReserva + ", fechaReserva=" + fechaReserva + '}';
+        return "Reserva{" + "idUsuario=" + idUsuario + ", tipo=" + tipo + ", id=" + id + ", idRecurso=" + idRecurso + ", fechaReserva=" + fechaReserva + ", fechaInicioReserva=" + fechaInicioReserva + ", fechaFinReserva=" + fechaFinReserva + ", activo=" + activo + '}';
     }
+
+    
+
+
     
     
     

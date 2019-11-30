@@ -33,5 +33,7 @@ public interface ServiciosBiblioteca {
     public List<Recurso> consultarRecursosDisponibles() throws PersistenceException;
     
     public boolean reservaDisponibleEnFecha(Reserva reserva) throws PersistenceException;    
-    
+
+    public ArrayList<Reserva> consultarReservasPorIdActivo(Integer id);
+   
 }

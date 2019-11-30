@@ -18,5 +18,7 @@ public interface ReservaMapper {
     public ArrayList<Reserva> consultarReservasPorId(@Param("idRecurso")int id);
     
     public Integer reservaDisponibleEnFecha(@Param("idRecurso") int id, @Param("fechaInicio") Timestamp fechaInicio, @Param("fechaFin") Timestamp fechaFin);
+
+    public ArrayList<Reserva> consultarReservasActivasPorId(@Param("idRecurso")int id);
     
 }

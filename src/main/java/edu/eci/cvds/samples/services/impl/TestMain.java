@@ -27,7 +27,7 @@ public class TestMain {
 
                 Timestamp horaInicioR = new Timestamp(aux1);
                 Timestamp horaFinR = new Timestamp(aux2);
-                Reserva newReserva = new Reserva(0,"perrocanchoso@mail.com", 56,horaInicioR,horaFinR, null,"recurrente");                
+                Reserva newReserva = new Reserva(0,"perrocanchoso@mail.com", 56,horaInicioR,horaFinR, null,"recurrente",true);                
                 sb.addReserva(newReserva);
                 System.out.println(horaInicioR.before(horaFinR));
                                 

@@ -146,6 +146,11 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
         return reservaDAO.ReservasDisponbiles(reserva);
     }
 
+    @Override
+    public ArrayList<Reserva> consultarReservasPorIdActivo(Integer id) {
+       return reservaDAO.loadReservaByActiveId(id); 
+    }
+
 
 
 }

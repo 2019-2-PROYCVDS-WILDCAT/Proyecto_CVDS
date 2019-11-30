@@ -9,7 +9,8 @@
         <result property='idRecurso' column='id_recurso'/>
         <result property='fechaInicioReserva' column='fecha_inicio_reserva' />
         <result property='fechaFinReserva' column='fecha_fin_reserva' />
-        <result property='tipo' column='tipo' />                  
+        <result property='tipo' column='tipo' />  
+        <result property='activo' column='activa' />  
     </resultMap>
     
     <select id="consultarReservas" resultMap="ReservaResult" parameterType="map">
@@ -19,8 +20,8 @@
     
     <insert id="addReserva" parameterType="map">
         INSERT 
-        INTO reservas(id_usuario,id_recurso,fecha_inicio_reserva,fecha_fin_reserva,tipo) 
-        VALUES (#{reserva.idUsuario},#{reserva.idRecurso},#{reserva.fechaInicioReserva}, #{reserva.fechaFinReserva},#{reserva.tipo});
+        INTO reservas(id_usuario,id_recurso,fecha_inicio_reserva,fecha_fin_reserva,tipo,activa) 
+        VALUES (#{reserva.idUsuario},#{reserva.idRecurso},#{reserva.fechaInicioReserva}, #{reserva.fechaFinReserva},#{reserva.tipo},#{reserva.activo});
     </insert>
     
     <select id="consultarReservasPorId" resultMap="ReservaResult" parameterType="map">
@@ -34,6 +35,10 @@
         FROM reservas       
         WHERE id_recurso = #{idRecurso} AND fecha_inicio_reserva &gt;= #{fechaInicio} AND fecha_fin_reserva &lt;= #{fechaFin}
     </select>    
-    
+    <select id="consultarReservasActivasPorId" resultMap="ReservaResult" parameterType="map">
+        SELECT *
+        FROM reservas
+        WHERE id_recurso = #{idRecurso} AND activa = true
+    </select>
                           
 </mapper>

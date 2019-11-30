@@ -131,6 +131,11 @@ public class MyBatisReservaDAO implements ReservaDAO{
         
     }
 
+    @Override
+    public ArrayList<Reserva> loadReservaByActiveId(Integer id) {
+        return reservaMapper.consultarReservasActivasPorId(id);
+    }
+
 
     
     
