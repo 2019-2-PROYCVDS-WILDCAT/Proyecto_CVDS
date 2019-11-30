@@ -40,5 +40,11 @@
         FROM reservas
         WHERE id_recurso = #{idRecurso} AND activa = true
     </select>
+    
+    <update id='cancelarReserva'>
+        update reservas
+        set activa=false
+        where id= #{idReserva}            
+    </update>
                           
 </mapper>

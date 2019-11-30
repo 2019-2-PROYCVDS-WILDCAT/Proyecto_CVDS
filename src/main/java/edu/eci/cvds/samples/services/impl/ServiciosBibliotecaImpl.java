@@ -151,6 +151,11 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
        return reservaDAO.loadReservaByActiveId(id); 
     }
 
+    @Override
+    public void cancelarReserva(int idReserva) {
+        reservaDAO.cancelReserva(idReserva);
+    }
+
 
 
 }

@@ -17,6 +17,8 @@ public interface ReservaDAO {
     public boolean ReservasDisponbiles (Reserva reserva);
 
     public ArrayList<Reserva> loadReservaByActiveId(Integer id);
+
+    public void cancelReserva(int idReserva);
     
     
     
