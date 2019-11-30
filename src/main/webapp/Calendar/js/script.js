@@ -130,8 +130,10 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
             dayClick: function (date, jsEvent, view, resourceObj) {
 
                 if (!(usuario === "")) {
-                    var now = Date.now();
-                    if (date < now) {
+                    var now = moment();
+                    if (date.isBefore(now)) {
+                        console.log(date);
+                        console.log(now);
                         alert("La fecha debe ser mayor a la actual.");
                     } else {
                         if (!(tipo === "Libro")) {
