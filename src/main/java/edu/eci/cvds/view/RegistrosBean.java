@@ -39,7 +39,7 @@ public class RegistrosBean extends BasePageBean {
     private Recurso selectedRec;
     private String estado;
     private List<Recurso> recursos;
-    private String usuario,tipoUsuario;
+    private String usuario, tipoUsuario;
 
     private ArrayList<String> horarios = new ArrayList<String>() {
         {
@@ -110,31 +110,41 @@ public class RegistrosBean extends BasePageBean {
     }
 
     public void registrarReservaNormal() throws ParseException {
-        if (!tipoRecurso.equals("Libro")) {
-            fechaFin = fechaInicio;
-        }Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        //Unir fechas con horas
         crearFechas();
-        //Castear a timeStamp
-        Timestamp tsFechaInicio = Timestamp.valueOf(fechaInicio);
-        Timestamp tsFechaFin = Timestamp.valueOf(fechaFin);
-        try {
-            if (!utilidadFecha.isOverlapping(idReserva, new DateTime(tsFechaInicio.getTime()), new DateTime(tsFechaFin.getTime()))) {
-                //Insertar reserva
-                Reserva reservaInsert = new Reserva(0, usuario, idReserva, tsFechaInicio, tsFechaFin, date, "Normal",true);
-                try {
-                    serviciosBiblioteca.addReserva(reservaInsert);
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Reserva realizada correctamente.", ""));
-                    
-                } catch (org.apache.ibatis.exceptions.PersistenceException e) {
-                    
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Tiempo m\u00e1ximo de reserva: 2horas",""));
-                                            }
-            }else {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "La reserva se cruza con una existente.", ""));
+
+        if (utilidadFecha.oldDate(fechaInicio)) {
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Reserva realizada correctamente.", ""));
+        } else if (utilidadFecha.outOfBoundsDate(fechaFin)) {
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Reserva realizada correctamente.", ""));
+        } else {
+            if (!tipoRecurso.equals("Libro")) {
+                fechaFin = fechaInicio;
             }
-        } catch (ExcepcionServiciosBiblioteca ex) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage(), ""));
+            Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+            //Unir fechas con horas
+            //Castear a timeStamp
+            Timestamp tsFechaInicio = Timestamp.valueOf(fechaInicio);
+            Timestamp tsFechaFin = Timestamp.valueOf(fechaFin);
+            try {
+                if (!utilidadFecha.isOverlapping(idReserva, new DateTime(tsFechaInicio.getTime()), new DateTime(tsFechaFin.getTime()))) {
+                    //Insertar reserva
+
+                    Reserva reservaInsert = new Reserva(0, usuario, idReserva, tsFechaInicio, tsFechaFin, date, "Normal",true);
+
+                    try {
+                        serviciosBiblioteca.addReserva(reservaInsert);
+                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Reserva realizada correctamente.", ""));
+
+                    } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+
+                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Tiempo m\u00e1ximo de reserva: 2horas", ""));
+                    }
+                } else {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "La reserva se cruza con una existente.", ""));
+                }
+            } catch (ExcepcionServiciosBiblioteca ex) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage(), ""));
+            }
         }
 
     }
@@ -143,7 +153,7 @@ public class RegistrosBean extends BasePageBean {
 
         try {
             Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-            
+
             crearFechas();
             Timestamp tsFechaInicio = Timestamp.valueOf(fechaInicio);
             Timestamp tsFechaFin = Timestamp.valueOf(fechaFin);
@@ -153,10 +163,10 @@ public class RegistrosBean extends BasePageBean {
                     serviciosBiblioteca.addReservaRecursiva(reservaInsert, this.tipoApartado);
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Reserva realizada correctamente.", ""));
                 } catch (Exception e) {
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Tiempo m\u00e1ximo de reserva: 2 horas.",""));
-                    
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Tiempo m\u00e1ximo de reserva: 2 horas.", ""));
+
                 }
-            } else{
+            } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "La reserva se cruza con una existente.", ""));
             }
         } catch (ExcepcionServiciosBiblioteca ex) {
@@ -264,23 +274,22 @@ public class RegistrosBean extends BasePageBean {
     public String getTipoApartado() {
         return tipoApartado;
     }
-    public void setTipoU(){
-        try{
+
+    public void setTipoU() {
+        try {
             Subject currentUser = SecurityUtils.getSubject();
             Session session = currentUser.getSession();
-            if (currentUser.hasRole("comunidad")){
+            if (currentUser.hasRole("comunidad")) {
                 setTipoUsuario("comunidad");
-            }else if(currentUser.hasRole("administrador")){
+            } else if (currentUser.hasRole("administrador")) {
                 setTipoUsuario("administrador");
-            }else{
-              setTipoUsuario("none"); 
+            } else {
+                setTipoUsuario("none");
             }
-        }catch(java.lang.NullPointerException ex){
+        } catch (java.lang.NullPointerException ex) {
             setTipoUsuario("none");
         }
     }
-    
-    
 
     public String getTipoUsuario() {
         return tipoUsuario;
@@ -289,8 +298,6 @@ public class RegistrosBean extends BasePageBean {
     public void setTipoUsuario(String tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
-    
-    
 
     public void setTipoApartado(String tipoApartado) {
         this.tipoApartado = tipoApartado;
@@ -319,19 +326,20 @@ public class RegistrosBean extends BasePageBean {
     public void setNombreRecurso(String nombreRecurso) {
         this.nombreRecurso = nombreRecurso;
     }
-    public void volver() throws IOException{
-        
-        try{
+
+    public void volver() throws IOException {
+
+        try {
             Subject currentUser = SecurityUtils.getSubject();
             Session session = currentUser.getSession();
-            if (currentUser.hasRole("comunidad")){
+            if (currentUser.hasRole("comunidad")) {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/secure/Comunidad.xhtml");
-            }else if(currentUser.hasRole("administrador")){
+            } else if (currentUser.hasRole("administrador")) {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/secure/Administrador.xhtml");
-            }else{
-              FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/public.xhtml");  
+            } else {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/public.xhtml");
             }
-        }catch(java.lang.NullPointerException ex){
+        } catch (java.lang.NullPointerException ex) {
             FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/public.xhtml");
         }
     }

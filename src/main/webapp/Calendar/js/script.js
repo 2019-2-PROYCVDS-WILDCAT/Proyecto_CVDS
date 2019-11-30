@@ -127,15 +127,20 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
                     element.find(".fc-title").prepend("<i class='fa fa-" + event.icon + "'></i>");
                 }
             },
+            
             dayClick: function (date, jsEvent, view, resourceObj) {
 
                 if (!(usuario === "")) {
                     var now = moment();
-                    if (date.isBefore(now)) {
-                        console.log(date);
+                    var fechaMax = moment("2019-12-11T00:00:00");
+                    var horaBien = date.add('5','hours') 
+                    if (horaBien.isBefore(now)) {
+                        console.log(horaBien);
                         console.log(now);
-                        alert("La fecha debe ser mayor a la actual.");
-                    } else {
+                        alert("La fecha y horan deben ser mayores a la actual.");
+                    }else if(!(horaBien.isBefore(fechaMax))){
+                        alert("La fecha seleccionada est\u00e1 fuera del semestre en curso")
+                    }else {
                         if (!(tipo === "Libro")) {
                             $('#colFechaFin').hide();
                         }

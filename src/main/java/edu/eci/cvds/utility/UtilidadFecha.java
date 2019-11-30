@@ -88,4 +88,19 @@ public class UtilidadFecha {
         }
 
     }
+
+    public boolean outOfBoundsDate(String fechaFin) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean oldDate(String fechaInicio) {
+        
+        java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        Timestamp tsFechaInicio = Timestamp.valueOf(fechaInicio);
+        return tsFechaInicio.before(date);
+        
+        
+    }
+
+    
 }
