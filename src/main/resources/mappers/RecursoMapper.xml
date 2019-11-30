@@ -38,8 +38,8 @@
         </insert>
         
         <update id='cambiarEstadoRecurso'>
-        	UPDATE reserva
-                SET activa=false 
+        	UPDATE recursos
+                SET estado = #{state} 
                 WHERE id = #{id} 
         </update>               
  
