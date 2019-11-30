@@ -132,7 +132,7 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
                 if (!(usuario === "")) {
                     var now = Date.now();
                     if (date < now) {
-                        alert("La fecha debe ser mayor a la actual");
+                        alert("La fecha debe ser mayor a la actual.");
                     } else {
                         if (!(tipo === "Libro")) {
                             $('#colFechaFin').hide();
