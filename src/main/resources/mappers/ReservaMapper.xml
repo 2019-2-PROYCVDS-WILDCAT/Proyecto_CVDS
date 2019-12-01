@@ -44,7 +44,6 @@
     <update id='cancelarReserva'>
         update reservas
         set activa=false
-        where id= #{idReserva}            
-    </update>
-                          
+        where id= #{idReserva} and #{idUsuarioQueCancela} = id_usuario
+    </update>                          
 </mapper>

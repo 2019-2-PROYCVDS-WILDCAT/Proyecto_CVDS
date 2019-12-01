@@ -152,8 +152,9 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
     }
 
     @Override
-    public void cancelarReserva(int idReserva) {
-        reservaDAO.cancelReserva(idReserva);
+    public void cancelarReserva(int idReserva, String idUsuarioQueCancela) {
+        //Si la cancelaciòn de la reserva la realiza un usuario diferente al dueño de la reserva no hace nada momentaneamente
+        reservaDAO.cancelReserva(idReserva,idUsuarioQueCancela);
     }
 
 

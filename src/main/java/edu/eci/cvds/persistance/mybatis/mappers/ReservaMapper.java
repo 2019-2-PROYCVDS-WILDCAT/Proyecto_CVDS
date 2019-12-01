@@ -21,6 +21,6 @@ public interface ReservaMapper {
 
     public ArrayList<Reserva> consultarReservasActivasPorId(@Param("idRecurso")int id);
 
-    public void cancelarReserva(@Param("idReserva") int idReserva);
+    public void cancelarReserva(@Param("idReserva")int idReserva,@Param("idUsuarioQueCancela") String idUsuarioQueCancela);
     
 }

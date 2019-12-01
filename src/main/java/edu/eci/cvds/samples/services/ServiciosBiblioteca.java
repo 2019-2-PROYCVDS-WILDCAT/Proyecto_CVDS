@@ -35,5 +35,5 @@ public interface ServiciosBiblioteca {
     public boolean reservaDisponibleEnFecha(Reserva reserva) throws PersistenceException;    
 
     public ArrayList<Reserva> consultarReservasPorIdActivo(Integer id);
-    public void cancelarReserva(int idReserva);
+    public void cancelarReserva(int idReserva,String idUsuarioQueCancela);
 }

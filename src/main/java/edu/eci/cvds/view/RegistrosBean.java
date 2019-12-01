@@ -343,5 +343,8 @@ public class RegistrosBean extends BasePageBean {
             FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/public.xhtml");
         }
     }
+    public void eliminarReserva(){        
+        serviciosBiblioteca.cancelarReserva(idReserva, usuario);
+    }
 
 }
