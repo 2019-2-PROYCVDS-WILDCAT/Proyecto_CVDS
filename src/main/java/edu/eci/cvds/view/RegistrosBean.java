@@ -113,9 +113,9 @@ public class RegistrosBean extends BasePageBean {
         crearFechas();
 
         if (utilidadFecha.oldDate(fechaInicio)) {
-           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Reserva realizada correctamente.", ""));
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "La fecha y horan deben ser mayores a la actual.", ""));
         } else if (utilidadFecha.outOfBoundsDate(fechaFin)) {
-           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Reserva realizada correctamente.", ""));
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "La fecha seleccionada est\u00e1 fuera del semestre en curso", ""));
         } else {
             if (!tipoRecurso.equals("Libro")) {
                 fechaFin = fechaInicio;

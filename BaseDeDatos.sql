@@ -442,6 +442,65 @@ from reservas
 where not activa
 order by fecha_solicitud;
 
+------------------------------------
+
+create or replace view vista_horarios as
+select reservas.id,reservas.id_recurso,reservas.id_usuario,tipo,activa,
+	to_char(fecha_inicio_reserva,'YYYY-MM-DD hh:mi:ss')::time horaInicio,
+	to_char(fecha_fin_reserva, 'YYYY-MM-DD hh:mi:ss')::time horaFin
+from reservas 
+
+--------------------------------------------
+
+create or replace view vista_cantidad_ocupacion as
+
+select '7:00-8:30' Franja,
+SUM(case when horaInicio>=cast('7:00:00' as TIME) and horaFin < cast('8:30:00' as time) then 1 else 0 end) 
+cantidad_reservas from vista_horarios
+
+union all
+
+select '8:30-10:00' Franja,
+SUM(case when horaInicio>=cast('8:30:00' as TIME) and horaFin < cast('10:00:00' as time) then 1 else 0 end) cantidad_reservas 
+from vista_horarios
+
+union all
+
+select '10:00-11:30' Franja,
+SUM(case when horaInicio>=cast('10:00:00' as TIME) and horaFin < cast('11:30:00' as time) then 1 else 0 end) cantidad_reservas 
+from vista_horarios
+
+union all
+
+select '11:30-13:00' Franja,
+SUM(case when horaInicio>=cast('11:30:00' as TIME) and horaFin < cast('13:00:00' as time) then 1 else 0 end) cantidad_reservas 
+from vista_horarios 
+
+union all
+
+select '13:00-14:30' Franja,
+SUM(case when horaInicio>=cast('13:00:00' as TIME) and horaFin < cast('14:30:00' as time) then 1 else 0 end) cantidad_reservas 
+from vista_horarios 
+
+union all
+
+select '14:30-16:00' Franja,
+SUM(case when horaInicio>=cast('14:30:00' as TIME) and horaFin < cast('16:00:00' as time) then 1 else 0 end) cantidad_reservas
+from vista_horarios
+
+union all
+
+select '16:00-17:30' Franja,
+SUM(case when horaInicio>=cast('16:00:00' as TIME) and horaFin < cast('17:30:00' as time) then 1 else 0 end) cantidad_reservas 
+from vista_horarios 
+
+union all
+
+select '17:30-19:00' Franja,
+SUM(case when horaInicio>=cast('17:30:00' as TIME) and horaFin < cast('19:00:00' as time) then 1 else 0 end) cantidad_reservas 
+from vista_horarios 
+
+select * from vista_cantidad_ocupacion
 
 
 

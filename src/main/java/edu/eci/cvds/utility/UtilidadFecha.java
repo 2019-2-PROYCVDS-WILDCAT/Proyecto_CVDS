@@ -12,6 +12,8 @@ import edu.eci.cvds.samples.services.exceptions.ExcepcionServiciosBiblioteca;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
@@ -89,15 +91,19 @@ public class UtilidadFecha {
 
     }
 
-    public boolean outOfBoundsDate(String fechaFin) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean outOfBoundsDate(String fecha) {
+        String fechaString = "2019-12-12 00:00:00";
+        Timestamp fechaMax = Timestamp.valueOf(fechaString);
+        
+        Timestamp tsFecha = Timestamp.valueOf(fecha);
+        return !tsFecha.before(fechaMax);
     }
 
-    public boolean oldDate(String fechaInicio) {
+    public boolean oldDate(String fecha) {
         
         java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        Timestamp tsFechaInicio = Timestamp.valueOf(fechaInicio);
-        return tsFechaInicio.before(date);
+        Timestamp tsFecha = Timestamp.valueOf(fecha);
+        return tsFecha.before(date);
         
         
     }

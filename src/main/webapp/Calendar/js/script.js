@@ -160,7 +160,7 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
                         console.log(now);
                         alert("La fecha y horan deben ser mayores a la actual.");
                     }else if(!(horaBien.isBefore(fechaMax))){
-                        alert("La fecha seleccionada est\u00e1 fuera del semestre en curso")
+                        alert("La fecha seleccionada est\u00e1 fuera del semestre en curso");
                     }else {
                         if (!(tipo === "Libro")) {
                             $('#colFechaFin').hide();
