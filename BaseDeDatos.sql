@@ -1,13 +1,23 @@
 -- DROP SCHEMA public;
 
+
+
 CREATE SCHEMA public AUTHORIZATION dgzsgodijyfsjh;
+
+
 
 COMMENT ON SCHEMA public IS 'standard public schema';
 
----------------------------------TABLAS, PK's, FK's, CHECKS, TRIGGERS-----------------------------------
+
+
+-------------
+--------------------TABLAS, PK's, FK's, CHECKS, TRIGGERS-----------------------------------
 -- Drop table
 
+
 -- DROP TABLE public.disponibilidad;
+
+
 
 CREATE TABLE public.disponibilidad (
 	id int4 NOT NULL,
@@ -19,9 +29,14 @@ CREATE TABLE public.disponibilidad (
 	CONSTRAINT fk_disponibilidad_recursos FOREIGN KEY (idrecurso) REFERENCES recursos(id)
 );
 
+
+
 -- Permissions
 
+
 ALTER TABLE public.disponibilidad OWNER TO dgzsgodijyfsjh;
+
+
 GRANT ALL ON TABLE public.disponibilidad TO dgzsgodijyfsjh;
 
 
@@ -29,6 +44,7 @@ GRANT ALL ON TABLE public.disponibilidad TO dgzsgodijyfsjh;
 -- Drop table
 
 -- DROP TABLE public.recursos;
+
 
 CREATE TABLE public.recursos (
 	id int4 NOT NULL,
@@ -46,31 +62,45 @@ CREATE TABLE public.recursos (
 	CONSTRAINT recursos_pkey PRIMARY KEY (id)
 );
 
+
+
 -- Table Triggers
 
+
 -- DROP TRIGGER bu_recursos_pk ON public.recursos;
+
 
 create trigger bu_recursos_pk before
 insert
     on
     public.recursos for each row execute procedure bu_recursos_pk();
+
+
 -- DROP TRIGGER automatizar_capacidad_recurso ON public.recursos;
+
 
 create trigger automatizar_capacidad_recurso before
 insert
     on
     public.recursos for each row execute procedure capacidad_automatica_recurso();
 
+
+
 -- Permissions
+
+
 
 ALTER TABLE public.recursos OWNER TO dgzsgodijyfsjh;
 GRANT ALL ON TABLE public.recursos TO dgzsgodijyfsjh;
 
 
 
+
 -- Drop table
 
+
 -- DROP TABLE public.reservas;
+
 
 CREATE TABLE public.reservas (
 	id int4 NOT NULL,
@@ -87,16 +117,24 @@ CREATE TABLE public.reservas (
 	CONSTRAINT fk_reservas_usuarios FOREIGN KEY (id_usuario) REFERENCES usuarios(email)
 );
 
+
+
 -- Table Triggers
 
+
 -- DROP TRIGGER automatizar_reservas ON public.reservas;
+
+
 
 create trigger automatizar_reservas before
 insert
     on
     public.reservas for each row execute procedure automatizar_id_fecha_reservas();
 
+
 -- Permissions
+
+
 
 ALTER TABLE public.reservas OWNER TO dgzsgodijyfsjh;
 GRANT ALL ON TABLE public.reservas TO dgzsgodijyfsjh;
@@ -104,9 +142,13 @@ GRANT ALL ON TABLE public.reservas TO dgzsgodijyfsjh;
 
 
 
+
 -- Drop table
 
+
 -- DROP TABLE public.tipo_usuario;
+
+
 
 CREATE TABLE public.tipo_usuario (
 	id int4 NOT NULL,
@@ -114,7 +156,9 @@ CREATE TABLE public.tipo_usuario (
 	CONSTRAINT tipo_usuario_pkey PRIMARY KEY (id)
 );
 
+
 -- Permissions
+
 
 ALTER TABLE public.tipo_usuario OWNER TO dgzsgodijyfsjh;
 GRANT ALL ON TABLE public.tipo_usuario TO dgzsgodijyfsjh;
@@ -126,6 +170,8 @@ GRANT ALL ON TABLE public.tipo_usuario TO dgzsgodijyfsjh;
 
 -- DROP TABLE public.usuarios;
 
+
+
 CREATE TABLE public.usuarios (
 	nombre varchar(100) NOT NULL,
 	apellido varchar(100) NOT NULL,
@@ -136,10 +182,16 @@ CREATE TABLE public.usuarios (
 	CONSTRAINT fk_usuarios_tipo_usuario FOREIGN KEY (tipo_usuario_id) REFERENCES tipo_usuario(id)
 );
 
+
+
 -- Permissions
+
+
 
 ALTER TABLE public.usuarios OWNER TO dgzsgodijyfsjh;
 GRANT ALL ON TABLE public.usuarios TO dgzsgodijyfsjh;
+
+
 
 
 ---------------------FUNCIONES---------------------
@@ -171,6 +223,7 @@ $function$
 ;
 
 
+----------
 CREATE OR REPLACE FUNCTION public.bu_recursos_pk()
  RETURNS trigger
  LANGUAGE plpgsql
@@ -186,6 +239,8 @@ $function$
 ;
 
 
+
+-------------------
 CREATE OR REPLACE FUNCTION public.capacidad_automatica_recurso()
  RETURNS trigger
  LANGUAGE plpgsql
@@ -200,6 +255,7 @@ $function$
 ;
 
 
+---------------------------------------
 
 CREATE OR REPLACE FUNCTION public.sumafechadia(fechainicio timestamp without time zone, fechafin timestamp without time zone)
  RETURNS timestamp without time zone
@@ -218,6 +274,8 @@ $function$
 
 
 
+
+------------------------------------
 CREATE OR REPLACE FUNCTION public.sumafechadia(fechainicio timestamp without time zone, fechafin timestamp without time zone, id_rec integer)
  RETURNS boolean
  LANGUAGE plpgsql
@@ -241,6 +299,8 @@ $function$
 
 
 
+
+--------------------------------------
 CREATE OR REPLACE FUNCTION public.sumafechames(fechainicio timestamp without time zone, fechafin timestamp without time zone, id_rec integer)
  RETURNS boolean
  LANGUAGE plpgsql
@@ -264,6 +324,9 @@ $function$
 ;
 
 
+
+
+-------------------------------------
 
 CREATE OR REPLACE FUNCTION public.sumafechasemana()
  RETURNS boolean
@@ -291,6 +354,15 @@ $function$
 ;
 
 
+
+
+
+
+
+
+
+--------------------------------------
+
 CREATE OR REPLACE FUNCTION public.sumafechasemana(fechainicio timestamp without time zone, fechafin timestamp without time zone)
  RETURNS timestamp without time zone
  LANGUAGE plpgsql
@@ -308,6 +380,8 @@ $function$
 
 
 
+
+----------------------------------------------------
 CREATE OR REPLACE FUNCTION public.sumafechasemana(fechainicio timestamp without time zone, fechafin timestamp without time zone, id_rec integer)
  RETURNS boolean
  LANGUAGE plpgsql
@@ -327,6 +401,48 @@ BEGIN
 END ; 
 $function$
 ;
+
+
+
+-----------------------------------------VISTAS-----------------------------------------------------------------
+
+
+create or replace view recursos_mas_usados as
+select id_recurso recurso,count(id_recurso) numero_usos
+from reservas
+group by id_recurso
+order by numero_usos desc;
+
+
+----------------------
+
+
+create or replace view recursos_menos_usados as
+select id_recurso recurso,count(id_recurso) numero_usos
+from reservas
+group by id_recurso
+order by numero_usos asc;
+
+
+
+----------------------------------
+
+create or replace view reservas_recurrentes as
+select *
+from reservas
+where tipo='Recurrente'
+order by fecha_solicitud;
+
+
+-----------------------------------
+
+create or replace view reservas_canceladas as
+select *
+from reservas
+where not activa
+order by fecha_solicitud;
+
+
 
 
 
