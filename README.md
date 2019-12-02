@@ -14,6 +14,8 @@
 
 ## Descripción del producto
 
+Ver [funcionalidades](manual.md)
+
 ## Arquitectura y diseño detallado
 
 ### Modelo E-R (Entidad-Relación)
