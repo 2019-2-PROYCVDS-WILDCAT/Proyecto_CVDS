@@ -338,8 +338,8 @@ public class RegistrosBean extends BasePageBean {
         }
     }
 
-    public void eliminarReserva() {
-        serviciosBiblioteca.cancelarReserva(idReserva, usuario);
+    public void eliminarReserva(int idReservaU) {
+        serviciosBiblioteca.cancelarReserva(idReservaU, usuario);
     }
 
 }

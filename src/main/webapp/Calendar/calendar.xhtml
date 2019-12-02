@@ -305,37 +305,49 @@
                             <table class="table table-bordered">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th class="th-sm"></th>
+
                                         <th>Id reserva</th>
                                         <th>Fecha de inicio</th>
                                         <th>Fecha de fin</th>
                                         <th>Tipo</th>
+                                        <th>Cancelar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <ui:repeat var="reserva" value="#{registrosBean.reservasPorUsuario}">
                                         <tr>
-                                            <td class="details">
-                                                
-                                                <span style="display:none;">
 
-                                                    <button type="button" data-id="#{recurso.id}" class="modificarEstado btn btn-dark btn-block" style="width:300px;margin-bottom:10px;" data-toggle="modal" data-target="#changeEModal">
-                                                        Modificar estado del recurso
-
-                                                    </button>
-
-                                                    <h:form>                                       
-                                                        <p:commandButton type="submit"  style="width:300px;" class="btn btn-dark btn-block" actionListener="#{registrosBean.goToCalendar(recurso.id,recurso.tipo,recurso.horaInicio,recurso.horaFin,recurso.nombre)}" value="Visualizar reservas">
-                                                        </p:commandButton>
-                                                    </h:form>
-                                                </span>
-                                            </td>
                                             <td>#{reserva.id}</td>
-                                            
+
                                             <td>#{reserva.fechaInicioReserva}</td>
                                             <td>#{reserva.fechaFinReserva}</td>
                                             <td>#{reserva.tipo}</td>
-                                            
+                                            <td>
+                                                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#mi-modal">
+                                                    Cancelar
+                                                </button>
+                                                <div id="mi-modal" class="modal modal-top fade calendar-modal">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+
+                                                            <div class="modal-header">
+                                                                <h4>¿Seguro desea cancelar?</h4> 
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                                                <h:form>
+                                                                    <p:commandButton type="save" class="btn btn-primary" value="Si" actionListener="#{registrosBean.eliminarReserva(reserva.id)}" onclick="PF('modal').hide();"/>                                                                      
+                                                                    
+                                                                </h:form>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </td>
+
 
                                         </tr>
                                     </ui:repeat>
