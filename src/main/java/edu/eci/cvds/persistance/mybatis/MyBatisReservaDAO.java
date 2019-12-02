@@ -142,6 +142,11 @@ public class MyBatisReservaDAO implements ReservaDAO{
         reservaMapper.cancelarReserva(idReserva,idUsuarioQueCancela);
     }
 
+    @Override
+    public ArrayList<Reserva> loadReservaByUser(String usuario) {
+        return reservaMapper.consultarReservasActivasPorUsuario(usuario);
+    }
+
 
     
     

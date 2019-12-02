@@ -132,7 +132,7 @@ public class ReservasTest {
     
     @Test
     //TEST /3/
-    public void noDeberiaAgregarReservaRecurrenteConFechaInicioMenorAFechaFinal(){
+    public void deberiaAgregarReservaRecurrenteConFechaInicioMenorAFechaFinal(){
         boolean flag = false;
         cambiarFechaReservaTest("2019-11-28 11:22:01","2019-11-28 12:22:01");
         try{

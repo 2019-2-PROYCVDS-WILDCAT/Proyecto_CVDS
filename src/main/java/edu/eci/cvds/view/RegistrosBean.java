@@ -212,6 +212,10 @@ public class RegistrosBean extends BasePageBean {
         return serviciosBiblioteca.consultarReservasPorId(id);
 
     }
+    public ArrayList<Reserva> consultarReservasPorUsuario() {
+        
+        return serviciosBiblioteca.consultarReservasPorUsuario(getUsuario());
+    }
 
     public int getIdReserva() {
         return idReserva;

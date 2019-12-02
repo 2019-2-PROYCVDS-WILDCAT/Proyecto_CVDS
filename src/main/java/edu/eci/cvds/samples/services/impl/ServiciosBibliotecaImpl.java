@@ -157,6 +157,11 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
         reservaDAO.cancelReserva(idReserva,idUsuarioQueCancela);
     }
 
+    @Override
+    public ArrayList<Reserva> consultarReservasPorUsuario(String usuario) {
+        return reservaDAO.loadReservaByUser(usuario);
+    }
+
 
 
 }

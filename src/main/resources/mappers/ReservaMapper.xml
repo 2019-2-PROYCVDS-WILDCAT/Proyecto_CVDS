@@ -45,5 +45,15 @@
         update reservas
         set activa=false
         where id= #{idReserva} and #{idUsuarioQueCancela} = id_usuario
-    </update>                          
+    </update>    
+    <select id="consultarReservasActivasPorUsuario" resultMap="ReservaResult" parameterType="map">
+        SELECT *
+        FROM reservas
+        WHERE id_recurso = #{idUsuario} AND activa = true
+    </select>
+                          
+                                                
+
+                      
+                          
 </mapper>
