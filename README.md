@@ -34,6 +34,10 @@ https://gestion-recursos-bibliotecaeci.herokuapp.com/
 ### Calidad del código
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/96529c2ddd674254b403a423975f8402)](https://www.codacy.com/manual/SimonMarinM/Proyecto_CVDS?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS&amp;utm_campaign=Badge_Grade)
 
+#### Taiga
+ 
+[Taiga backlog](https://tree.taiga.io/project/kyrielw-gestion-de-recursos-biblioteca/backlog)
+
 ## Descripción del proceso
 
 ### Sprint 1
