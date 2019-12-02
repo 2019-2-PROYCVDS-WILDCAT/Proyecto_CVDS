@@ -57,6 +57,7 @@ public class MyBatisReservaDAO implements ReservaDAO{
     public void addReservaRecursiva(Reserva reserva, String periodoReserva) throws ExcepcionServiciosBiblioteca{
         Timestamp fechaInicio = reserva.getFechaInicioReserva();
         Timestamp fechaFin = reserva.getFechaFinReserva();
+        reserva.setTipo("Recurrente");
         try {        
             reserva.setFechaFinReserva(utilidadFecha.intercambiarHoras(fechaInicio.toString(), fechaFin.toString()));
         } catch (ParseException ex) {
@@ -151,6 +152,11 @@ public class MyBatisReservaDAO implements ReservaDAO{
     @Override
     public ArrayList<Reserva> loadReservaByUserAndIdReserva(String usuario, int idReserva) {
         return reservaMapper.consultarReservasActivasPorUsuarioEIdReserva(usuario,idReserva);
+    }
+
+    @Override
+    public void deleteUltimaReservaTest() {
+        reservaMapper.eliminarUltimaReservaTest();
     }
 
 

@@ -26,5 +26,7 @@ public interface ReservaMapper {
     public ArrayList<Reserva> consultarReservasActivasPorUsuario(@Param("idUsuario")String usuario);
 
     public ArrayList<Reserva> consultarReservasActivasPorUsuarioEIdReserva(@Param("idUsuario")String usuario,@Param("idReserva") int idReserva);
+
+    public void eliminarUltimaReservaTest();
     
 }

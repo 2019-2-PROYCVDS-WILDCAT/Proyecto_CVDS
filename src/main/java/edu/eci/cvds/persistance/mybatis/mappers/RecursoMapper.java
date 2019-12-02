@@ -16,4 +16,6 @@ public interface RecursoMapper {
 
     public List<Recurso> consultarRecursosDisponibles();
     
+    public void eliminarUltimoRecursoTest();
+    
 }

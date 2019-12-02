@@ -63,5 +63,10 @@ public class MyBatisRecursoDAO implements RecursoDAO{
             throw e;
         }
     }
+
+    @Override
+    public void deleteUltimoRecursoTest() {
+        recursoMapper.eliminarUltimoRecursoTest();
+    }
        
 }

@@ -59,5 +59,9 @@
         WHERE id_usuario = #{idUsuario} AND activa = true AND id_recurso = #{idReserva}
         ORDER BY fecha_inicio_reserva
     </select>
+    
+    <delete id="eliminarUltimaReservaTest"  parameterType="int">
+    	DELETE FROM reservas WHERE id=(select max(id) from reservas)
+    </delete>    
                           
 </mapper>

@@ -14,5 +14,7 @@ public interface RecursoDAO  {
 
     public List<Recurso> loadRecursosDisponibles() throws PersistenceException;
 
+    public void deleteUltimoRecursoTest();
+
 }
         

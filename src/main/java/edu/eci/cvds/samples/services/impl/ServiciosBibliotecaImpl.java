@@ -167,6 +167,16 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
         return reservaDAO.loadReservaByUserAndIdReserva(usuario,idReserva);
     }
 
+    @Override
+    public void eliminarUltimaReservaTest() {
+        reservaDAO.deleteUltimaReservaTest();
+    }
+
+    @Override
+    public void eliminarUltimoRecursoTest() {
+        recursoDAO.deleteUltimoRecursoTest();
+    }
+
 
 
 }

@@ -19,21 +19,23 @@ public class TestMain {
         SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         
         ServiciosBiblioteca sb = ServiciosBibliotecaFactory.getServiciosBiblioteca();
-        
-        
-            try {
-                long aux1 = formato.parse("2019-11-29 22:22:01").getTime();
-                long aux2 = formato.parse("2019-10-29 23:23:01").getTime();
-
-                Timestamp horaInicioR = new Timestamp(aux1);
-                Timestamp horaFinR = new Timestamp(aux2);
-                Reserva newReserva = new Reserva(0,"perrocanchoso@mail.com", 56,horaInicioR,horaFinR, null,"recurrente",true);                
-                sb.addReserva(newReserva);
-                System.out.println(horaInicioR.before(horaFinR));
-                                
-            } catch (ParseException ex) {
-                Logger.getLogger(RecursosBean.class.getName()).log(Level.SEVERE, null, ex);
-            }        
+        sb.eliminarUltimaReservaTest();
+        sb.eliminarUltimaReservaTest();
+        sb.eliminarUltimaReservaTest();
+//        
+//            try {
+//                long aux1 = formato.parse("2019-11-29 22:22:01").getTime();
+//                long aux2 = formato.parse("2019-10-29 23:23:01").getTime();
+//
+//                Timestamp horaInicioR = new Timestamp(aux1);
+//                Timestamp horaFinR = new Timestamp(aux2);
+//                Reserva newReserva = new Reserva(0,"perrocanchoso@mail.com", 56,horaInicioR,horaFinR, null,"recurrente",true);                
+//                sb.addReserva(newReserva);
+//                System.out.println(horaInicioR.before(horaFinR));
+//                                
+//            } catch (ParseException ex) {
+//                Logger.getLogger(RecursosBean.class.getName()).log(Level.SEVERE, null, ex);
+//            }        
             
 
 //        try {

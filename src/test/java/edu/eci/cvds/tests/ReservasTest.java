@@ -62,6 +62,7 @@ public class ReservasTest {
             flag = false;            
         }
         Assert.assertTrue(flag);        
+        serviciosBiblioteca.eliminarUltimaReservaTest();
     }
     
     @Test
@@ -133,19 +134,21 @@ public class ReservasTest {
     @Test
     //TEST /3/
     public void deberiaAgregarReservaRecurrenteConFechaInicioMenorAFechaFinal(){
-        boolean flag = false;
-        cambiarFechaReservaTest("2019-11-28 11:22:01","2019-11-28 12:22:01");
+        boolean flag = true;
+        cambiarFechaReservaTest("2019-11-27 11:22:01","2019-11-28 11:42:01");
         try{
             serviciosBiblioteca.addReservaRecursiva(reservaTest,"Diario");
         }
         catch(ExcepcionServiciosBiblioteca e){
-            flag = true;            
+            flag = false;                
         }
         Assert.assertTrue(flag);                    
+        serviciosBiblioteca.eliminarUltimaReservaTest();
+        serviciosBiblioteca.eliminarUltimaReservaTest();
     }    
     
     
-    
+
     private void cambiarFechaReservaTest(String fechaInicioReserva, String fechaFinReserva){
         SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         try{

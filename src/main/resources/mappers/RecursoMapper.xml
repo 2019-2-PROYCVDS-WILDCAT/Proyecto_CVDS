@@ -41,7 +41,11 @@
         	UPDATE recursos
                 SET estado = #{state} 
                 WHERE id = #{id} 
-        </update>               
+        </update>      
+        
+        <delete id="eliminarUltimoRecursoTest"  parameterType="int">
+            DELETE FROM recursos WHERE id=(select max(id) from recursos)
+        </delete>                             
  
         
     </mapper>

@@ -40,4 +40,8 @@ public interface ServiciosBiblioteca {
     public ArrayList<Reserva> consultarReservasPorUsuario(String usuario);
 
     public ArrayList<Reserva> consultarReservasPorUsuario(String usuario, int idReserva);
+    
+    public void eliminarUltimaReservaTest();
+    
+    public void eliminarUltimoRecursoTest();
 }
