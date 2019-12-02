@@ -26,8 +26,8 @@ public class ReservasTest {
         SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");   
         serviciosBiblioteca = ServiciosBibliotecaFactory.getServiciosBiblioteca();
             try {
-                long aux1 = formato.parse("2019-11-29 22:22:01").getTime();
-                long aux2 = formato.parse("2019-11-29 23:23:01").getTime();
+                long aux1 = formato.parse("2019-11-29 16:22:01").getTime();
+                long aux2 = formato.parse("2019-11-29 18:23:01").getTime();
 
                 Timestamp horaInicioR = new Timestamp(aux1);
                 Timestamp horaFinR = new Timestamp(aux2);
@@ -54,7 +54,7 @@ public class ReservasTest {
     //TEST /1/
     public void deberiaAgregarReservaConFechaInicioMenorAFechaFin(){
         boolean flag = true;
-        cambiarFechaReservaTest("2019-11-28 22:22:01","2019-11-29 22:22:01");
+        cambiarFechaReservaTest("2019-11-28 14:22:01","2019-11-29 16:22:01");
         try{
             serviciosBiblioteca.addReserva(reservaTest);
         }
@@ -68,7 +68,7 @@ public class ReservasTest {
     //TEST /2/
     public void noDeberiaAgregarReservaConFechaInicioIgualAFechaFinal(){
         boolean flag = false;
-        cambiarFechaReservaTest("2019-11-28 22:22:01","2019-11-28 22:22:01");
+        cambiarFechaReservaTest("2019-11-28 17:22:01","2019-11-28 17:22:01");
         try{
             serviciosBiblioteca.addReserva(reservaTest);
         }
@@ -83,7 +83,7 @@ public class ReservasTest {
     //TEST /3/
     public void noDeberiaAgregarReservaConFechaInicioMayorAFechaFinal(){
         boolean flag = false;
-        cambiarFechaReservaTest("2019-11-30 22:22:01","2019-11-28 22:22:01");
+        cambiarFechaReservaTest("2019-11-30 13:22:01","2019-11-28 11:22:01");
         try{
             serviciosBiblioteca.addReserva(reservaTest);
         }
@@ -106,7 +106,7 @@ public class ReservasTest {
     //TEST /1/
     public void noDeberiaAgregarReservaRecurrenteConFechaInicioMayorAFechaFinal(){
         boolean flag = false;
-        cambiarFechaReservaTest("2019-11-28 22:22:01","2019-11-29 22:22:01");
+        cambiarFechaReservaTest("2019-11-28 15:22:01","2019-11-29 12:22:01");
         try{
             serviciosBiblioteca.addReservaRecursiva(reservaTest,"Diario");
         }
@@ -120,7 +120,7 @@ public class ReservasTest {
     //TEST /2/
     public void noDeberiaAgregarReservaRecurrenteConFechaInicioIgualAFechaFinal(){
         boolean flag = false;
-        cambiarFechaReservaTest("2019-11-28 22:22:01","2019-11-28 22:22:01");
+        cambiarFechaReservaTest("2019-11-28 11:22:01","2019-11-28 11:22:01");
         try{
             serviciosBiblioteca.addReservaRecursiva(reservaTest,"Diario");
         }
@@ -134,7 +134,7 @@ public class ReservasTest {
     //TEST /3/
     public void noDeberiaAgregarReservaRecurrenteConFechaInicioMenorAFechaFinal(){
         boolean flag = false;
-        cambiarFechaReservaTest("2019-11-28 22:22:01","2019-11-28 22:22:01");
+        cambiarFechaReservaTest("2019-11-28 11:22:01","2019-11-28 12:22:01");
         try{
             serviciosBiblioteca.addReservaRecursiva(reservaTest,"Diario");
         }
