@@ -118,6 +118,8 @@ CREATE TABLE public.reservas (
 );
 
 
+ALTER TABLE public.reservas ADD CONSTRAINT horas_de_estudio CHECK ((((date_part('hour'::text, fecha_inicio_reserva) >= '7'::double precision) AND (date_part('hour'::text, fecha_inicio_reserva) <= '19'::double precision)) AND ((date_part('hour'::text, fecha_fin_reserva) >= '7'::double precision) AND (date_part('hour'::text, fecha_fin_reserva) <= '19'::double precision))));
+
 
 -- Table Triggers
 
