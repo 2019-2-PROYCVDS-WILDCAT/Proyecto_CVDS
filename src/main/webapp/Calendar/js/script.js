@@ -9,26 +9,33 @@ var tipoUsuario = document.getElementById('inputTipoUsuario').value;
 function stoperror() {
     return true;
 }
+$(function() {
+  // Sidebar toggle behavior
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar, #content').toggleClass('active');
+  });
+});
+
 window.onerror = stoperror;
 function alertDGC(mensaje)
 {
-    var dgcTiempo=500
-    var ventanaCS='<div class="dgcAlert"><div class="dgcVentana"><div class="dgcCerrar"></div><div class="dgcMensaje">'+mensaje+'<br><div class="dgcAceptar">Aceptar</div></div></div></div>';
+    var dgcTiempo = 500
+    var ventanaCS = '<div class="dgcAlert"><div class="dgcVentana"><div class="dgcCerrar"></div><div class="dgcMensaje">' + mensaje + '<br><div class="dgcAceptar">Aceptar</div></div></div></div>';
     $('body').append(ventanaCS);
-    var alVentana=$('.dgcVentana').height();
-    var alNav=$(window).height();
-    var supNav=$(window).scrollTop();
-    $('.dgcAlert').css('height',$(document).height());
-    $('.dgcVentana').css('top',((alNav-alVentana)/2+supNav-100)+'px');
-    $('.dgcAlert').css('display','block');
-    $('.dgcAlert').animate({opacity:1},dgcTiempo);
-    $('.dgcCerrar,.dgcAceptar').click(function(e) {
-        $('.dgcAlert').animate({opacity:0},dgcTiempo);
-        setTimeout("$('.dgcAlert').remove()",dgcTiempo);
+    var alVentana = $('.dgcVentana').height();
+    var alNav = $(window).height();
+    var supNav = $(window).scrollTop();
+    $('.dgcAlert').css('height', $(document).height());
+    $('.dgcVentana').css('top', ((alNav - alVentana) / 2 + supNav - 100) + 'px');
+    $('.dgcAlert').css('display', 'block');
+    $('.dgcAlert').animate({opacity: 1}, dgcTiempo);
+    $('.dgcCerrar,.dgcAceptar').click(function (e) {
+        $('.dgcAlert').animate({opacity: 0}, dgcTiempo);
+        setTimeout("$('.dgcAlert').remove()", dgcTiempo);
     });
 }
 window.alert = function (message) {
-  alertDGC(message);
+    alertDGC(message);
 };
 
 
@@ -81,7 +88,7 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
                     + '<br /><strong> Fecha de entrega: </strong>' + event.fechaFinReserva
                     + '<br /><strong> Tipo de reserva: </strong>' + event.tipo
                     + '<br /><strong> Id del recurso: </strong>' + event.id;
-        } else if (tipoUsuario === "none") {
+        } else if (tipoUsuario === "Invitado") {
             descripcion = '<br /><strong> Fecha de reserva: </strong>' + event.fechaInicioReserva
                     + '<br /><strong> Fecha de entrega: </strong>' + event.fechaFinReserva;
 
@@ -148,20 +155,19 @@ $.getJSON('/jsonGetEvents', {id: reservaId}, function (events) {
                     element.find(".fc-title").prepend("<i class='fa fa-" + event.icon + "'></i>");
                 }
             },
-            
             dayClick: function (date, jsEvent, view, resourceObj) {
 
                 if (!(usuario === "")) {
                     var now = moment();
                     var fechaMax = moment("2019-12-11T00:00:00");
-                    var horaBien = date.add('5','hours') 
+                    var horaBien = date.add('5', 'hours')
                     if (horaBien.isBefore(now)) {
                         console.log(horaBien);
                         console.log(now);
                         alert("La fecha y horan deben ser mayores a la actual.");
-                    }else if(!(horaBien.isBefore(fechaMax))){
+                    } else if (!(horaBien.isBefore(fechaMax))) {
                         alert("La fecha seleccionada est\u00e1 fuera del semestre en curso");
-                    }else {
+                    } else {
                         if (!(tipo === "Libro")) {
                             $('#colFechaFin').hide();
                         }

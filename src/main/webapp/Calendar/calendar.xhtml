@@ -23,12 +23,52 @@
 
     </h:head>
     <h:body>
-        <h:form>
-            <p:commandButton type="submit" actionListener="#{registrosBean.volver}" class="btn btn-primary" style="position:fixed;z-index:3000;" value="Volver"></p:commandButton>
-        </h:form>
+
+
+        <!-- Vertical navbar -->
+        <div class="vertical-nav bg-white" id="sidebar">
+            <div class="py-4 px-3 mb-4 bg-light">
+                <div class="media d-flex align-items-center"><img src="https://publicdomainvectors.org/photos/1389952697.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm"/>
+                    <div class="media-body">
+                        <h4 class="m-0" style="font-size:12px">#{registrosBean.usuario}</h4>
+                        <p class="font-weight-light text-muted mb-0">#{registrosBean.tipoUsuario}</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Reservas</p>
+
+            <ul class="nav flex-column bg-white mb-0">
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-dark font-italic bg-light">
+                        <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+                        Mis Reservas
+                    </a>
+                </li>
+
+            </ul>
+
+            <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Recursos</p>
+
+            <ul class="nav flex-column bg-white mb-0">
+
+                <li class="nav-item" >
+                    <form jsf:id="formulario">
+                        <a href="#" jsf:actionListener="#{registrosBean.volver}" class="nav-link text-dark font-italic bg-light">
+                            <i class="fa fa-area-chart mr-3 text-primary fa-fw"></i>
+                            Volver a recursos
+                        </a>
+                    </form>
+
+                </li>
+
+            </ul>
+        </div>
 
         <!-- partial:index.partial.html -->
-        <div class="p-5">
+
+        <div class="page-content p-5" id="content">
+            <button id="sidebarCollapse" type="button" class="btn btn-primary rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Opciones</small></button>
             <h2 class="mb-4">Reservas del recurso #{registrosBean.nombreRecurso}</h2>
             <h:inputHidden value="#{registrosBean.tipoRecurso}" id="reservaTipo"></h:inputHidden>
             <h:inputHidden value="#{registrosBean.tipoUsuario}" id="inputTipoUsuario"></h:inputHidden>
@@ -259,7 +299,7 @@
         <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/es.js'></script>
 
         <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js'></script>
-        
+
         <script  src="js/locale/es.js"></script>
         <script  src="js/script.js"></script>
 
