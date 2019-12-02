@@ -3,17 +3,24 @@
 ## Escuela Colombiana de Ingeniería Julio Garavito
 
 ### Integrantes:
-* Brayan Felipe Rojas
-* Simon Marin Mejia
-* James Allan Weisnner
-* Sergio Alejandro Bohórquez 
+|   *TEAM*                      |        *ROL*                |
+|-------------------------------|-----------------------------|
+|`Julián Velasco`               |`Product Owner`              |
+|`James Allan Weisnner`         |`Team Developer`             |
+|`Simon Marin Mejia`            |`Team Developer`             |
+|`Brayan Felipe Rojas`          |`Team Developer`             |
+|`Sergio Alejandro Bohórquez`   |`Team Developer`             |
+
+
 
 ### Profesor:
-* Julián Velasco
+* Julián Velasco (Product Owner)
 
 
 ## Descripción del producto
+Gestión de Recursos-Biblioteca es un servicio que esta diseñado para facilitar toda la gestion a la hora de registrar, consultar y reservar, los diferentes recursos que estan disponibles , en la biblioteca de la Escuela Colombiana de Ingenieria, como lo son libros, Salas de estudio y dispositivos multimendia para diferentes tipos de usuarios que deseén hacer uso de los recursos ofrecidos. El manejo de sesiones para cada usuario es controlado con un login implementado con Apache Shiro que permite la autenticacion, autorizacion y gestion de sesiones. A su vez, manejamos tres tipos de usuarios. Comunidad, Administrador y una vista publica para cualquier usuario que quiera ver los recursos que posee la bliblioteca de la universidad. La comunidad contara con servicios para consultar y reservar cualquier recursos, siempre y cuando este disponible. Los administradores tendran la opcion de registrar, cambiar de estado (Disponible o Dañado), consultar y ver las reservas correspondientes a cualquier recurso. La vista disponible para el publico solo tiene la opcion de visualizar los recuros disponibles. 
 
+Para detallar las funcionalidades en su totalidad desarrollamos el siguiente manual 
 Ver [funcionalidades](manual.md)
 
 ## Arquitectura y diseño detallado
@@ -25,6 +32,21 @@ Ver [funcionalidades](manual.md)
 ### Diagrama de paquetes
 ![Diagrama de clases](https://github.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/blob/master/img/DiagramaPaquetes.png)
 ### Descripción de la arquitectura y tecnologías utilizadas
+
+#### PrimeFaces
+
+Cuenta con una gran cantidad de componentes que permiten la versatilidad a la hora de desarrollar una vista en una aplicacion web. PrimeFaces tambien permite una facil implementacion ya que es una biblioteca de componentes para JavaServer Faces con codigo abierto 
+
+#### jQuery
+
+Es una biblioteca de JavaScript que permite la manipulacion de documentos HTML, manejo de eventos, animaciones y ajax proporcionando una simple API que permite la facil navegacion de los usuarios por la aplicacion 
+
+#### PostgreSQL
+Es un sistema de gestion de base de datos general y relacional. Esta diseñado para porderse ejecutar desde distintas plataformas y poseé caracteristicas avanzadas como herencia de tablas, Transacciones anidada, entre mcuhas otras caracteristicas.
+
+#### Bootstrap
+Es un framework CSS que contiene plantillas para agregar componentes a la interfaz grafica y que sea mas amigable para el usuario que desee utilizar la aplicacion web 
+
 ### Enlace de la aplicación en Heroku
 
 https://gestion-recursos-bibliotecaeci.herokuapp.com/
