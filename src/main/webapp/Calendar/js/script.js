@@ -9,6 +9,12 @@ var tipoUsuario = document.getElementById('inputTipoUsuario').value;
 function stoperror() {
     return true;
 }
+$('#myModal').on('shown.bs.modal', function () {
+    $(this).find('.modal-dialog').css({width:'auto',
+                               height:'auto', 
+                              'max-height':'100%'});
+});
+
 $(function() {
   // Sidebar toggle behavior
   $('#sidebarCollapse').on('click', function() {

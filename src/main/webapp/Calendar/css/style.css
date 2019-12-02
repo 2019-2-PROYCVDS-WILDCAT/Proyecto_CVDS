@@ -1425,7 +1425,7 @@ h2{
 .btn.btn-primary{
   background: #002147;
   color: #ffffff;
-  z-index: 1000000000;
+  z-index: 1;
 }
 .form-group label{
   font-weight: 600;
