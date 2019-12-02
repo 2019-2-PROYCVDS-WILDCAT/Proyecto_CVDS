@@ -21,6 +21,8 @@ public interface ReservaDAO {
 
     public void cancelReserva(int idReserva, String idUsuarioQueCancela);
 
+    public void cancelReservaRecursiva(Reserva reserva, String idUsuarioQueCancela);
+    
     public ArrayList<Reserva> loadReservaByUser(String usuario);
 
 

@@ -142,6 +142,16 @@ public class MyBatisReservaDAO implements ReservaDAO{
     public void cancelReserva(int idReserva, String idUsuarioQueCancela) {
         reservaMapper.cancelarReserva(idReserva,idUsuarioQueCancela);
     }
+    
+    @Override
+    public void cancelReservaRecursiva(Reserva reserva, String idUsuarioQueCancela) {
+        Timestamp fechaInicio = reserva.getFechaInicioReserva();
+        Timestamp fechaFin = reserva.getFechaFinReserva();
+        int intervaloEnDias = utilidadFecha.intervaloEnDias(fechaInicio, fechaFin);
+        for (int i=0;i<intervaloEnDias;i++){
+            cancelReserva(reserva.getId()+i, idUsuarioQueCancela);
+        }
+    }
 
     @Override
     public ArrayList<Reserva> loadReservaByUser(String usuario) {

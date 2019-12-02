@@ -156,6 +156,11 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
         //Si la cancelaciòn de la reserva la realiza un usuario diferente al dueño de la reserva no hace nada momentaneamente
         reservaDAO.cancelReserva(idReserva,idUsuarioQueCancela);
     }
+    
+    @Override
+    public void cancelarReservaRecursiva(Reserva reserva, String idUsuarioQueCancela) {
+        reservaDAO.cancelReservaRecursiva(reserva, idUsuarioQueCancela);
+    }
 
     @Override
     public ArrayList<Reserva> consultarReservasPorUsuario(String usuario) {
@@ -176,6 +181,8 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
     public void eliminarUltimoRecursoTest() {
         recursoDAO.deleteUltimoRecursoTest();
     }
+
+    
 
 
 

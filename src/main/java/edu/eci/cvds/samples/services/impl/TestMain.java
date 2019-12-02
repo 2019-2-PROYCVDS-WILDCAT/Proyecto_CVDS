@@ -19,18 +19,16 @@ public class TestMain {
         SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         
         ServiciosBiblioteca sb = ServiciosBibliotecaFactory.getServiciosBiblioteca();
-        sb.eliminarUltimaReservaTest();
-        sb.eliminarUltimaReservaTest();
-        sb.eliminarUltimaReservaTest();
+        //sb.cancelarReservaRecursiva(226, "perrocanchoso@mail.com");
 //        
 //            try {
-//                long aux1 = formato.parse("2019-11-29 22:22:01").getTime();
-//                long aux2 = formato.parse("2019-10-29 23:23:01").getTime();
+//                long aux1 = formato.parse("2019-10-22 07:22:01").getTime();
+//                long aux2 = formato.parse("2019-10-29 08:23:01").getTime();
 //
 //                Timestamp horaInicioR = new Timestamp(aux1);
 //                Timestamp horaFinR = new Timestamp(aux2);
 //                Reserva newReserva = new Reserva(0,"perrocanchoso@mail.com", 56,horaInicioR,horaFinR, null,"recurrente",true);                
-//                sb.addReserva(newReserva);
+//                sb.addReservaRecursiva(newReserva,"Diario");
 //                System.out.println(horaInicioR.before(horaFinR));
 //                                
 //            } catch (ParseException ex) {
