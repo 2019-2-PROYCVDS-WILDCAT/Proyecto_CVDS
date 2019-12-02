@@ -118,7 +118,7 @@ public class RegistrosBean extends BasePageBean {
                 if (!utilidadFecha.isOverlapping(idReserva, new DateTime(tsFechaInicio.getTime()), new DateTime(tsFechaFin.getTime()))) {
                     //Insertar reserva
 
-                    Reserva reservaInsert = new Reserva(0, usuario, idReserva, tsFechaInicio, tsFechaFin, date, "Normal", true);
+                    Reserva reservaInsert = new Reserva(0, usuario, idReserva, tsFechaInicio, tsFechaFin, date, "Normal", true,0);
 
                     try {
                         serviciosBiblioteca.addReserva(reservaInsert);
@@ -150,7 +150,7 @@ public class RegistrosBean extends BasePageBean {
 
                 Timestamp tsFechaInicio = Timestamp.valueOf(fechaInicio);
                 Timestamp tsFechaFin = Timestamp.valueOf(fechaFin);
-                Reserva reservaInsert = new Reserva(0, usuario, idReserva, tsFechaInicio, tsFechaFin, date, "Recurrente", true);
+                Reserva reservaInsert = new Reserva(0, usuario, idReserva, tsFechaInicio, tsFechaFin, date, "Recurrente", true,0);
                 if (!utilidadFecha.isOverlapping(idReserva, new DateTime(tsFechaInicio.getTime()), new DateTime(tsFechaFin.getTime()))) {
                     try {
                         serviciosBiblioteca.addReservaRecursiva(reservaInsert, this.tipoApartado);

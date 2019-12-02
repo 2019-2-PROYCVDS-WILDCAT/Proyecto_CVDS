@@ -11,6 +11,7 @@
         <result property='fechaFinReserva' column='fecha_fin_reserva' />
         <result property='tipo' column='tipo' />  
         <result property='activo' column='activa' />  
+        <result property='serial' column='serial' /> 
     </resultMap>
     
     <select id="consultarReservas" resultMap="ReservaResult" parameterType="map">
@@ -20,8 +21,8 @@
     
     <insert id="addReserva" parameterType="map">
         INSERT 
-        INTO reservas(id_usuario,id_recurso,fecha_inicio_reserva,fecha_fin_reserva,tipo,activa) 
-        VALUES (#{reserva.idUsuario},#{reserva.idRecurso},#{reserva.fechaInicioReserva}, #{reserva.fechaFinReserva},#{reserva.tipo},#{reserva.activo});
+        INTO reservas(id_usuario,id_recurso,fecha_inicio_reserva,fecha_fin_reserva,tipo,activa,serial) 
+        VALUES (#{reserva.idUsuario},#{reserva.idRecurso},#{reserva.fechaInicioReserva}, #{reserva.fechaFinReserva},#{reserva.tipo},#{reserva.activo},#{reserva.serial});
     </insert>
     
     <select id="consultarReservasPorId" resultMap="ReservaResult" parameterType="map">
@@ -63,5 +64,8 @@
     <delete id="eliminarUltimaReservaTest"  parameterType="int">
     	DELETE FROM reservas WHERE id=(select max(id) from reservas)
     </delete>    
-                          
+    
+    <select id="maxSerial" resultType="java.lang.Integer" >
+        SELECT MAX(serial)+1 from reservas;
+    </select>    
 </mapper>

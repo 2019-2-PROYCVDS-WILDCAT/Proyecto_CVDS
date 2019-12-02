@@ -53,7 +53,7 @@ public class MyBatisReservaDAO implements ReservaDAO{
         
     }    
 
-    @Override
+    @Override    
     public void addReservaRecursiva(Reserva reserva, String periodoReserva) throws ExcepcionServiciosBiblioteca{
         Timestamp fechaInicio = reserva.getFechaInicioReserva();
         Timestamp fechaFin = reserva.getFechaFinReserva();
@@ -66,8 +66,10 @@ public class MyBatisReservaDAO implements ReservaDAO{
         
         int intervaloEnDias = utilidadFecha.intervaloEnDias(fechaInicio, fechaFin);
         if(fechaInicio.before(fechaFin)){
+            int serial = reservaMapper.maxSerial();
+            reserva.setSerial(serial);
             switch (periodoReserva){
-                case "Diario":
+                case "Diario":                    
                         for (int i=0;i<intervaloEnDias+1;i++){                                                            
                             addReserva(reserva); 
                             Timestamp nuevaFechaInicio =  utilidadFecha.incrementarFecha(reserva.getFechaInicioReserva(),1);

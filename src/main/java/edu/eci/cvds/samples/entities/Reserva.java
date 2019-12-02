@@ -18,8 +18,9 @@ public class Reserva {
     Date fechaReserva;
     Timestamp fechaInicioReserva,fechaFinReserva; 
     boolean activo;
+    int serial;
 
-    public Reserva(int id,String idUsuario, int idRecurso, Timestamp fechaInicioReserva, Timestamp fechaFinReserva, Date fechaReserva, String tipo,boolean activo) {
+    public Reserva(int id,String idUsuario, int idRecurso, Timestamp fechaInicioReserva, Timestamp fechaFinReserva, Date fechaReserva, String tipo,boolean activo, int serial) {
         this.id=id;
         this.idUsuario = idUsuario;        
         this.idRecurso = idRecurso;
@@ -28,6 +29,15 @@ public class Reserva {
         this.fechaReserva=fechaReserva;
         this.tipo = tipo;
         this.activo=activo;
+        this.serial=serial;
+    }
+
+    public int getSerial() {
+        return serial;
+    }
+
+    public void setSerial(int serial) {
+        this.serial = serial;
     }
 
     public boolean isActivo() {

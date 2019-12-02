@@ -31,7 +31,7 @@ public class ReservasTest {
 
                 Timestamp horaInicioR = new Timestamp(aux1);
                 Timestamp horaFinR = new Timestamp(aux2);
-                reservaTest = new Reserva(0,"perrocanchoso@mail.com", 59,horaInicioR,horaFinR, null,"normal",true);
+                reservaTest = new Reserva(0,"perrocanchoso@mail.com", 59,horaInicioR,horaFinR, null,"normal",true,0);
                                 
             } catch (ParseException ex) {
                 Logger.getLogger(RecursosBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -162,6 +162,5 @@ public class ReservasTest {
         }
         
         
-    }
-    
+    }    
 }
