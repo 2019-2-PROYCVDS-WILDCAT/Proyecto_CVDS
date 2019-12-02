@@ -28,7 +28,7 @@
         <!-- Vertical navbar -->
         <div class="vertical-nav bg-white" id="sidebar">
             <div class="py-4 px-3 mb-4 bg-light">
-                <div class="media d-flex align-items-center"><img src="https://publicdomainvectors.org/photos/1389952697.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm"/>
+                <div class="media d-flex align-items-center"><img src="https://cdn.icon-icons.com/icons2/632/PNG/512/user_icon-icons.com_57997.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm"/>
                     <div class="media-body">
                         <h4 class="m-0" style="font-size:12px">#{registrosBean.usuario}</h4>
                         <p class="font-weight-light text-muted mb-0">#{registrosBean.tipoUsuario}</p>
@@ -296,7 +296,7 @@
             <div class="modal-dialog mw-100 w-75" >
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" style="font-family:Arvo">Mis reservas</h4>
+                        <h4 class="modal-title" style="font-family:Arvo">Mis reservas de: #{registrosBean.nombreRecurso}</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
                     </div>
@@ -310,7 +310,6 @@
                                         <th>Fecha de inicio</th>
                                         <th>Fecha de fin</th>
                                         <th>Tipo</th>
-                                        <th>Id del recurso</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -332,10 +331,11 @@
                                                 </span>
                                             </td>
                                             <td>#{reserva.id}</td>
+                                            
                                             <td>#{reserva.fechaInicioReserva}</td>
                                             <td>#{reserva.fechaFinReserva}</td>
                                             <td>#{reserva.tipo}</td>
-                                            <td>#{reserva.idRecurso}</td>
+                                            
 
                                         </tr>
                                     </ui:repeat>

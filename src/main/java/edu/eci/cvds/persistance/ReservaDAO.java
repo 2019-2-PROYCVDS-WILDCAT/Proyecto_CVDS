@@ -22,6 +22,9 @@ public interface ReservaDAO {
     public void cancelReserva(int idReserva, String idUsuarioQueCancela);
 
     public ArrayList<Reserva> loadReservaByUser(String usuario);
+
+
+    public ArrayList<Reserva> loadReservaByUserAndIdReserva(String usuario, int idReserva);
     
     
     

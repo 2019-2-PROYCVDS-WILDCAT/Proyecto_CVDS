@@ -148,6 +148,12 @@ public class MyBatisReservaDAO implements ReservaDAO{
     }
 
 
+    @Override
+    public ArrayList<Reserva> loadReservaByUserAndIdReserva(String usuario, int idReserva) {
+        return reservaMapper.consultarReservasActivasPorUsuarioEIdReserva(usuario,idReserva);
+    }
+
+
     
     
     

@@ -162,6 +162,11 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
         return reservaDAO.loadReservaByUser(usuario);
     }
 
+    @Override
+    public ArrayList<Reserva> consultarReservasPorUsuario(String usuario, int idReserva) {
+        return reservaDAO.loadReservaByUserAndIdReserva(usuario,idReserva);
+    }
+
 
 
 }

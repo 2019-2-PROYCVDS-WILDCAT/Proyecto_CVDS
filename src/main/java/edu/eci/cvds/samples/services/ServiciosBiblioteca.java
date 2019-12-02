@@ -38,4 +38,6 @@ public interface ServiciosBiblioteca {
     public void cancelarReserva(int idReserva,String idUsuarioQueCancela);
 
     public ArrayList<Reserva> consultarReservasPorUsuario(String usuario);
+
+    public ArrayList<Reserva> consultarReservasPorUsuario(String usuario, int idReserva);
 }

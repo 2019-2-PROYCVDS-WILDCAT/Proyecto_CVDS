@@ -50,10 +50,14 @@
         SELECT *
         FROM reservas
         WHERE id_usuario = #{idUsuario} AND activa = true
+        ORDER BY fecha_inicio_reserva
     </select>
                           
-                                                
-
-                      
+    <select id="consultarReservasActivasPorUsuarioEIdReserva" resultMap="ReservaResult" parameterType="map">
+        SELECT *
+        FROM reservas
+        WHERE id_usuario = #{idUsuario} AND activa = true AND id_recurso = #{idReserva}
+        ORDER BY fecha_inicio_reserva
+    </select>
                           
 </mapper>
