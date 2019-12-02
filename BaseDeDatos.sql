@@ -446,11 +446,15 @@ order by fecha_solicitud;
 
 create or replace view vista_horarios as
 select reservas.id,reservas.id_recurso,reservas.id_usuario,tipo,activa,
-	to_char(fecha_inicio_reserva,'YYYY-MM-DD hh:mi:ss')::time horaInicio,
-	to_char(fecha_fin_reserva, 'YYYY-MM-DD hh:mi:ss')::time horaFin
+	to_char(fecha_inicio_reserva,'YYYY-MM-DD HH24:mi:ss')::time horaInicio,
+	to_char(fecha_fin_reserva, 'YYYY-MM-DD HH24:mi:ss')::time horaFin
 from reservas 
 
+
+
 --------------------------------------------
+
+
 
 create or replace view vista_cantidad_ocupacion as
 
@@ -504,6 +508,189 @@ select * from vista_cantidad_ocupacion
 
 
 
+
+
+-----------------------------------------------------------
+
+
+
+CREATE OR REPLACE VIEW public.horarios_mayor_ocupacion
+AS SELECT '7:00-8:30'::text AS franja,
+    sum(
+        CASE
+            WHEN vista_horarios.horainicio >= '07:00:00'::time without time zone AND vista_horarios.horainicio < '08:30:00'::time without time zone THEN 1
+            ELSE 0
+        END) AS cantidad_reservas
+   FROM vista_horarios
+UNION ALL
+ SELECT '8:30-10:00'::text AS franja,
+    sum(
+        CASE
+            WHEN vista_horarios.horainicio >= '08:30:00'::time without time zone AND vista_horarios.horainicio < '10:00:00'::time without time zone THEN 1
+            ELSE 0
+        END) AS cantidad_reservas
+   FROM vista_horarios
+UNION ALL
+ SELECT '10:00-11:30'::text AS franja,
+    sum(
+        CASE
+            WHEN vista_horarios.horainicio >= '10:00:00'::time without time zone AND vista_horarios.horainicio < '11:30:00'::time without time zone THEN 1
+            ELSE 0
+        END) AS cantidad_reservas
+   FROM vista_horarios
+UNION ALL
+ SELECT '11:30-13:00'::text AS franja,
+    sum(
+        CASE
+            WHEN vista_horarios.horainicio >= '11:30:00'::time without time zone AND vista_horarios.horainicio < '13:00:00'::time without time zone THEN 1
+            ELSE 0
+        END) AS cantidad_reservas
+   FROM vista_horarios
+UNION ALL
+ SELECT '13:00-14:30'::text AS franja,
+    sum(
+        CASE
+            WHEN vista_horarios.horainicio >= '13:00:00'::time without time zone AND vista_horarios.horainicio < '14:30:00'::time without time zone THEN 1
+            ELSE 0
+        END) AS cantidad_reservas
+   FROM vista_horarios
+UNION ALL
+ SELECT '14:30-16:00'::text AS franja,
+    sum(
+        CASE
+            WHEN vista_horarios.horainicio >= '14:30:00'::time without time zone AND vista_horarios.horainicio < '16:00:00'::time without time zone THEN 1
+            ELSE 0
+        END) AS cantidad_reservas
+   FROM vista_horarios
+UNION ALL
+ SELECT '16:00-17:30'::text AS franja,
+    sum(
+        CASE
+            WHEN vista_horarios.horainicio >= '16:00:00'::time without time zone AND vista_horarios.horainicio < '17:30:00'::time without time zone THEN 1
+            ELSE 0
+        END) AS cantidad_reservas
+   FROM vista_horarios
+UNION ALL
+ SELECT '17:30-19:00'::text AS franja,
+    sum(
+        CASE
+            WHEN vista_horarios.horainicio >= '17:30:00'::time without time zone AND vista_horarios.horainicio <= '19:00:00'::time without time zone THEN 1
+            ELSE 0
+        END) AS cantidad_reservas
+   FROM vista_horarios
+  ORDER BY 2 DESC;
+
+-- Permissions
+
+ALTER TABLE public.horarios_mayor_ocupacion OWNER TO dgzsgodijyfsjh;
+GRANT ALL ON TABLE public.horarios_mayor_ocupacion TO dgzsgodijyfsjh;
+
+
+
+
+
+
+
+
+----------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+CREATE OR REPLACE VIEW public.horarios_menor_ocupacion
+AS SELECT '7:00-8:30'::text AS franja,
+    sum(
+        CASE
+            WHEN vista_horarios.horainicio >= '07:00:00'::time without time zone AND vista_horarios.horainicio < '08:30:00'::time without time zone THEN 1
+            ELSE 0
+        END) AS cantidad_reservas
+   FROM vista_horarios
+UNION ALL
+ SELECT '8:30-10:00'::text AS franja,
+    sum(
+        CASE
+            WHEN vista_horarios.horainicio >= '08:30:00'::time without time zone AND vista_horarios.horainicio < '10:00:00'::time without time zone THEN 1
+            ELSE 0
+        END) AS cantidad_reservas
+   FROM vista_horarios
+UNION ALL
+ SELECT '10:00-11:30'::text AS franja,
+    sum(
+        CASE
+            WHEN vista_horarios.horainicio >= '10:00:00'::time without time zone AND vista_horarios.horainicio < '11:30:00'::time without time zone THEN 1
+            ELSE 0
+        END) AS cantidad_reservas
+   FROM vista_horarios
+UNION ALL
+ SELECT '11:30-13:00'::text AS franja,
+    sum(
+        CASE
+            WHEN vista_horarios.horainicio >= '11:30:00'::time without time zone AND vista_horarios.horainicio < '13:00:00'::time without time zone THEN 1
+            ELSE 0
+        END) AS cantidad_reservas
+   FROM vista_horarios
+UNION ALL
+ SELECT '13:00-14:30'::text AS franja,
+    sum(
+        CASE
+            WHEN vista_horarios.horainicio >= '13:00:00'::time without time zone AND vista_horarios.horainicio < '14:30:00'::time without time zone THEN 1
+            ELSE 0
+        END) AS cantidad_reservas
+   FROM vista_horarios
+UNION ALL
+ SELECT '14:30-16:00'::text AS franja,
+    sum(
+        CASE
+            WHEN vista_horarios.horainicio >= '14:30:00'::time without time zone AND vista_horarios.horainicio < '16:00:00'::time without time zone THEN 1
+            ELSE 0
+        END) AS cantidad_reservas
+   FROM vista_horarios
+UNION ALL
+ SELECT '16:00-17:30'::text AS franja,
+    sum(
+        CASE
+            WHEN vista_horarios.horainicio >= '16:00:00'::time without time zone AND vista_horarios.horainicio < '17:30:00'::time without time zone THEN 1
+            ELSE 0
+        END) AS cantidad_reservas
+   FROM vista_horarios
+UNION ALL
+ SELECT '17:30-19:00'::text AS franja,
+    sum(
+        CASE
+            WHEN vista_horarios.horainicio >= '17:30:00'::time without time zone AND vista_horarios.horainicio <= '19:00:00'::time without time zone THEN 1
+            ELSE 0
+        END) AS cantidad_reservas
+   FROM vista_horarios
+  ORDER BY 2;
+
+-- Permissions
+
+ALTER TABLE public.horarios_menor_ocupacion OWNER TO dgzsgodijyfsjh;
+GRANT ALL ON TABLE public.horarios_menor_ocupacion TO dgzsgodijyfsjh;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------
 
 
 
