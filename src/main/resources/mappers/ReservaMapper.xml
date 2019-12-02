@@ -49,7 +49,7 @@
     <select id="consultarReservasActivasPorUsuario" resultMap="ReservaResult" parameterType="map">
         SELECT *
         FROM reservas
-        WHERE id_recurso = #{idUsuario} AND activa = true
+        WHERE id_usuario = #{idUsuario} AND activa = true
     </select>
                           
                                                 

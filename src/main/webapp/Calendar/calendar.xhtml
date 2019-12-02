@@ -306,25 +306,19 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th class="th-sm"></th>
-                                        <th>Id</th>
-                                        <th>Nombre</th>
-                                        <th>Capacidad</th>
-                                        <th>Ubicacion</th>
+                                        <th>Id reserva</th>
+                                        <th>Fecha de inicio</th>
+                                        <th>Fecha de fin</th>
                                         <th>Tipo</th>
-                                        <th>Estado</th>
+                                        <th>Id del recurso</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <ui:repeat var="reserva" value="#{recursosBean.recursos}">
+                                    <ui:repeat var="reserva" value="#{registrosBean.reservasPorUsuario}">
                                         <tr>
                                             <td class="details">
-                                                <center><i class="far fa-plus-square fa-2x "></i></center>
+                                                
                                                 <span style="display:none;">
-
-                                                    <p style="margin-left: 70px">
-                                                        Administrar recurso
-                                                        #{recurso.id}
-                                                    </p>
 
                                                     <button type="button" data-id="#{recurso.id}" class="modificarEstado btn btn-dark btn-block" style="width:300px;margin-bottom:10px;" data-toggle="modal" data-target="#changeEModal">
                                                         Modificar estado del recurso
@@ -335,16 +329,13 @@
                                                         <p:commandButton type="submit"  style="width:300px;" class="btn btn-dark btn-block" actionListener="#{registrosBean.goToCalendar(recurso.id,recurso.tipo,recurso.horaInicio,recurso.horaFin,recurso.nombre)}" value="Visualizar reservas">
                                                         </p:commandButton>
                                                     </h:form>
-
-
                                                 </span>
                                             </td>
-                                            <td>#{recurso.id}</td>
-                                            <td>#{recurso.nombre}</td>
-                                            <td>#{recurso.capacidad}</td>
-                                            <td>#{recurso.ubicacion}</td>
-                                            <td>#{recurso.tipo}</td>
-                                            <td>#{recurso.estado}</td>
+                                            <td>#{reserva.id}</td>
+                                            <td>#{reserva.fechaInicioReserva}</td>
+                                            <td>#{reserva.fechaFinReserva}</td>
+                                            <td>#{reserva.tipo}</td>
+                                            <td>#{reserva.idRecurso}</td>
 
                                         </tr>
                                     </ui:repeat>

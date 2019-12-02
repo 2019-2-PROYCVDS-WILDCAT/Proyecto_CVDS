@@ -39,6 +39,7 @@ public class RegistrosBean extends BasePageBean {
     private Recurso selectedRec;
     private String estado;
     private List<Recurso> recursos;
+    private ArrayList<Reserva> reservasPorUsuario;
     private String usuario, tipoUsuario;
 
     private ArrayList<String> tiposApartado = new ArrayList<String>() {
@@ -212,11 +213,15 @@ public class RegistrosBean extends BasePageBean {
         return serviciosBiblioteca.consultarReservasPorId(id);
 
     }
-    public ArrayList<Reserva> consultarReservasPorUsuario() {
+    public ArrayList<Reserva> getReservasPorUsuario() {
         
         return serviciosBiblioteca.consultarReservasPorUsuario(getUsuario());
     }
 
+    public void setReservasPorUsuario(ArrayList<Reserva> reservasPorUsuario) {
+        this.reservasPorUsuario = reservasPorUsuario;
+    }
+    
     public int getIdReserva() {
         return idReserva;
     }
