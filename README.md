@@ -93,6 +93,17 @@ Iniciando este Sprint, supimos que la parte que más tomaría tiempo seria la im
 
 ![Sprint2 Burndown chart](https://github.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/blob/master/img/Sprint%202%20Burndown%20chart.PNG)
 
+### Sprint 3
+Este sprint fue el sprint final en el desarrollo de la plataforma virtual para la biblioteca, fue enfocado en la extensión y mejora de las funcionalidades relacionadas a la reserva, en este fueron añadidas las Características de cancelar una reserva y hacer un reporte de ocupación de las reservas, entre otras funcionalidades como las de poder consultar el estado de una reserva y poder visualizarlas (siendo un usuario registrado o no registrado).
+En este sprint se trató de pulir el proyecto de manera general, eliminar remanentes de métodos y clases que fueron descartadas, pero seguían en el código y la mejora de algunas pruebas que estaban poblando de manera innecesaria la base de datos principal. Pero los aspectos que más destacan son los de la cancelación de una reserva y el del reporte de ocupación (funcionalidad solamente disponible para los administradores del portal web). Por un lado la cancelación de la reserva no se deshace totalmente de una reserva sino que cambia su estado (columna que fue llamada "activa"), cuando una reserva deja de ser vigente su estado cambia de activa (true) a inactiva (false), lo cual permite no descartar toda la información de una reserva, que posteriormente puede ser útil para hacer diferentes análisis en el uso y la ocupación de los recursos, lo que nos lleva al siguiente avance principal hecho en este sprint, el reporte de ocupación. El reporte de ocupación es una funcionalidad destinada a los administradores del portal web de la biblioteca y brinda variada información estadística al administrador acerca del comportamiento de las reservas, acá se encontrará información como: Los recursos más usados, los recursos menos usados, horarios de mayor ocupación de recursos, horarios de menor ocupación de recursos, reservas recurrentes y reservas canceladas. Sin lugar a duda esta fue la característica que consumió más tiempo en el sprint, ya que la integración de graficas en la página web no fue tarea fácil.
+
+En conclusión con el desarrollo del proyecto pudimos darnos cuenta que tan importante es la organización y la buena administración del tiempo para tener resultados favorables, establecer metas y calcular el tiempo que se tomara cumplirlas es un detalle que no debería ser pasado por alto en el desarrollo de un proyecto de esta magnitud, esto nos muestra que codificar de manera inquisitiva no siempre resuelve todos los problemas de un proyecto de desarrollo de software y que sin lugar nunca hay que subestimar el tiempo que tomara aprender a usar una herramienta. Esto fue evidenciado principalmente en el desarrollo del "Front end" de la plataforma, que durante todo el proyecto demostró ser la parte más desafiante, debido a que era un nuevo tópico para todos los integrantes del equipo. Finalmente, la culminación de este proyecto nos hizo utilizar y afianzar varias habilidades que han sido aprendidas durante toda la carrera, como el uso de bases de datos, la programación orientada a objetos, el desarrollo de pruebas al código, la escritura de archivos XML, entre otras.
+
+### Sprint 3 - Backlog
+
+![Sprint2 Backlog](https://github.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/blob/master/img/Sprint%203%20Backlog.PNG)
+
+### Sprint 3 - Burndown chart
 
 
 
