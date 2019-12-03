@@ -65,4 +65,6 @@ public interface ServiciosBiblioteca {
     
     public List<ReporteHorario> consultarHorariosMas();
     public List<ReporteHorario> consultarHorariosMenos();
+
+    public List<Reserva> consultarReservasRecurrentes();
 }

@@ -171,6 +171,11 @@ public class MyBatisReservaDAO implements ReservaDAO{
         reservaMapper.eliminarUltimaReservaTest();
     }
 
+    @Override
+    public List<Reserva> loadReservasRecurrentes() {
+        return reservaMapper.consultarReservasRecurrentes(); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
     
     

@@ -29,6 +29,8 @@ public interface ReservaDAO {
     public ArrayList<Reserva> loadReservaByUserAndIdReserva(String usuario, int idReserva);
 
     public void deleteUltimaReservaTest();
+
+    public List<Reserva> loadReservasRecurrentes();
     
     
     

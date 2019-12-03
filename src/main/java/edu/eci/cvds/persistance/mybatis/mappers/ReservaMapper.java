@@ -30,5 +30,7 @@ public interface ReservaMapper {
     public void eliminarUltimaReservaTest();
     
     public int maxSerial();
+
+    public List<Reserva> consultarReservasRecurrentes();
     
 }

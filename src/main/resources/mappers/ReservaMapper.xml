@@ -66,6 +66,9 @@
     </delete>    
     
     <select id="maxSerial" resultType="java.lang.Integer" >
-        SELECT MAX(serial)+1 from reservas;
-    </select>    
+        SELECT MAX(serial)+1 from reservas
+    </select> 
+    <select id="consultarReservasRecurrentes" resultMap="ReservaResult" parameterType="map">
+        SELECT * FROM reservas_recurrentes
+    </select>  
 </mapper>

@@ -210,6 +210,11 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
         return reporteHorarioDAO.loadHorariosMenos();
     }
 
+    @Override
+    public List<Reserva> consultarReservasRecurrentes() {
+        return reservaDAO.loadReservasRecurrentes(); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 
 

@@ -8,6 +8,7 @@ package edu.eci.cvds.view;
 import com.google.inject.Inject;
 import edu.eci.cvds.samples.entities.ReporteHorario;
 import edu.eci.cvds.samples.entities.ReporteRecurso;
+import edu.eci.cvds.samples.entities.Reserva;
 import edu.eci.cvds.samples.services.ServiciosBiblioteca;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -28,7 +29,9 @@ public class AdminBean extends BasePageBean{
     private List<ReporteRecurso> recursosMenosUsados;
     private List<ReporteHorario> horariosMas;
     private List<ReporteHorario> horariosMenos;
+    private List<Reserva> reservasRecurrentes;
 
+    
     public ServiciosBiblioteca getServiciosBiblioteca() {
         return serviciosBiblioteca;
     }
@@ -67,6 +70,14 @@ public class AdminBean extends BasePageBean{
 
     public void setHorariosMenos(List<ReporteHorario> horariosMenos) {
         this.horariosMenos = horariosMenos;
+    }
+
+    public List<Reserva> getReservasRecurrentes() {
+        return serviciosBiblioteca.consultarReservasRecurrentes();
+    }
+
+    public void setReservasRecurrentes(List<Reserva> reservasRecurrentes) {
+        this.reservasRecurrentes = reservasRecurrentes;
     }
     
     

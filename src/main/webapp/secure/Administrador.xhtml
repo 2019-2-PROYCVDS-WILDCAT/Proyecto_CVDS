@@ -46,12 +46,9 @@
 
         <main role="main">
             <section class="panel important">
-                <h2>Welcome to Your Dashboard </h2>
-                <ul>
-                    <li>Important panel that will always be really wide Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-                    <li>Aliquam tincidunt mauris eu risus.</li>
-                    <li>Vestibulum auctor dapibus neque.</li>
-                </ul>
+                <h2>Bienvenido administrador</h2>
+                <p>En esta vista podrás visualizar que esta pasando con Recursos-ECI</p>
+
             </section>
             <section class="panel">
                 <h2>Recursos mas usados</h2>
@@ -145,7 +142,33 @@
                     </table>
                 </div>
             </section>
-
+            <section class="panel important">
+                <h2>Reservas Recurrentes</h2>
+                <div class="table-responsive" style="overflow-x:hidden">
+                    <table id="example4" class="table table-striped  row-border order-column">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Serial</th>
+                                <th>Fecha de solicitud</th>
+                                <th>Reservado por</th>
+                                <th>Franja horario inicio</th>
+                                <th>Franja horaria fin</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:repeat var="reserva" value="#{adminBean.reservasRecurrentes}">
+                                <tr>
+                                    <td>#{reserva.serial}</td>
+                                    <td>#{reserva.fechaReserva}</td>
+                                    <td>#{reserva.idUsuario}</td>
+                                    <td>#{reserva.fechaInicioReserva}</td>
+                                    <td>#{reserva.fechaFinReserva}</td>
+                                </tr>
+                            </ui:repeat>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
             <section class="panel">
                 <h2>feedback</h2>
                 <div class="feedback">This is neutral feedback Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, praesentium. Libero perspiciatis quis aliquid iste quam dignissimos, accusamus temporibus ullam voluptatum, tempora pariatur, similique molestias blanditiis at sunt earum neque.</div>
