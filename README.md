@@ -31,6 +31,11 @@ Ver [funcionalidades](manual.md)
 ![Diagrama de clases](https://github.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/blob/master/img/DClasesA.png)
 ### Diagrama de paquetes
 ![Diagrama de clases](https://github.com/2019-2-PROYCVDS-WILDCAT/Proyecto_CVDS/blob/master/img/DiagramaPaquetes.png)
+
+### Cobertura de pruebas
+![eljuasjuas](/img/jacoco.PNG)
+![eljuasjuas2](/img/jacoco1.PNG)
+
 ### Descripción de la arquitectura y tecnologías utilizadas
 
 #### PrimeFaces
