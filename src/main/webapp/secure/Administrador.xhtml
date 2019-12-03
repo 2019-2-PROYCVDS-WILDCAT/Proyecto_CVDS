@@ -38,8 +38,14 @@
 
         <nav role="navigation">
             <ul class="main">
-                <li ><a href="#"><i class="fa fa-th-large mr-3 text-primary fa-fw"></i> Reporte ocupación </a></li>
-                <li ><a href="#"><i class="fa fa-gears text-primary mr-3" ></i> Administración de recursos</a></li>
+                <li ><a href="#"> Reporte reservas </a></li>
+                <li ><a href="#rep1"><i class="fa fa-th-large mr-3 text-primary fa-fw"></i> Mas usados </a></li>
+                <li ><a href="#rep2"><i class="fa fa-th-large mr-3 text-primary fa-fw"></i> Menos usados</a></li>
+                <li ><a href="#rep3"><i class="fa fa-th-large mr-3 text-primary fa-fw"></i> Mas concurridos </a></li>
+                <li ><a href="#rep4"><i class="fa fa-th-large mr-3 text-primary fa-fw"></i> Menos concurridos </a></li>
+                <li ><a href="#rep5"><i class="fa fa-th-large mr-3 text-primary fa-fw"></i> Recurrentes </a></li>
+                <li ><a href="#rep6"><i class="fa fa-th-large mr-3 text-primary fa-fw"></i> Canceladas </a></li>
+                <li ><a href="/faces/secure/RecursosAdmin.xhtml"><i class="fa fa-gears text-primary mr-3" ></i> Administración de recursos</a></li>
 
             </ul>
         </nav>
@@ -50,8 +56,8 @@
                 <p>En esta vista podrás visualizar que esta pasando con Recursos-ECI</p>
 
             </section>
-            <section class="panel">
-                <h2>Recursos mas usados</h2>
+            <section class="panel" id="rep1">
+                <h2 >Recursos mas usados</h2>
                 <div class="table-responsive" style="overflow-x:hidden">
                     <table id="example1" class="table table-striped  row-border order-column display nowrap">
                         <thead class="thead-dark">
@@ -73,7 +79,7 @@
                     </table>
                 </div>
             </section>
-            <section class="panel">
+            <section class="panel" id="rep2">
                 <h2>Recursos menos usados</h2>
                 <div class="table-responsive" style="overflow-x:hidden">
                     <table id="example2" class="table table-striped  row-border order-column">
@@ -96,7 +102,7 @@
                     </table>
                 </div>
             </section>
-            <section class="panel">
+            <section class="panel" id="rep3">
                 <h2>Horarios mas concurridos</h2>
                 <div class="table-responsive" style="overflow-x:hidden">
                     <table id="example3" class="table table-striped  row-border order-column">
@@ -119,7 +125,7 @@
                     </table>
                 </div>
             </section>
-            <section class="panel">
+            <section class="panel" id="rep4">
                 <h2>Horarios menos concurridos</h2>
                 <div class="table-responsive" style="overflow-x:hidden">
                     <table id="example4" class="table table-striped  row-border order-column">
@@ -142,10 +148,10 @@
                     </table>
                 </div>
             </section>
-            <section class="panel important">
+            <section class="panel important" id="rep5">
                 <h2>Reservas Recurrentes</h2>
                 <div class="table-responsive" style="overflow-x:hidden">
-                    <table id="example4" class="table table-striped  row-border order-column">
+                    <table id="example5" class="table table-striped  row-border order-column">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Serial</th>
@@ -169,42 +175,39 @@
                     </table>
                 </div>
             </section>
+            <section class="panel important" id="rep6">
+                <h2>Reservas canceladas</h2>
+                <div class="table-responsive" style="overflow-x:hidden">
+                    <table id="example6" class="table table-striped  row-border order-column">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Id</th>
+                                <th>Fecha de solicitud</th>
+                                <th>Reservado por</th>
+                                <th>Franja horario inicio</th>
+                                <th>Franja horaria fin</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:repeat var="reserva" value="#{adminBean.reservasCanceladas}">
+                                <tr>
+                                    <td>#{reserva.id}</td>
+                                    <td>#{reserva.fechaReserva}</td>
+                                    <td>#{reserva.idUsuario}</td>
+                                    <td>#{reserva.fechaInicioReserva}</td>
+                                    <td>#{reserva.fechaFinReserva}</td>
+                                </tr>
+                            </ui:repeat>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
             <section class="panel">
-                <h2>feedback</h2>
-                <div class="feedback">This is neutral feedback Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, praesentium. Libero perspiciatis quis aliquid iste quam dignissimos, accusamus temporibus ullam voluptatum, tempora pariatur, similique molestias blanditiis at sunt earum neque.</div>
-                <div class="feedback error">This is warning feedback
-                    <ul>
-                        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-                        <li>Aliquam tincidunt mauris eu risus.</li>
-                        <li>Vestibulum auctor dapibus neque.</li>
-                    </ul>  </div>
-                <div class="feedback success">This is positive feedback</div>
+                <h2>Grafica ejemplo</h2>
+                            
 
             </section>
-            <section class="panel ">
-                <h2>Table</h2>
-                <table>
-                    <tr>
-                        <th>Username</th>
-                        <th>Posts</th>
-                        <th>comments</th>
-                        <th>date</th>
-                    </tr>
-                    <tr>
-                        <td>Pete</td>
-                        <td>4</td>
-                        <td>7</td>
-                        <td>Oct 10, 2015</td>
-
-                    </tr>
-                    <tr>
-                        <td>Mary</td>
-                        <td>5769</td>
-                        <td>2517</td>
-                        <td>Jan 1, 2014</td>
-                    </tr>
-                </table>
-            </section>
+            
 
         </main>
 

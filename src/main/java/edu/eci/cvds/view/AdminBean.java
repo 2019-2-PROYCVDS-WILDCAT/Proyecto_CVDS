@@ -10,9 +10,11 @@ import edu.eci.cvds.samples.entities.ReporteHorario;
 import edu.eci.cvds.samples.entities.ReporteRecurso;
 import edu.eci.cvds.samples.entities.Reserva;
 import edu.eci.cvds.samples.services.ServiciosBiblioteca;
+
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
 
 /**
  *
@@ -30,6 +32,9 @@ public class AdminBean extends BasePageBean{
     private List<ReporteHorario> horariosMas;
     private List<ReporteHorario> horariosMenos;
     private List<Reserva> reservasRecurrentes;
+    private List<Reserva> reservasCanceladas;
+    
+    
 
     
     public ServiciosBiblioteca getServiciosBiblioteca() {
@@ -79,6 +84,16 @@ public class AdminBean extends BasePageBean{
     public void setReservasRecurrentes(List<Reserva> reservasRecurrentes) {
         this.reservasRecurrentes = reservasRecurrentes;
     }
+
+    public List<Reserva> getReservasCanceladas() {
+        return serviciosBiblioteca.reservasCanceladas();
+    }
+
+    public void setReservasCanceladas(List<Reserva> reservasCanceladas) {
+        this.reservasCanceladas = reservasCanceladas;
+    }
+    
+   
     
     
     

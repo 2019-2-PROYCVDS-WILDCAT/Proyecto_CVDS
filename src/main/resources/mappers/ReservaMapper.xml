@@ -70,5 +70,8 @@
     </select> 
     <select id="consultarReservasRecurrentes" resultMap="ReservaResult" parameterType="map">
         SELECT * FROM reservas_recurrentes
-    </select>  
+    </select>
+    <select id="consultarReservasCanceladas" resultMap="ReservaResult" parameterType="map">
+        SELECT * FROM reservas_canceladas
+    </select>    
 </mapper>
