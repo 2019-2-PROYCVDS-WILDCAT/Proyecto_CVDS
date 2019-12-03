@@ -45,7 +45,8 @@
         
         <delete id="eliminarUltimoRecursoTest"  parameterType="int">
             DELETE FROM recursos WHERE id=(select max(id) from recursos)
-        </delete>                             
+        </delete> 
+                                       
  
         
     </mapper>

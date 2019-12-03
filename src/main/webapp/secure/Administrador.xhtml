@@ -9,34 +9,38 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"/>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css'/>
         <link rel="stylesheet" href="css/adm.css"/>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+        <link rel='stylesheet' href='https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css'/>
+        <link rel='stylesheet' href='https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css'/>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
     </h:head>
     <h:body>
         <!-- partial:index.partial.html -->
         <header role="banner">
-            <h1>Administracion</h1>
+            <h1>Administración</h1>
             <ul class="utilities">
-                <li>
+                <li style="margin-right:20px;">
                     <form method="POST" class="my-login-validation" jsf:id="formulario" novalidate=""> 
                         <div class="form-group m-0">
-                            <button type="submit" class="btn btn-dark btn-block" jsf:actionListener="#{LoginBean.cerrarSesion()}">
+                            <button type="submit" style="margin-top:20px;" class="btn btn-dark btn-block" jsf:actionListener="#{LoginBean.cerrarSesion()}">
                                 Cerrar Sesion                                           
                             </button>
                         </div>
                     </form>
                 </li>
-                
+
             </ul>
         </header>
 
         <nav role="navigation">
             <ul class="main">
-                <li class="dashboard"><a href="#">Dashboard</a></li>
-                <li class="write"><a href="#">Write Post</a></li>
-                <li class="edit"><a href="#">Edit Posts</a></li>
-                <li class="comments"><a href="#">Comments</a></li>
-                <li class="users"><a href="#">Manage Users</a></li>
+                <li ><a href="#"><i class="fa fa-th-large mr-3 text-primary fa-fw"></i> Reporte ocupación </a></li>
+                <li ><a href="#"><i class="fa fa-gears text-primary mr-3" ></i> Administración de recursos</a></li>
+
             </ul>
         </nav>
 
@@ -50,64 +54,98 @@
                 </ul>
             </section>
             <section class="panel">
-                <h2>Posts</h2>
-                <ul>
-                    <li><b>2458 </b>Published Posts</li>
-                    <li><b>18</b> Drafts.</li>
-                    <li>Most popular post: <b>This is a post title</b>.</li>
-                </ul>
+                <h2>Recursos mas usados</h2>
+                <div class="table-responsive" style="overflow-x:hidden">
+                    <table id="example1" class="table table-striped  row-border order-column display nowrap">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Numero de usos</th>                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:repeat var="recurso" value="#{adminBean.recursosMasUsados}">
+                                <tr>
+                                    <td>#{recurso.id}</td>
+                                    <td>#{recurso.nombre}</td>
+                                    <td>#{recurso.numeroUsos}</td>
+                                </tr>
+                            </ui:repeat>
+                        </tbody>
+                    </table>
+                </div>
             </section>
             <section class="panel">
-                <h2>Chart</h2>
-                <ul>
-                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-                    <li>Aliquam tincidunt mauris eu risus.</li>
-                    <li>Vestibulum auctor dapibus neque.</li>
-                </ul>
+                <h2>Recursos menos usados</h2>
+                <div class="table-responsive" style="overflow-x:hidden">
+                    <table id="example2" class="table table-striped  row-border order-column">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Numero de usos</th>                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:repeat var="recurso" value="#{adminBean.recursosMenosUsados}">
+                                <tr>
+                                    <td>#{recurso.id}</td>
+                                    <td>#{recurso.nombre}</td>
+                                    <td>#{recurso.numeroUsos}</td>
+                                </tr>
+                            </ui:repeat>
+                        </tbody>
+                    </table>
+                </div>
             </section>
-            <section class="panel important">
-                <h2>Write a post</h2>
-                <form action="#">
-                    <div class="twothirds">
-                        <label for="name">Text Input:</label>
-                        <input type="text" name="name" id="name" placeholder="John Smith" />
+            <section class="panel">
+                <h2>Horarios mas concurridos</h2>
+                <div class="table-responsive" style="overflow-x:hidden">
+                    <table id="example3" class="table table-striped  row-border order-column">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Franja horaria</th>
+                                <th>Cantidad de reservas</th>
 
-                        <label for="textarea">Textarea:</label>
-                        <textarea cols="40" rows="8" name="textarea" id="textarea"></textarea>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:repeat var="franja" value="#{adminBean.horariosMas}">
+                                <tr>
+                                    <td>#{franja.franja}</td>
+                                    <td>#{franja.cantidad}</td>
 
-                    </div>
-                    <div class="onethird">
-                        <legend>Radio Button Choice</legend>
-
-                        <label for="radio-choice-1">
-                            <input type="radio" name="radio-choice" id="radio-choice-1" value="choice-1" /> Choice 1
-                        </label>
-
-                        <label for="radio-choice-2">
-                            <input type="radio" name="radio-choice" id="radio-choice-2" value="choice-2" /> Choice 2
-                        </label>
-
-
-                        <label for="select-choice">Select Dropdown Choice:</label>
-                        <select name="select-choice" id="select-choice">
-                            <option value="Choice 1">Choice 1</option>
-                            <option value="Choice 2">Choice 2</option>
-                            <option value="Choice 3">Choice 3</option>
-                        </select>
-
-
-                        <div>
-                            <label for="checkbox">
-                                <input type="checkbox" name="checkbox" id="checkbox" /> Checkbox
-                            </label>
-                        </div>
-
-                        <div>
-                            <input type="submit" value="Submit" />
-                        </div>
-                    </div>
-                </form>
+                                </tr>
+                            </ui:repeat>
+                        </tbody>
+                    </table>
+                </div>
             </section>
+            <section class="panel">
+                <h2>Horarios menos concurridos</h2>
+                <div class="table-responsive" style="overflow-x:hidden">
+                    <table id="example4" class="table table-striped  row-border order-column">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Franja horaria</th>
+                                <th>Cantidad de reservas</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:repeat var="franja" value="#{adminBean.horariosMenos}">
+                                <tr>
+                                    <td>#{franja.franja}</td>
+                                    <td>#{franja.cantidad}</td>
+
+                                </tr>
+                            </ui:repeat>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
             <section class="panel">
                 <h2>feedback</h2>
                 <div class="feedback">This is neutral feedback Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, praesentium. Libero perspiciatis quis aliquid iste quam dignissimos, accusamus temporibus ullam voluptatum, tempora pariatur, similique molestias blanditiis at sunt earum neque.</div>
@@ -148,6 +186,18 @@
         </main>
 
         <!-- partial -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdjsn.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="js/my-login.js"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script src='https://cdn.datatables.net/s/ju/dt-1.10.10,b-1.1.0,fc-3.2.0,fh-3.1.0,r-2.0.0,sc-1.4.0/datatables.min.js'></script>
+        <script  src="js/scriptAdm.js"></script>
+
+        <script src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
+        <script src='https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js'></script>
+        <script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js'></script>
         <script  src="js/scriptAdm.js"></script>
 
     </h:body>

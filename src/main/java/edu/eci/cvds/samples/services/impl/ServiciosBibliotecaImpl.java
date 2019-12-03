@@ -5,10 +5,14 @@ import edu.eci.cvds.persistance.HorarioDAO;
 
 import edu.eci.cvds.persistance.PersistenceException;
 import edu.eci.cvds.persistance.RecursoDAO;
+import edu.eci.cvds.persistance.ReporteHorarioDAO;
 import edu.eci.cvds.persistance.ReservaDAO;
 import edu.eci.cvds.persistance.UserDAO;
+import edu.eci.cvds.persistance.ReporteRecursoDAO;
 import edu.eci.cvds.samples.entities.Horario;
 import edu.eci.cvds.samples.entities.Recurso;
+import edu.eci.cvds.samples.entities.ReporteHorario;
+import edu.eci.cvds.samples.entities.ReporteRecurso;
 import edu.eci.cvds.samples.entities.Reserva;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ServiciosBiblioteca;
@@ -27,6 +31,10 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
     private HorarioDAO horarioDAO;
     @Inject
     private ReservaDAO reservaDAO;
+    @Inject
+    private ReporteRecursoDAO reporteRecursoDAO;
+    @Inject
+    private ReporteHorarioDAO reporteHorarioDAO;
     
     @Override
     public Usuario consultarUsuario(String email) throws PersistenceException {
@@ -180,6 +188,26 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
     @Override
     public void eliminarUltimoRecursoTest() {
         recursoDAO.deleteUltimoRecursoTest();
+    }
+
+    @Override
+    public List<ReporteRecurso> consultarRecursosMenosUsados() {
+        return reporteRecursoDAO.loadRecursosMenosUsados(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<ReporteRecurso> consultarRecursosMasUsados() {
+        return reporteRecursoDAO.loadRecursosMasUsados();
+    }
+
+    @Override
+    public List<ReporteHorario> consultarHorariosMas() {
+        return reporteHorarioDAO.loadHorariosMas();
+    }
+
+    @Override
+    public List<ReporteHorario> consultarHorariosMenos() {
+        return reporteHorarioDAO.loadHorariosMenos();
     }
 
     

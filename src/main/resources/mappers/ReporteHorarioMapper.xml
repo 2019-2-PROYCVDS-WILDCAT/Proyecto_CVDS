@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="edu.eci.cvds.persistance.mybatis.mappers.ReporteHorarioMapper">
+      
+        <resultMap type='ReporteHorario' id='ReporteHorarioResult'>
+            <id property='franja' column='franja' />
+            <result property='cantidad' column='cantidad_reservas'/>
+            
+                  
+        </resultMap>
+      
+        <select id="consultarHorarioMas" resultMap="ReporteHorarioResult" parameterType="map">
+                SELECT *
+                FROM horarios_mayor_ocupacion
+                
+	</select>
+        <select id="consultarHorarioMenos" resultMap="ReporteHorarioResult" parameterType="map">
+                SELECT *
+                FROM horarios_menor_ocupacion
+                
+	</select>                          
+         
+                                       
+ 
+        
+ </mapper>

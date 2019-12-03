@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="edu.eci.cvds.persistance.mybatis.mappers.ReporteRecursoMapper">
+      
+        <resultMap type='ReporteRecurso' id='ReporteRecursoResult'>
+            <id property='id' column='recurso' />
+            <result property='nombre' column='nombre'/>
+            <result property='numeroUsos' column='numero_usos'/>
+                  
+        </resultMap>
+      
+        <select id="consultarRecursosMenosUsados" resultMap="ReporteRecursoResult" parameterType="map">
+                SELECT *
+                FROM recursos_menos_usados
+                
+	</select>
+        <select id="consultarRecursosMasUsados" resultMap="ReporteRecursoResult" parameterType="map">
+                SELECT *
+                FROM recursos_mas_usados
+                
+	</select>                          
+         
+                                       
+ 
+        
+ </mapper>

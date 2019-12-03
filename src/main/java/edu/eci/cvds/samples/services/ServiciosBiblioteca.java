@@ -3,6 +3,8 @@ package edu.eci.cvds.samples.services;
 import edu.eci.cvds.persistance.PersistenceException;
 import edu.eci.cvds.samples.entities.Horario;
 import edu.eci.cvds.samples.entities.Recurso;
+import edu.eci.cvds.samples.entities.ReporteHorario;
+import edu.eci.cvds.samples.entities.ReporteRecurso;
 import edu.eci.cvds.samples.entities.Reserva;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.exceptions.ExcepcionServiciosBiblioteca;
@@ -56,4 +58,11 @@ public interface ServiciosBiblioteca {
     public void eliminarUltimaReservaTest();
     
     public void eliminarUltimoRecursoTest();
+    
+    public List<ReporteRecurso> consultarRecursosMenosUsados();
+    
+    public List<ReporteRecurso> consultarRecursosMasUsados();
+    
+    public List<ReporteHorario> consultarHorariosMas();
+    public List<ReporteHorario> consultarHorariosMenos();
 }

@@ -11,6 +11,8 @@
                 <typeAlias type='edu.eci.cvds.samples.entities.Recurso' alias='Recurso'/>
                 <typeAlias type='edu.eci.cvds.samples.entities.Horario' alias='Horario'/>
                 <typeAlias type='edu.eci.cvds.samples.entities.Reserva' alias='Reserva'/>
+                <typeAlias type='edu.eci.cvds.samples.entities.ReporteRecurso' alias='ReporteRecurso'/>
+                <typeAlias type='edu.eci.cvds.samples.entities.ReporteHorario' alias='ReporteHorario'/>
 	</typeAliases>
 
 	<environments default="development">
@@ -30,6 +32,8 @@
                 <mapper resource="mappers/RecursoMapper.xml"></mapper>
                 <mapper resource="mappers/HorarioMapper.xml"></mapper>
                 <mapper resource="mappers/ReservaMapper.xml"></mapper>
+                <mapper resource="mappers/ReporteRecursoMapper.xml"></mapper>
+                <mapper resource="mappers/ReporteHorarioMapper.xml"></mapper>
 	</mappers>
 
 </configuration>

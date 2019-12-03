@@ -9,10 +9,14 @@ import java.util.Optional;
 import edu.eci.cvds.persistance.mybatis.MyBatisUserDAO;
 import edu.eci.cvds.samples.services.impl.ServiciosBibliotecaImpl;
 import edu.eci.cvds.persistance.RecursoDAO;
+import edu.eci.cvds.persistance.ReporteHorarioDAO;
+import edu.eci.cvds.persistance.ReporteRecursoDAO;
 import edu.eci.cvds.persistance.ReservaDAO;
 import edu.eci.cvds.persistance.UserDAO;
 import edu.eci.cvds.persistance.mybatis.MyBatisHorarioDAO;
 import edu.eci.cvds.persistance.mybatis.MyBatisRecursoDAO;
+import edu.eci.cvds.persistance.mybatis.MyBatisReporteHorarioDAO;
+import edu.eci.cvds.persistance.mybatis.MyBatisReporteRecursoDAO;
 import edu.eci.cvds.persistance.mybatis.MyBatisReservaDAO;
 import edu.eci.cvds.security.IniciarSesion;
 import edu.eci.cvds.security.ApacheShiroLogger;
@@ -32,6 +36,8 @@ public class ServiciosBibliotecaFactory {
                bind(RecursoDAO.class).to(MyBatisRecursoDAO.class);
                bind(ReservaDAO.class).to(MyBatisReservaDAO.class);
                bind(HorarioDAO.class).to(MyBatisHorarioDAO.class);
+               bind(ReporteRecursoDAO.class).to(MyBatisReporteRecursoDAO.class);
+               bind(ReporteHorarioDAO.class).to(MyBatisReporteHorarioDAO.class);
                bind(IniciarSesion.class).to(ApacheShiroLogger.class);
                bind(ServiciosBiblioteca.class).to(ServiciosBibliotecaImpl.class);
                
