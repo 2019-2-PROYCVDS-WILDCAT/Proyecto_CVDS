@@ -1,253 +1,154 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets" >
     <h:head>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width,initial-scale=1"/>
-        <title>Administrador</title>
-        <link href="img/favicon.png" rel="icon"/>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Arvo" />
-        <link rel="stylesheet" type="text/css" href="css/Administrador.css" />
+        <meta charset="UTF-8"></meta>
+        <title>Simple Flat Admin Template</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"/>
-        <link rel='stylesheet' href='https://cdn.datatables.net/s/ju/dt-1.10.10,b-1.1.0,fc-3.2.0,r-2.0.0,sc-1.4.0/datatables.min.css'/>
-        <link rel="stylesheet" href="css/style.css"/>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
-        <link rel="stylesheet" href="https://cdn.datatables.net/s/ju/dt-1.10.10,b-1.1.0,fc-3.2.0,r-2.0.0,sc-1.4.0/datatables.min.css" />
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css" />
-
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
-        <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css'/>
+        <link rel="stylesheet" href="css/adm.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
     </h:head>
+    <h:body>
+        <!-- partial:index.partial.html -->
+        <header role="banner">
+            <h1>Administracion</h1>
+            <ul class="utilities">
+                <li>
+                    <form method="POST" class="my-login-validation" jsf:id="formulario" novalidate=""> 
+                        <div class="form-group m-0">
+                            <button type="submit" class="btn btn-dark btn-block" jsf:actionListener="#{LoginBean.cerrarSesion()}">
+                                Cerrar Sesion                                           
+                            </button>
+                        </div>
+                    </form>
+                </li>
+                
+            </ul>
+        </header>
 
-    <h:body class="my-login-page">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="#" style="color:hsl(209.86, 100%, 57.06%)" >Administración de recursos</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item" style="margin-right:10px;">
-                            <div class="form-group m-0">
-                                <button type="submit" class="btn btn-dark btn-block" >
-                                    Home
-                                    <span class="sr-only">(current)</span>
-                                </button>
-                            </div>
-                        </li>
-                        <li class="nav-item" style="margin-right:10px;">
-                            <div class="form-group m-0">
-                                <button type="button" class="btn btn-dark btn-block" data-toggle="modal" data-target="#registerModal">
-                                    Registrar Recurso
-                                </button>
-                            </div>
-                        </li>
-                        <li class="nav-item" >
-                            <a class="nav-link" href="#"></a>
-                        </li>
-                        <li>
-                            <form method="POST" class="my-login-validation" jsf:id="formulario" novalidate=""> 
-                                <div class="form-group m-0">
-                                    <button type="submit" class="btn btn-dark btn-block" jsf:actionListener="#{LoginBean.cerrarSesion()}">
-                                        Cerrar Sesion                                           
-                                    </button>
-                                </div>
-                            </form>
-                        </li>
-                    </ul>
-
-                </div>
-            </div>
+        <nav role="navigation">
+            <ul class="main">
+                <li class="dashboard"><a href="#">Dashboard</a></li>
+                <li class="write"><a href="#">Write Post</a></li>
+                <li class="edit"><a href="#">Edit Posts</a></li>
+                <li class="comments"><a href="#">Comments</a></li>
+                <li class="users"><a href="#">Manage Users</a></li>
+            </ul>
         </nav>
 
-        <!-- Full Page Image Header with Vertically Centered Content -->
+        <main role="main">
+            <section class="panel important">
+                <h2>Welcome to Your Dashboard </h2>
+                <ul>
+                    <li>Important panel that will always be really wide Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+                    <li>Aliquam tincidunt mauris eu risus.</li>
+                    <li>Vestibulum auctor dapibus neque.</li>
+                </ul>
+            </section>
+            <section class="panel">
+                <h2>Posts</h2>
+                <ul>
+                    <li><b>2458 </b>Published Posts</li>
+                    <li><b>18</b> Drafts.</li>
+                    <li>Most popular post: <b>This is a post title</b>.</li>
+                </ul>
+            </section>
+            <section class="panel">
+                <h2>Chart</h2>
+                <ul>
+                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+                    <li>Aliquam tincidunt mauris eu risus.</li>
+                    <li>Vestibulum auctor dapibus neque.</li>
+                </ul>
+            </section>
+            <section class="panel important">
+                <h2>Write a post</h2>
+                <form action="#">
+                    <div class="twothirds">
+                        <label for="name">Text Input:</label>
+                        <input type="text" name="name" id="name" placeholder="John Smith" />
+
+                        <label for="textarea">Textarea:</label>
+                        <textarea cols="40" rows="8" name="textarea" id="textarea"></textarea>
+
+                    </div>
+                    <div class="onethird">
+                        <legend>Radio Button Choice</legend>
+
+                        <label for="radio-choice-1">
+                            <input type="radio" name="radio-choice" id="radio-choice-1" value="choice-1" /> Choice 1
+                        </label>
+
+                        <label for="radio-choice-2">
+                            <input type="radio" name="radio-choice" id="radio-choice-2" value="choice-2" /> Choice 2
+                        </label>
 
 
-        <div class="table-responsive" style="margin-top:75px;">
-            <table id="example" class="table table-striped  row-border order-column">
-                <thead class="thead-dark">
+                        <label for="select-choice">Select Dropdown Choice:</label>
+                        <select name="select-choice" id="select-choice">
+                            <option value="Choice 1">Choice 1</option>
+                            <option value="Choice 2">Choice 2</option>
+                            <option value="Choice 3">Choice 3</option>
+                        </select>
+
+
+                        <div>
+                            <label for="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkbox" /> Checkbox
+                            </label>
+                        </div>
+
+                        <div>
+                            <input type="submit" value="Submit" />
+                        </div>
+                    </div>
+                </form>
+            </section>
+            <section class="panel">
+                <h2>feedback</h2>
+                <div class="feedback">This is neutral feedback Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, praesentium. Libero perspiciatis quis aliquid iste quam dignissimos, accusamus temporibus ullam voluptatum, tempora pariatur, similique molestias blanditiis at sunt earum neque.</div>
+                <div class="feedback error">This is warning feedback
+                    <ul>
+                        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+                        <li>Aliquam tincidunt mauris eu risus.</li>
+                        <li>Vestibulum auctor dapibus neque.</li>
+                    </ul>  </div>
+                <div class="feedback success">This is positive feedback</div>
+
+            </section>
+            <section class="panel ">
+                <h2>Table</h2>
+                <table>
                     <tr>
-                        <th class="th-sm"></th>
-                        <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Capacidad</th>
-                        <th>Ubicacion</th>
-                        <th>Tipo</th>
-                        <th>Estado</th>
+                        <th>Username</th>
+                        <th>Posts</th>
+                        <th>comments</th>
+                        <th>date</th>
                     </tr>
-                </thead>
-                <tbody>
-                    <ui:repeat var="recurso" value="#{recursosBean.recursos}">
-                        <tr>
-                            <td class="details">
-                                <center><i class="far fa-plus-square fa-2x "></i></center>
-                                <span style="display:none;">
-                                    
-                                    <p style="margin-left: 70px">
-                                        Administrar recurso
-                                        #{recurso.id}
-                                    </p>
+                    <tr>
+                        <td>Pete</td>
+                        <td>4</td>
+                        <td>7</td>
+                        <td>Oct 10, 2015</td>
 
-                                    <button type="button" data-id="#{recurso.id}" class="modificarEstado btn btn-dark btn-block" style="width:300px;margin-bottom:10px;" data-toggle="modal" data-target="#changeEModal">
-                                        Modificar estado del recurso
+                    </tr>
+                    <tr>
+                        <td>Mary</td>
+                        <td>5769</td>
+                        <td>2517</td>
+                        <td>Jan 1, 2014</td>
+                    </tr>
+                </table>
+            </section>
 
-                                    </button>
-                                    
-                                    <h:form>                                       
-                                        <p:commandButton type="submit"  style="width:300px;" class="btn btn-dark btn-block" actionListener="#{registrosBean.goToCalendar(recurso.id,recurso.tipo,recurso.horaInicio,recurso.horaFin,recurso.nombre)}" value="Visualizar reservas">
-                                        </p:commandButton>
-                                    </h:form>
+        </main>
 
-
-                                </span>
-                            </td>
-                            <td>#{recurso.id}</td>
-                            <td>#{recurso.nombre}</td>
-                            <td>#{recurso.capacidad}</td>
-                            <td>#{recurso.ubicacion}</td>
-                            <td>#{recurso.tipo}</td>
-                            <td>#{recurso.estado}</td>
-
-                        </tr>
-                    </ui:repeat>
-                </tbody>
-            </table>
-            
-        </div>
-
-
-        <!-- Page Content -->
-
-
-        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Registrar Recurso</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <h:form id="formut" >
-                        <div class="modal-body">
-
-                            <div class="form-group">
-                                <input id="nombre" type="nombre" class="form-control" name="nombre" value="" required="true" autofocus="true" jsf:value="#{recursosBean.nombre}" placeholder="Nombre"/>
-                            </div>
-                            <div class="form-group">
-                                <input id="ubicacion" type="ubicacion" class="form-control" name="ubicacion" value="" required="true" autofocus="true" jsf:value="#{recursosBean.ubicacion}" placeholder="Ubicacion"/>
-                            </div>
-                            <div class="form-group">
-                                <h:selectOneMenu value="#{recursosBean.tipo}">
-                                    <f:selectItems value="#{recursosBean.tipos}" />
-                                </h:selectOneMenu>  
-                            </div>
-
-                            <div class="form-group">
-                                <input id="capacidad" type="capacidad" class="form-control" name="capacidad" value="" required="true"  autofocus="true" jsf:value="#{recursosBean.capacidad}" placeholder="Capacidad"/>
-                            </div>
-                            <p>Horarios de disponibilidad</p>
-
-                            <div class="form-group">
-
-                                <input id="horainicio" type="horainicio" class="form-control" name="horainicio" value="" required="true" autofocus="true" width="120" jsf:value="#{recursosBean.horaInicio}" placeholder="Hora inicio"/>                                
-                                <script>
-                                    $('#horainicio').timepicker({
-                                    });
-                                </script>
-                            </div>
-                            <div class="form-group">
-                                <input id="horafin" type="horafin" class="form-control" name="horafin" value="" required="true" autofocus="true" width="120" jsf:value="#{recursosBean.horaFin}" placeholder="Hora fin"/>
-                                <script>
-                                    $('#horafin').timepicker({
-                                    });
-                                </script>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <p:commandButton type="submit" class="btn btn-primary btn-block" value="Registrar" actionListener="#{recursosBean.registrarRecurso}" onclick="PF('modal').hide();
-                                    $('#form').trigger('reset')" update="@form">
-
-                                <f:ajax  execute="@form" render="nombre ubicacion tipo capacidad horainicio horafin" />
-
-                            </p:commandButton>
-                        </div>
-                    </h:form>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="changeEModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Cambiar estado</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <h:form id= "modifyStatus">
-                            <p:growl id="growl" showDetail="true" sticky="false" life="10000"/>
-                            <p:panel header="">
-                                <p:outputLabel for="msg" value="" style="display:none"/>   
-                                <h:inputHidden id="msg" value="#{recursosBean.estado}" />  
-
-                                <h:inputHidden id="idStatus" binding="#{idStatus}"/>
-                                <div class="form-group">
-
-                                    <h:selectOneMenu value="#{recursosBean.estado}">
-                                        <f:selectItems value="#{recursosBean.estados}" />
-                                    </h:selectOneMenu>  
-                                </div>
-
-                                <div class="modal-footer">
-
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <p:commandButton type="Save" class="btn btn-primary btn-block" 
-                                                     actionListener="#{recursosBean.modificarEstado(idStatus.value)}" style="width:150px;" value="Cambiar" 
-                                                     onclick="PF('modal').hide();
-                                                             $('#modifyStatus').trigger('reset')" action="#{recursosBean.saveMessage}" update="@form">
-
-
-                                    </p:commandButton>
-                                </div>
-                            </p:panel>
-                        </h:form>
-
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-
-
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+" cros8abtTE1Pi6jizosorigin="anonymous"></script>
-        <script src="https://cdjsn.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <script src="js/my-login.js"></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-        <script src='https://cdn.datatables.net/s/ju/dt-1.10.10,b-1.1.0,fc-3.2.0,fh-3.1.0,r-2.0.0,sc-1.4.0/datatables.min.js'></script>
-        <script  src="js/script.js"></script>
+        <!-- partial -->
+        <script  src="js/scriptAdm.js"></script>
 
     </h:body>
 </html>
