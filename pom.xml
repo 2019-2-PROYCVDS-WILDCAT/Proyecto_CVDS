@@ -239,7 +239,43 @@
                     <path>/</path>
                 </configuration>
             </plugin>
-
+			
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.2</version>
+                <configuration>
+                    <excludes>
+                        <exclude>edu/eci/cvds/samples/entities/**/*</exclude>
+                        <exclude>edu/eci/cvds/view/**/*</exclude>
+                        <exclude>edu/eci/cvds/guice/**/*</exclude>
+                        <exclude>edu/eci/cvds/utility/**/*</exclude>
+                        <exclude>edu/eci/cvds/security/**/*</exclude>
+						<exclude>edu/eci/cvds/persistance/**/*</exclude>
+                    </excludes>
+                </configuration>
+				<executions>
+					<execution>
+					<goals>
+						<goal>prepare-agent</goal>
+					</goals>
+					</execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+					<execution>
+						<id>report-t</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 
 
         </plugins>
