@@ -202,4 +202,6 @@ public interface ServiciosBiblioteca {
    
     
     public List<Reserva> consultarReservasRecurrentes();
+
+    public List<Reserva> reservasCanceladas();
 }

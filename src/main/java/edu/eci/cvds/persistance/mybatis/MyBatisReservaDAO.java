@@ -176,6 +176,11 @@ public class MyBatisReservaDAO implements ReservaDAO{
         return reservaMapper.consultarReservasRecurrentes(); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public List<Reserva> loadReservasCanceladas() {
+        return reservaMapper.consultarReservasCanceladas(); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
     
     

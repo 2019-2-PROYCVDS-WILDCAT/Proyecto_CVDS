@@ -215,6 +215,11 @@ public class ServiciosBibliotecaImpl implements ServiciosBiblioteca{
         return reservaDAO.loadReservasRecurrentes(); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public List<Reserva> reservasCanceladas() {
+        return reservaDAO.loadReservasCanceladas(); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 
 

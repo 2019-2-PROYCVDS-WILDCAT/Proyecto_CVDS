@@ -31,6 +31,8 @@ public interface ReservaDAO {
     public void deleteUltimaReservaTest();
 
     public List<Reserva> loadReservasRecurrentes();
+
+    public List<Reserva> loadReservasCanceladas();
     
     
     

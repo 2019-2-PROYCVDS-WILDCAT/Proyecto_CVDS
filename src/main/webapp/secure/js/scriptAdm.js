@@ -73,5 +73,35 @@ $('#example4').dataTable({
             }
         }]
 });
+$('#example5').dataTable({
+    dom: 'Bfrtip',
+    searching: true,
+    paging: true,
+    ordering: true,
+    info: true,
+    buttons: [{
+            extend: 'excelHtml5',
+            customize: function (xlsx) {
+                var sheet = xlsx.xl.worksheets['sheet1.xml'];
+
+                $('row c[r^="C"]', sheet).attr('s', '2');
+            }
+        }]
+});
+$('#example6').dataTable({
+    dom: 'Bfrtip',
+    searching: true,
+    paging: true,
+    ordering: true,
+    info: true,
+    buttons: [{
+            extend: 'excelHtml5',
+            customize: function (xlsx) {
+                var sheet = xlsx.xl.worksheets['sheet1.xml'];
+
+                $('row c[r^="C"]', sheet).attr('s', '2');
+            }
+        }]
+});
 
 
