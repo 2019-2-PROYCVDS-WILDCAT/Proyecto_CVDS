@@ -105,6 +105,8 @@ En conclusión con el desarrollo del proyecto pudimos darnos cuenta que tan impo
 
 ### Sprint 3 - Burndown chart
 
+![Sprint2 Backlog](/img/sprint3.png)
+
 
 
 
