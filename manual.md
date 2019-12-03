@@ -92,4 +92,12 @@ La página cuenta con los siguientes servicios dependiendo del rol que tenga el 
       
    
    
++ **Las credenciales para ingresar como administrador son las siguientes:**
+
+   +Usuario: admon@mail.com
+   +Contraseña: admon
    
++ **Las credenciales para ingresar como comunidad son las siguientes:**
+
+   +Usuario: hawaii50@mail.com
+   +Contraseña: queso74
