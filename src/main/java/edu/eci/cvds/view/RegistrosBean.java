@@ -118,7 +118,7 @@ public class RegistrosBean extends BasePageBean {
                 if (!utilidadFecha.isOverlapping(idReserva, new DateTime(tsFechaInicio.getTime()), new DateTime(tsFechaFin.getTime()))) {
                     //Insertar reserva
 
-                    Reserva reservaInsert = new Reserva(0, usuario, idReserva, tsFechaInicio, tsFechaFin, date, "Normal", true,0);
+                    Reserva reservaInsert = new Reserva(0, usuario, idReserva, tsFechaInicio, tsFechaFin, date, "Normal", true, 0);
 
                     try {
                         serviciosBiblioteca.addReserva(reservaInsert);
@@ -145,25 +145,19 @@ public class RegistrosBean extends BasePageBean {
         } else if (utilidadFecha.outOfBoundsDate(fechaFin)) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "La fecha seleccionada est\u00e1 fuera del semestre en curso", ""));
         } else {
+
+            Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+
+            Timestamp tsFechaInicio = Timestamp.valueOf(fechaInicio);
+            Timestamp tsFechaFin = Timestamp.valueOf(fechaFin);
+            Reserva reservaInsert = new Reserva(0, usuario, idReserva, tsFechaInicio, tsFechaFin, date, "Recurrente", true, 0);
+
             try {
-                Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+                serviciosBiblioteca.addReservaRecursiva(reservaInsert, this.tipoApartado);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Reserva realizada correctamente.", ""));
+            } catch (Exception e) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Tiempo m\u00e1ximo de reserva: 2 horas.", ""));
 
-                Timestamp tsFechaInicio = Timestamp.valueOf(fechaInicio);
-                Timestamp tsFechaFin = Timestamp.valueOf(fechaFin);
-                Reserva reservaInsert = new Reserva(0, usuario, idReserva, tsFechaInicio, tsFechaFin, date, "Recurrente", true,0);
-                if (!utilidadFecha.isOverlapping(idReserva, new DateTime(tsFechaInicio.getTime()), new DateTime(tsFechaFin.getTime()))) {
-                    try {
-                        serviciosBiblioteca.addReservaRecursiva(reservaInsert, this.tipoApartado);
-                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Reserva realizada correctamente.", ""));
-                    } catch (Exception e) {
-                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Tiempo m\u00e1ximo de reserva: 2 horas.", ""));
-
-                    }
-                } else {
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "La reserva se cruza con una existente.", ""));
-                }
-            } catch (ExcepcionServiciosBiblioteca ex) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage(), ""));
             }
 
         }
@@ -213,15 +207,16 @@ public class RegistrosBean extends BasePageBean {
         return serviciosBiblioteca.consultarReservasPorId(id);
 
     }
+
     public ArrayList<Reserva> getReservasPorUsuario() {
-        
-        return serviciosBiblioteca.consultarReservasPorUsuario(getUsuario(),idReserva);
+
+        return serviciosBiblioteca.consultarReservasPorUsuario(getUsuario(), idReserva);
     }
 
     public void setReservasPorUsuario(ArrayList<Reserva> reservasPorUsuario) {
         this.reservasPorUsuario = reservasPorUsuario;
     }
-    
+
     public int getIdReserva() {
         return idReserva;
     }
