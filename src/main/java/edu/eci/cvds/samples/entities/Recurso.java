@@ -8,8 +8,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
+/**
+ * Objeto que representa un recurso, este puede ser una sala de estudio, un recurso multimedia o un libro
+ * @param id Numero de identificacion de un recurso
+ * @param estado String con el estado de un recurso este puede ser "Disponible" o "Dañado"
+ * @param ubicacion String con la ubicacion de un recurso
+ * @param tipo String que indica de que tipo es un objeto
+ * @param capacidad En caso de que el recurso sea una sala de estudio tendra un numero de capacidad maxima, en caso contrario la capacidad del recurso sera 0 por defecto
+ * @param horaInicio Hora inical en la que le recurso esta disponible
+ * @param horaFin Hora con el ultimo momento en el dia en el que el recurso esta disponible
+ * @author LEVIATAN
+ */
+
 public class Recurso implements Serializable{
 
+    
     private int id;
     private String estado;
     private String nombre;

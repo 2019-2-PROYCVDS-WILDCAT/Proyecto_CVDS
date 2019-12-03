@@ -23,7 +23,7 @@ import org.joda.time.DateTime;
 import org.joda.time.Interval;
 
 /**
- *
+ * Clase con varios metodos estaticos que sirven para manipular fechas tipo Timestamp
  * @author LEVIATAN
  */
 public class UtilidadFecha {
@@ -33,6 +33,12 @@ public class UtilidadFecha {
     public UtilidadFecha() {
     }
 
+    /**
+     * Incrementa una fecha un n numero de dias.
+     * @param fecha Fecha que se va a elevar un n numero de dias
+     * @param numeroDias Numero de dias que corresponde a n.
+     * @return Objeto tipo Timestamp al cual ya se le ha hecho el incremento
+     */
     public Timestamp incrementarFecha(Timestamp fecha, int numeroDias) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(fecha);
@@ -41,6 +47,13 @@ public class UtilidadFecha {
         Timestamp fechaDefinitiva = new Timestamp(fechaAux.getTime());
         return fechaDefinitiva;
     }
+    
+    /**
+     * Incrementa una fecha un n numero de meses
+     * @param fecha Fecha que se va a elevar un n numero de dias
+     * @param numeroDias Numero de meses que corresponde a n.
+     * @return Objeto tipo Timestamp al cual ya se le ha hecho el incremento en meses
+     */
 
     public Timestamp incrementarMes(Timestamp fecha, int numeroMeses) {
 
@@ -51,6 +64,13 @@ public class UtilidadFecha {
         Timestamp fechaDefinitiva = new Timestamp(fechaAux.getTime());
         return fechaDefinitiva;
     }
+    
+    /**
+     * Calcula el numero de dias que hay entre dos fechas
+     * @param fechaInicial Fecha inicial para hacer el calculo
+     * @param fechaFin Fecha final para hacer el calculo
+     * @return Numero entero de dias entre dos fechas
+     */
 
     public int intervaloEnDias(Date fechaInicial, Date fechaFin) {
 
@@ -58,20 +78,48 @@ public class UtilidadFecha {
         return numeroDeDias;
     }
 
+    /**
+     * Calcula el numero de horas que hay entre dos fechas
+     * @param fechaInicial Fecha inicial para hacer el calculo
+     * @param fechaFin Fecha final para hacer el calculo
+     * @return Numero de horas entre dos fechas
+     */
+    
     public int intervaloEnHoras(Date horaInicial, Date horaFin) {
         return 1;
     }
 
+    /**
+     * Funcion para tomar el formato de horas usado por la plataforma de la biblioteca
+     * @return 
+     */
     public SimpleDateFormat getFormato() {
         return new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     }
 
+    /**
+     * Intercambia las horas entre dos fechas proporcionadas
+     * @param primerFecha 
+     * @param segundaFecha
+     * @return Timestamp con la primer fecha pero con la hora de la segunda fecha
+     * @throws ParseException 
+     */
+    
     public Timestamp intercambiarHoras(String primerFecha, String segundaFecha) throws ParseException {
         String[] lista1 = primerFecha.split(" ");
         String[] lista2 = segundaFecha.split(" ");
         Timestamp fechaIntercambiada = new Timestamp(getFormato().parse(lista1[0] + " " + lista2[1]).getTime());
         return fechaIntercambiada;
     }
+    
+    /**
+     * Identifica si dos fechas de una reserva se sobrelapan
+     * @param idReserva Numero de identificacion de la reserva que se va a comprobar
+     * @param fechaInicio 
+     * @param fechaFin
+     * @return
+     * @throws ExcepcionServiciosBiblioteca 
+     */
 
     public boolean isOverlapping(int idReserva, DateTime fechaInicio, DateTime fechaFin) throws ExcepcionServiciosBiblioteca {
         try {

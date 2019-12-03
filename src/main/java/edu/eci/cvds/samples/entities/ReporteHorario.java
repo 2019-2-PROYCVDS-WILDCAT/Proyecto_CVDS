@@ -6,7 +6,7 @@
 package edu.eci.cvds.samples.entities;
 
 /**
- *
+ * 
  * @author AlejandroB
  */
 public class ReporteHorario {

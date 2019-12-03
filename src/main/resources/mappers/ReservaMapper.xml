@@ -57,7 +57,7 @@
     <select id="consultarReservasActivasPorUsuarioEIdReserva" resultMap="ReservaResult" parameterType="map">
         SELECT *
         FROM reservas
-        WHERE id_usuario = #{idUsuario} AND activa = true AND id_recurso = #{idReserva}
+        WHERE id_usuario = #{idUsuario} AND activa = true AND id_recurso = #{idRecurso}
         ORDER BY fecha_inicio_reserva
     </select>
     

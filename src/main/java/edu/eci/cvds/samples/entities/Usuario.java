@@ -1,14 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.eci.cvds.samples.entities;
 
 import java.io.Serializable;
 
 /**
- *
+ * Usuario registrado en la plataforma de la biblioteca, el usuario puede pertenecer a la comunidad o puede ser un administrador de la
+ * plataforma. Un usuario de la comunidad puede ver los recursos de la biblioteca y reservarlos si esta registrado mientras que un
+ * Administrador de la plataforma puede añadir recursos, cambiar el estado de los recursos y consultar reportes acerca del comportamiento
+ * de las reservas
+ * @param correo String con el correo electronico de la persona registrada. El correo electronico identifica a un usuario
+ * @param nombre String con nombre de la persona registrada en la plataforma de la biblioteca
+ * @param apellido String con el apellido de la persona registrada en la plataforma de la biblioteca
+ * @param tipo Tipo de usuario de la plataforma este puede ser 1 para Comunidad o 2 para Admisitrador
  * @author AlejandroB
  */
 public class Usuario implements Serializable{

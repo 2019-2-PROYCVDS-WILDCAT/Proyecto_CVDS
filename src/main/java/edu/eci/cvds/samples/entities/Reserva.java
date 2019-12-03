@@ -1,15 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.eci.cvds.samples.entities;
 
 import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
- *
+ * Objeto de una reserva de un recurso especifico hecha por un usuario registrado
+ * @param idUsuario String con el e-mail de un usuario registrado, este e-mail identifica al usuario
+ * @param id Numero de identificacion del recurso que el usuario esta reservando
+ * @param fechaReserva Fecha actual en la que la reserva esta tomando lugar
+ * @param fechaInicioReserva Fecha en la que la reserva comenzara a ser vigente
+ * @param fechaFinReserva Fecha en la que la reserva dejara de ser vigente
+ * @param activo Booleano que indica si una reserva sigue activa. True si sigue activa False de lo contrario 
  * @author LEVIATAN
  */
 public class Reserva {
